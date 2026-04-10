@@ -3,14 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Butterfly Agency Presentation</title>
+    <title>Butterfly Agency - KIT</title>
     <style>
-        /* Font declarations */
-        @font-face {
-            font-family: 'CocomatPro';
-            src: url('assets/fonts/CocomatPro-Regular.ttf') format('truetype');
-            font-weight: 400;
-        }
         @font-face {
             font-family: 'CocomatPro';
             src: url('assets/fonts/CocomatPro-Bold.ttf') format('truetype');
@@ -21,52 +15,19 @@
             src: url('assets/fonts/GlacialIndifference-Regular.ttf') format('truetype');
             font-weight: 400;
         }
-        @font-face {
-            font-family: 'GlacialIndifference';
-            src: url('assets/fonts/GlacialIndifference-Bold.ttf') format('truetype');
-            font-weight: 700;
-        }
-        @font-face {
-            font-family: 'OpenSans';
-            src: url('assets/fonts/OpenSans-Bold.ttf') format('truetype');
-            font-weight: 700;
-        }
-        @font-face {
-            font-family: 'AmbiguityNormate';
-            src: url('assets/fonts/AmbiguityNormate-Inline.ttf') format('truetype');
-        }
-        @font-face {
-            font-family: 'Brice';
-            src: url('assets/fonts/Brice-RegularSemiExpanded.ttf') format('truetype');
-        }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
+            overflow-y: scroll;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
         }
 
         body {
             background: #000;
             font-family: 'GlacialIndifference', sans-serif;
-            overflow: hidden;
-        }
-
-        .presentation-container {
-            width: 100%;
-            height: 100%;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            scroll-snap-type: y mandatory;
         }
 
         .slide {
@@ -74,40 +35,43 @@
             height: 100vh;
             scroll-snap-align: start;
             scroll-snap-stop: always;
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             background: #000;
-            flex-shrink: 0;
         }
 
         .slide-inner {
             position: relative;
-            width: 1440px;
-            height: 810px;
-            background: #000;
-            transform-origin: top left;
-            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            max-width: calc(100vh * 16 / 9);
+            max-height: calc(100vw * 9 / 16);
         }
 
-        .text-element {
+        .slide-bg {
             position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Accessible text overlay - visually hidden but available to screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
             white-space: nowrap;
-            overflow: hidden;
-            line-height: 1;
-            font-kerning: auto;
-        }
-
-        .image-element {
-            position: absolute;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            overflow: hidden;
-        }
-
-        .shape-element {
-            position: absolute;
+            border: 0;
         }
 
         /* Navigation */
@@ -119,721 +83,344 @@
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .nav-dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255,255,255,0.3);
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            border: 1.5px solid rgba(255,255,255,0.5);
         }
 
-        .nav-dot:hover {
-            background: rgba(255, 255, 255, 0.5);
-        }
+        .nav-dot:hover { background: rgba(255,255,255,0.5); }
 
         .nav-dot.active {
             background: #ec36a3;
             border-color: #ec36a3;
-            width: 16px;
-            height: 16px;
-            margin: -2px 0;
+            transform: scale(1.3);
         }
 
         .slide-counter {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            color: #fff;
-            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            font-size: 13px;
             font-family: 'GlacialIndifference', sans-serif;
             z-index: 1000;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #ec36a3;
+            z-index: 1000;
+            transition: width 0.3s ease;
         }
     </style>
 </head>
 <body>
-    <div class="presentation-container" id="presentation">
+    <div class="progress-bar" id="progressBar"></div>
 
-        <!-- SLIDE 1 -->
-        <div class="slide" data-slide="1">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 661.0px; top: 220.3px; font-family: 'CocomatPro'; font-size: 90.75px; font-weight: 700; color: #ffffff; width: 550.0px; height: 90.8px;">BUTTERFLY</div>
-                <div class="text-element" style="left: 808.2px; top: 321.5px; font-family: 'GlacialIndifference'; font-size: 65.58px; font-weight: 400; color: #ffffff; width: 255.6px; height: 78.7px;">AGENCY</div>
-                <div class="text-element" style="left: 463.8px; top: 652.9px; font-family: 'GlacialIndifference'; font-size: 37.6px; font-weight: 400; color: #ffffff; width: 512.4px; height: 45.1px;"> Laëtitia Lamari - Adrien Naeem</div>
-                <div class="text-element" style="left: 228.1px; top: 494.1px; font-family: 'CocomatPro'; font-size: 56.19px; font-weight: 700; color: #ffffff; width: 983.8px; height: 56.2px;"> YOUR GTM PARTNER IN FRANCE</div>
-                <div class="image-element" style="left: 228.0px; top: 111.7px; width: 396.8px; height: 303.7px; background-image: url('assets/p01-00.png');"></div>
-            </div>
+    <section class="slide" data-slide="1">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-01.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-01.png" alt="Slide 1" draggable="false">
+            </picture>
+            <div class="sr-only">BUTTERFLY | AGENCY | Laëtitia Lamari - Adrien Naeem | YOUR GTM PARTNER IN FRANCE</div>
         </div>
+    </section>
 
-        <!-- SLIDE 2 -->
-        <div class="slide" data-slide="2">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 128.2px; top: 183.9px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 548.3px; height: 64.0px;">EXEC SUMMARY</div>
-                <div class="text-element" style="left: 128.2px; top: 297.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 465.9px; height: 33.6px;">Butterfly Agency helps you grow in the </div>
-                <div class="text-element" style="left: 594.2px; top: 297.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 355.9px; height: 33.6px;">French e-commerce market</div>
-                <div class="text-element" style="left: 950.1px; top: 297.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 7.5px; height: 33.6px;">.</div>
-                <div class="text-element" style="left: 128.2px; top: 336.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 135.8px; height: 33.6px;">We run the </div>
-                <div class="text-element" style="left: 264.0px; top: 336.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ffde4c; width: 408.6px; height: 33.6px;">#1 e-commerce media in France</div>
-                <div class="text-element" style="left: 672.6px; top: 336.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 280.5px; height: 33.6px;">, a community of 1,500+</div>
-                <div class="text-element" style="left: 128.2px; top: 375.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 798.3px; height: 33.6px;">people, and we have 20 years of SaaS and retail experience. With</div>
-                <div class="text-element" style="left: 128.2px; top: 414.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 167.9px; height: 33.6px;">our 4 pillars —</div>
-                <div class="text-element" style="left: 303.1px; top: 414.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #2680f5; width: 578.0px; height: 33.6px;">media, events, community, and GTM support</div>
-                <div class="text-element" style="left: 881.1px; top: 414.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 69.9px; height: 33.6px;"> — we</div>
-                <div class="text-element" style="left: 128.2px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 106.4px; height: 33.6px;">give you </div>
-                <div class="text-element" style="left: 234.6px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 107.6px; height: 33.6px;">visibility</div>
-                <div class="text-element" style="left: 342.2px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 60.3px; height: 33.6px;">, the </div>
-                <div class="text-element" style="left: 402.6px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 225.5px; height: 33.6px;">right connections</div>
-                <div class="text-element" style="left: 628.1px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 67.8px; height: 33.6px;">, and </div>
-                <div class="text-element" style="left: 695.9px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 173.2px; height: 33.6px;">real business</div>
-                <div class="text-element" style="left: 128.2px; top: 492.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 88.0px; height: 33.6px;">results</div>
-                <div class="text-element" style="left: 216.2px; top: 492.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 7.5px; height: 33.6px;">.</div>
-                <div class="text-element" style="left: 128.2px; top: 570.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 672.3px; height: 33.6px;">Our goal : be your partner for the long term, so you can </div>
-                <div class="text-element" style="left: 800.5px; top: 570.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 68.0px; height: 33.6px;">enter</div>
-                <div class="text-element" style="left: 868.5px; top: 570.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 6.5px; height: 33.6px;">,</div>
-                <div class="text-element" style="left: 875.0px; top: 570.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 72.9px; height: 33.6px;"> grow</div>
-                <div class="text-element" style="left: 947.9px; top: 570.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 6.5px; height: 33.6px;">,</div>
-                <div class="text-element" style="left: 128.2px; top: 609.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 53.7px; height: 33.6px;">and </div>
-                <div class="text-element" style="left: 181.9px; top: 609.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 248.9px; height: 33.6px;">stand out in France</div>
-                <div class="text-element" style="left: 430.8px; top: 609.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 7.5px; height: 33.6px;">.</div>
-                <div class="image-element" style="left: 1057.5px; top: 81.0px; width: 301.5px; height: 230.2px; background-image: url('assets/p02-00.png');"></div>
-            </div>
+    <section class="slide" data-slide="2">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-02.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-02.png" alt="Slide 2" draggable="false">
+            </picture>
+            <div class="sr-only">EXEC SUMMARY | Butterfly Agency helps you grow in the French e-commerce market. | We run the #1 e-commerce media in France, a community of 1,500+ | people, and we have 20 years of SaaS and retail experience. With | our 4 pillars — media, events, community, and GTM support — we | give you visibility, the right connections, and real business | results. | Our goal : be your partner for the long term, so you can enter, grow, | and stand out in France.</div>
         </div>
+    </section>
 
-        <!-- SLIDE 3 -->
-        <div class="slide" data-slide="3">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 927.3px; top: 204.7px; font-family: 'GlacialIndifference'; font-size: 33.75px; font-weight: 400; color: #ffffff; width: 171.3px; height: 40.5px;">Who we are</div>
-                <div class="text-element" style="left: 835.9px; top: 203.0px; font-family: 'OpenSans'; font-size: 36.0px; font-weight: 700; color: #000000; width: 20.6px; height: 49.0px;">1</div>
-                <div class="text-element" style="left: 927.3px; top: 305.7px; font-family: 'GlacialIndifference'; font-size: 33.75px; font-weight: 400; color: #ffffff; width: 172.8px; height: 40.5px;">What we do</div>
-                <div class="text-element" style="left: 835.9px; top: 303.7px; font-family: 'OpenSans'; font-size: 36.0px; font-weight: 700; color: #000000; width: 20.6px; height: 49.0px;">2</div>
-                <div class="text-element" style="left: 927.3px; top: 507.6px; font-family: 'GlacialIndifference'; font-size: 33.75px; font-weight: 400; color: #ffffff; width: 252.0px; height: 40.5px;">Our methodology</div>
-                <div class="text-element" style="left: 835.9px; top: 505.3px; font-family: 'OpenSans'; font-size: 36.0px; font-weight: 700; color: #000000; width: 20.6px; height: 49.0px;">4</div>
-                <div class="text-element" style="left: 927.3px; top: 406.6px; font-family: 'GlacialIndifference'; font-size: 33.75px; font-weight: 400; color: #ffffff; width: 243.9px; height: 40.5px;">Our communities</div>
-                <div class="text-element" style="left: 835.9px; top: 404.5px; font-family: 'OpenSans'; font-size: 36.0px; font-weight: 700; color: #000000; width: 20.6px; height: 49.0px;">3</div>
-                <div class="text-element" style="left: 310.2px; top: 173.6px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 293.4px; height: 64.0px;">AGENDA</div>
-                <div class="text-element" style="left: 927.3px; top: 608.1px; font-family: 'GlacialIndifference'; font-size: 33.75px; font-weight: 400; color: #ffffff; width: 178.2px; height: 40.5px;">Our offering</div>
-                <div class="text-element" style="left: 835.9px; top: 605.8px; font-family: 'OpenSans'; font-size: 36.0px; font-weight: 700; color: #000000; width: 20.6px; height: 49.0px;">5</div>
-                <div class="image-element" style="left: 151.1px; top: 148.4px; width: 129.7px; height: 99.0px; background-image: url('assets/p03-00.png');"></div>
-            </div>
+    <section class="slide" data-slide="3">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-03.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-03.png" alt="Slide 3" draggable="false">
+            </picture>
+            <div class="sr-only">Who we are | 1 | What we do | 2 | Our methodology | 4 | Our communities | 3 | AGENDA | Our offering | 5</div>
         </div>
+    </section>
 
-        <!-- SLIDE 4 -->
-        <div class="slide" data-slide="4">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 308.0px; top: 555.3px; font-family: 'GlacialIndifference'; font-size: 31.99px; font-weight: 700; color: #ffde4c; width: 211.2px; height: 38.4px;">Adrien Naeem</div>
-                <div class="text-element" style="left: 482.7px; top: 100.2px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 474.6px; height: 64.0px;">WHO WE ARE</div>
-                <div class="text-element" style="left: 54.6px; top: 189.6px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 580.1px; height: 28.0px;">A DUO OF KEY OPINION LEADERS AND </div>
-                <div class="text-element" style="left: 634.7px; top: 189.7px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 750.6px; height: 28.0px;">E-COMMERCE (B2B/B2C) &amp; RETAIL TECH EXPERTS.</div>
-                <div class="text-element" style="left: 144.2px; top: 615.9px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 507.4px; height: 25.2px;">15+ yrs working in tech (Omniture, Demandware, Narvar).</div>
-                <div class="text-element" style="left: 144.2px; top: 645.2px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 430.2px; height: 25.2px;">Pioneered Salesforce Commerce Cloud, France</div>
-                <div class="text-element" style="left: 144.2px; top: 674.4px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 277.4px; height: 25.2px;">Diversity &amp; inclusion champion.</div>
-                <div class="text-element" style="left: 144.2px; top: 703.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 268.4px; height: 25.2px;">LinkedIn influencer &amp; speaker.</div>
-                <div class="text-element" style="left: 807.2px; top: 615.9px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 415.5px; height: 25.2px;">15+ yrs in global marketing (agency, software).</div>
-                <div class="text-element" style="left: 807.2px; top: 645.2px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 466.4px; height: 25.2px;">Expert in integrators , payment solutions. &amp; content </div>
-                <div class="text-element" style="left: 807.2px; top: 674.4px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 277.4px; height: 25.2px;">Diversity &amp; inclusion champion.</div>
-                <div class="text-element" style="left: 807.2px; top: 703.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 268.4px; height: 25.2px;">LinkedIn influencer &amp; speaker.</div>
-                <div class="text-element" style="left: 964.3px; top: 555.3px; font-family: 'GlacialIndifference'; font-size: 31.99px; font-weight: 700; color: #ffde4c; width: 224.7px; height: 38.4px;">Laetitia Lamari</div>
-                <div class="text-element" style="left: 662.7px; top: 325.5px; font-family: 'CocomatPro'; font-size: 19.58px; font-weight: 700; color: #ffffff; width: 114.6px; height: 19.6px;">RANKED #1</div>
-                <div class="text-element" style="left: 651.7px; top: 352.5px; font-family: 'CocomatPro'; font-size: 19.58px; font-weight: 700; color: #ffffff; width: 136.6px; height: 19.6px;">ECOMMERCE</div>
-                <div class="text-element" style="left: 646.4px; top: 379.6px; font-family: 'CocomatPro'; font-size: 19.58px; font-weight: 700; color: #ffffff; width: 147.1px; height: 19.6px;">INFLUENCERS</div>
-                <div class="text-element" style="left: 662.5px; top: 406.6px; font-family: 'CocomatPro'; font-size: 19.58px; font-weight: 700; color: #ffffff; width: 114.9px; height: 19.6px;">IN FRANCE</div>
-                <div class="image-element" style="left: 260.1px; top: 276.6px; width: 256.8px; height: 256.9px; background-image: url('assets/p04-00.png');"></div>
-                <div class="image-element" style="left: 923.1px; top: 276.6px; width: 256.8px; height: 256.9px; background-image: url('assets/p04-01.jpeg');"></div>
-                <div class="image-element" style="left: 903.6px; top: 549.7px; width: 50.2px; height: 50.2px; background-image: url('assets/p04-02.png');"></div>
-                <div class="image-element" style="left: 240.6px; top: 549.7px; width: 50.2px; height: 50.2px; background-image: url('assets/p04-03.png');"></div>
-                <div class="image-element" style="left: 598.6px; top: 265.0px; width: 242.7px; height: 307.0px; background-image: url('assets/p04-04.png');"></div>
-                <div class="image-element" style="left: 638.6px; top: 316.8px; width: 163.9px; height: 116.2px; background-image: url('assets/p04-05.png');"></div>
-            </div>
+    <section class="slide" data-slide="4">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-04.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-04.png" alt="Slide 4" draggable="false">
+            </picture>
+            <div class="sr-only">Adrien Naeem | WHO WE ARE | A DUO OF KEY OPINION LEADERS AND E-COMMERCE (B2B/B2C) & RETAIL TECH EXPERTS. | 15+ yrs working in tech (Omniture, Demandware, Narvar). | Pioneered Salesforce Commerce Cloud, France | Diversity & inclusion champion. | LinkedIn influencer & speaker. | 15+ yrs in global marketing (agency, software). | Expert in integrators , payment solutions. & content | Diversity & inclusion champion. | LinkedIn influencer & speaker. | Laetitia Lamari | RANKED #1 | ECOMMERCE | INFLUENCERS | IN FRANCE</div>
         </div>
+    </section>
 
-        <!-- SLIDE 5 -->
-        <div class="slide" data-slide="5">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 492.0px; top: 61.7px; font-family: 'CocomatPro'; font-size: 80.0px; font-weight: 700; color: #ffffff; width: 456.0px; height: 80.0px;">ONE TEAM</div>
-                <div class="text-element" style="left: 66.8px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 105.2px; height: 24.9px;">Edouard</div>
-                <div class="text-element" style="left: 172.0px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 91.4px; height: 24.9px;"> SELVY</div>
-                <div class="text-element" style="left: 142.8px; top: 431.9px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 44.5px; height: 27.3px;">CTO</div>
-                <div class="text-element" style="left: 347.2px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 83.2px; height: 24.9px;">Jessica</div>
-                <div class="text-element" style="left: 430.4px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 107.4px; height: 24.9px;"> BOAZIZ</div>
-                <div class="text-element" style="left: 368.7px; top: 431.9px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 147.8px; height: 27.3px;">Event Manager</div>
-                <div class="text-element" style="left: 616.1px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 65.6px; height: 24.9px;">Emily</div>
-                <div class="text-element" style="left: 681.7px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 142.1px; height: 24.9px;"> BARANOV</div>
-                <div class="text-element" style="left: 693.8px; top: 431.9px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 52.3px; height: 27.3px;">CMO</div>
-                <div class="text-element" style="left: 893.8px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 77.6px; height: 24.9px;">Benoit</div>
-                <div class="text-element" style="left: 971.4px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 129.6px; height: 24.9px;"> ROUGIER</div>
-                <div class="text-element" style="left: 920.0px; top: 431.9px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 155.0px; height: 27.3px;">Media Producer</div>
-                <div class="text-element" style="left: 1158.6px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 100.8px; height: 24.9px;">Cristian </div>
-                <div class="text-element" style="left: 1259.5px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 131.7px; height: 24.9px;">MALLAMA</div>
-                <div class="text-element" style="left: 1191.3px; top: 431.9px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 167.1px; height: 27.3px;">Growth Manager</div>
-                <div class="text-element" style="left: 345.3px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 92.5px; height: 24.9px;">Laurine</div>
-                <div class="text-element" style="left: 437.8px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 102.0px; height: 24.9px;"> ANGER</div>
-                <div class="text-element" style="left: 371.1px; top: 739.4px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 142.9px; height: 27.3px;">Chief of Brand</div>
-                <div class="text-element" style="left: 592.2px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 112.7px; height: 24.9px;">Benjamin</div>
-                <div class="text-element" style="left: 704.9px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 160.9px; height: 24.9px;"> DE CASTRO</div>
-                <div class="text-element" style="left: 693.8px; top: 739.4px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 52.5px; height: 27.3px;">COO</div>
-                <div class="text-element" style="left: 910.6px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 74.1px; height: 24.9px;">Céline</div>
-                <div class="text-element" style="left: 984.7px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 99.6px; height: 24.9px;"> LIBERT</div>
-                <div class="text-element" style="left: 926.2px; top: 739.4px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 142.5px; height: 27.3px;">Head Of Sales</div>
-                <div class="text-element" style="left: 1171.8px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 81.5px; height: 24.9px;">Yéléna</div>
-                <div class="text-element" style="left: 1253.3px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 124.7px; height: 24.9px;"> SQUIRES</div>
-                <div class="text-element" style="left: 1130.6px; top: 739.4px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 288.5px; height: 27.3px;">Community Success Manager</div>
-                <div class="text-element" style="left: 74.0px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 69.0px; height: 24.9px;">Lucas</div>
-                <div class="text-element" style="left: 143.0px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 113.2px; height: 24.9px;"> SERRAS</div>
-                <div class="text-element" style="left: 89.5px; top: 739.4px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 151.2px; height: 27.3px;">Movie Producer</div>
-                <div class="image-element" style="left: 66.0px; top: 178.2px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-00.jpeg');"></div>
-                <div class="image-element" style="left: 343.5px; top: 178.2px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-01.jpeg');"></div>
-                <div class="image-element" style="left: 620.9px; top: 178.2px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-02.jpeg');"></div>
-                <div class="image-element" style="left: 898.4px; top: 178.2px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-03.jpeg');"></div>
-                <div class="image-element" style="left: 1175.8px; top: 178.2px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-04.jpeg');"></div>
-                <div class="image-element" style="left: 343.3px; top: 485.7px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-05.png');"></div>
-                <div class="image-element" style="left: 620.9px; top: 485.7px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-06.png');"></div>
-                <div class="image-element" style="left: 898.4px; top: 485.7px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-07.png');"></div>
-                <div class="image-element" style="left: 1175.8px; top: 485.7px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-08.png');"></div>
-                <div class="image-element" style="left: 65.9px; top: 485.7px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-09.png');"></div>
-            </div>
+    <section class="slide" data-slide="5">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-05.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-05.png" alt="Slide 5" draggable="false">
+            </picture>
+            <div class="sr-only">ONE TEAM | Edouard SELVY | CTO | Jessica BOAZIZ | Event Manager | Emily BARANOV | CMO | Benoit ROUGIER | Media Producer | Cristian MALLAMA | Growth Manager | Laurine ANGER | Chief of Brand | Benjamin DE CASTRO | COO | Céline LIBERT | Head Of Sales | Yéléna SQUIRES | Community Success Manager | Lucas SERRAS | Movie Producer</div>
         </div>
+    </section>
 
-        <!-- SLIDE 6 -->
-        <div class="slide" data-slide="6">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 81.0px; top: 284.9px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 248.6px; height: 28.0px;">WE WORK WITH </div>
-                <div class="text-element" style="left: 329.6px; top: 285.0px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ffde4c; width: 54.2px; height: 28.0px;">ALL</div>
-                <div class="text-element" style="left: 383.9px; top: 284.9px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 255.7px; height: 28.0px;"> THE COMPANIES</div>
-                <div class="text-element" style="left: 81.0px; top: 363.7px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 126.4px; height: 28.0px;">WE ARE </div>
-                <div class="text-element" style="left: 207.4px; top: 363.8px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 153.4px; height: 28.0px;">AGNOSTIC</div>
-                <div class="text-element" style="left: 81.0px; top: 442.4px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 167.5px; height: 28.0px;">WE OFFER </div>
-                <div class="text-element" style="left: 248.5px; top: 442.5px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #2680f5; width: 233.1px; height: 28.0px;">PERSONALIZED</div>
-                <div class="text-element" style="left: 481.6px; top: 442.4px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 202.7px; height: 28.0px;"> CONSULTING</div>
-                <div class="text-element" style="left: 81.0px; top: 521.2px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 126.5px; height: 28.0px;">WE ARE </div>
-                <div class="text-element" style="left: 222.4px; top: 512.3px; font-family: 'CocomatPro'; font-size: 45.85px; font-weight: 700; color: #ffffff; width: 277.8px; height: 45.8px;">BUTTERFLY</div>
-                <div class="image-element" style="left: 764.8px; top: 116.9px; width: 598.7px; height: 392.5px; background-image: url('assets/p06-00.png');"></div>
-                <div class="image-element" style="left: 753.4px; top: 105.6px; width: 646.5px; height: 440.6px; background-image: url('assets/p06-01.png');"></div>
-                <div class="image-element" style="left: 282.7px; top: 589.5px; width: 157.5px; height: 120.0px; background-image: url('assets/p06-02.png');"></div>
-            </div>
+    <section class="slide" data-slide="6">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-06.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-06.png" alt="Slide 6" draggable="false">
+            </picture>
+            <div class="sr-only">WE WORK WITH ALL THE COMPANIES | WE ARE AGNOSTIC | WE OFFER PERSONALIZED CONSULTING | WE ARE | BUTTERFLY</div>
         </div>
+    </section>
 
-        <!-- SLIDE 7 -->
-        <div class="slide" data-slide="7">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 483.8px; top: 139.3px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 472.4px; height: 64.0px;">WHAT WE DO</div>
-                <div class="text-element" style="left: 135.1px; top: 541.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 247.9px; height: 33.6px;">#1 Independent Retail</div>
-                <div class="text-element" style="left: 169.0px; top: 572.5px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 180.0px; height: 33.6px;">&amp; E-Commerce</div>
-                <div class="text-element" style="left: 162.5px; top: 603.3px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 193.1px; height: 33.6px;">Media in France.</div>
-                <div class="text-element" style="left: 237.0px; top: 301.7px; font-family: 'CocomatPro'; font-size: 120.58px; font-weight: 700; color: #000000; width: 44.0px; height: 120.6px;">1</div>
-                <div class="text-element" style="left: 526.9px; top: 301.7px; font-family: 'CocomatPro'; font-size: 120.58px; font-weight: 700; color: #000000; width: 75.8px; height: 120.6px;">2</div>
-                <div class="text-element" style="left: 833.2px; top: 301.7px; font-family: 'CocomatPro'; font-size: 120.58px; font-weight: 700; color: #000000; width: 74.5px; height: 120.6px;">3</div>
-                <div class="text-element" style="left: 1137.0px; top: 301.7px; font-family: 'CocomatPro'; font-size: 120.58px; font-weight: 700; color: #000000; width: 78.1px; height: 120.6px;">4</div>
-                <div class="text-element" style="left: 201.4px; top: 482.3px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 115.3px; height: 33.0px;">MEDIA</div>
-                <div class="text-element" style="left: 760.9px; top: 541.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 219.1px; height: 33.6px;">Accelerating SAAS</div>
-                <div class="text-element" style="left: 743.9px; top: 572.5px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 253.1px; height: 33.6px;">tech to launch in SEU.</div>
-                <div class="text-element" style="left: 755.9px; top: 482.3px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 229.1px; height: 33.0px;">CONSULTING</div>
-                <div class="text-element" style="left: 456.4px; top: 541.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 216.9px; height: 33.6px;">Hosting &amp; covering</div>
-                <div class="text-element" style="left: 445.2px; top: 572.5px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 239.3px; height: 33.6px;">over 10 global events</div>
-                <div class="text-element" style="left: 513.9px; top: 603.3px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 101.9px; height: 33.6px;">annually.</div>
-                <div class="text-element" style="left: 494.7px; top: 482.3px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 140.3px; height: 33.0px;">EVENTS</div>
-                <div class="text-element" style="left: 1108.6px; top: 541.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 135.1px; height: 33.6px;">Connecting</div>
-                <div class="text-element" style="left: 1081.3px; top: 572.5px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 189.7px; height: 33.6px;">professionals via</div>
-                <div class="text-element" style="left: 1073.1px; top: 603.3px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 206.1px; height: 33.6px;">different premium</div>
-                <div class="text-element" style="left: 1076.4px; top: 634.0px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 199.4px; height: 33.6px;">clubs we created</div>
-                <div class="text-element" style="left: 1050.1px; top: 482.3px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 252.0px; height: 33.0px;">COMMUNITIES</div>
-                <div class="image-element" style="left: 183.8px; top: 277.4px; width: 150.4px; height: 150.4px; background-image: url('assets/p07-00.png');"></div>
-                <div class="image-element" style="left: 489.7px; top: 277.4px; width: 150.4px; height: 150.4px; background-image: url('assets/p07-01.png');"></div>
-                <div class="image-element" style="left: 795.3px; top: 277.4px; width: 150.4px; height: 150.4px; background-image: url('assets/p07-02.png');"></div>
-                <div class="image-element" style="left: 1100.9px; top: 277.4px; width: 150.4px; height: 150.4px; background-image: url('assets/p07-03.png');"></div>
-            </div>
+    <section class="slide" data-slide="7">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-07.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-07.png" alt="Slide 7" draggable="false">
+            </picture>
+            <div class="sr-only">WHAT WE DO | #1 Independent Retail | & E-Commerce | Media in France. | 1 | 2 | 3 | 4 | MEDIA | Accelerating SAAS | tech to launch in SEU. | CONSULTING | Hosting & covering | over 10 global events | annually. | EVENTS | Connecting | professionals via | different premium | clubs we created | COMMUNITIES</div>
         </div>
+    </section>
 
-        <!-- SLIDE 8 -->
-        <div class="slide" data-slide="8">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 768.0px; top: 522.6px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #ffffff; width: 91.7px; height: 57.6px;">300 </div>
-                <div class="text-element" style="left: 859.6px; top: 522.6px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #2680f5; width: 22.1px; height: 57.6px;">+</div>
-                <div class="text-element" style="left: 768.0px; top: 582.5px; font-family: 'GlacialIndifference'; font-size: 23.7px; font-weight: 400; color: #ffffff; width: 90.6px; height: 28.4px;">Episodes</div>
-                <div class="text-element" style="left: 638.5px; top: 171.9px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 223.7px; height: 64.0px;">MEDIA</div>
-                <div class="text-element" style="left: 768.0px; top: 361.5px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #ffffff; width: 64.3px; height: 57.6px;">1M </div>
-                <div class="text-element" style="left: 832.3px; top: 361.5px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #2680f5; width: 22.1px; height: 57.6px;">+</div>
-                <div class="text-element" style="left: 768.0px; top: 421.4px; font-family: 'GlacialIndifference'; font-size: 23.7px; font-weight: 400; color: #ffffff; width: 66.9px; height: 28.4px;">Listens</div>
-                <div class="text-element" style="left: 1075.5px; top: 361.5px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #ffffff; width: 80.0px; height: 57.6px;">150 </div>
-                <div class="text-element" style="left: 1155.6px; top: 361.5px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #2680f5; width: 22.1px; height: 57.6px;">+</div>
-                <div class="text-element" style="left: 1075.5px; top: 421.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 127.5px; height: 28.8px;">5* on iTunes</div>
-                <div class="text-element" style="left: 638.5px; top: 238.6px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 300.1px; height: 33.6px;">We started the podcast “</div>
-                <div class="text-element" style="left: 938.6px; top: 238.6px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ffde4c; width: 329.5px; height: 33.6px;">Le Café de l’E-Commerce</div>
-                <div class="text-element" style="left: 1268.1px; top: 238.6px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 108.6px; height: 33.6px;">” in 2019.</div>
-                <div class="text-element" style="left: 638.5px; top: 277.6px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 721.6px; height: 33.6px;">Today, it is the #1 independent ecommerce media in France.</div>
-                <div class="text-element" style="left: 1072.1px; top: 522.4px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #ffffff; width: 80.5px; height: 57.6px;">100 </div>
-                <div class="text-element" style="left: 1152.6px; top: 522.4px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #2680f5; width: 22.1px; height: 57.6px;">+</div>
-                <div class="text-element" style="left: 1072.1px; top: 582.2px; font-family: 'GlacialIndifference'; font-size: 23.7px; font-weight: 400; color: #ffffff; width: 104.7px; height: 28.4px;">VIP guests</div>
-                <div class="image-element" style="left: 81.0px; top: 154.9px; width: 500.2px; height: 500.2px; background-image: url('assets/p08-00.jpeg');"></div>
-            </div>
+    <section class="slide" data-slide="8">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-08.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-08.png" alt="Slide 8" draggable="false">
+            </picture>
+            <div class="sr-only">300 + | Episodes | MEDIA | 1M + | Listens | 150 + | 5* on iTunes | We started the podcast “Le Café de l’E-Commerce” in 2019. | Today, it is the #1 independent ecommerce media in France. | 100 + | VIP guests</div>
         </div>
+    </section>
 
-        <!-- SLIDE 9 -->
-        <div class="slide" data-slide="9">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 608.1px; top: 139.3px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 223.7px; height: 64.0px;">MEDIA</div>
-                <div class="text-element" style="left: 206.4px; top: 584.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 271.9px; height: 33.6px;">~15k listeners per month</div>
-                <div class="text-element" style="left: 222.9px; top: 614.9px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 238.9px; height: 33.6px;">+150 5-star on iTunes</div>
-                <div class="text-element" style="left: 259.2px; top: 645.7px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 166.4px; height: 33.6px;">+300 episodes</div>
-                <div class="text-element" style="left: 258.7px; top: 524.7px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 167.3px; height: 33.0px;">PODCAST</div>
-                <div class="text-element" style="left: 591.7px; top: 584.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 256.9px; height: 33.6px;">+1500 members on our</div>
-                <div class="text-element" style="left: 612.3px; top: 614.9px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 215.7px; height: 33.6px;">WhatsApp channel</div>
-                <div class="text-element" style="left: 594.1px; top: 524.7px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 252.0px; height: 33.0px;">COMMUNITIES</div>
-                <div class="text-element" style="left: 990.5px; top: 584.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 214.3px; height: 33.6px;">LinkedIn Top Voice</div>
-                <div class="text-element" style="left: 1031.1px; top: 614.9px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 133.1px; height: 33.6px;">Newsletters</div>
-                <div class="text-element" style="left: 1010.9px; top: 524.7px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 173.6px; height: 33.0px;">CHANNEL</div>
-                <div class="text-element" style="left: 112.6px; top: 231.2px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 1094.2px; height: 28.0px;">WE HAVE DEVELOPED OUR MEDIA BRANDS REACHING A TOTAL OF OVER </div>
-                <div class="text-element" style="left: 1206.8px; top: 231.3px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 120.5px; height: 28.0px;">30,000</div>
-                <div class="text-element" style="left: 92.1px; top: 270.9px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 1255.8px; height: 28.0px;">QUALIFIED AUDIENCE MEMBERS WITHIN THE E-COMMERCE ECOSYSTEM IN FRANCE.</div>
-                <div class="image-element" style="left: 276.9px; top: 358.4px; width: 130.9px; height: 130.9px; background-image: url('assets/p09-00.png');"></div>
-                <div class="image-element" style="left: 654.6px; top: 358.4px; width: 130.9px; height: 130.9px; background-image: url('assets/p09-01.png');"></div>
-                <div class="image-element" style="left: 1032.2px; top: 358.4px; width: 130.9px; height: 130.9px; background-image: url('assets/p09-02.png');"></div>
-            </div>
+    <section class="slide" data-slide="9">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-09.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-09.png" alt="Slide 9" draggable="false">
+            </picture>
+            <div class="sr-only">MEDIA | ~15k listeners per month | +150 5-star on iTunes | +300 episodes | PODCAST | +1500 members on our | WhatsApp channel | COMMUNITIES | LinkedIn Top Voice | Newsletters | CHANNEL | WE HAVE DEVELOPED OUR MEDIA BRANDS REACHING A TOTAL OF OVER 30,000 | QUALIFIED AUDIENCE MEMBERS WITHIN THE E-COMMERCE ECOSYSTEM IN FRANCE.</div>
         </div>
+    </section>
 
-        <!-- SLIDE 10 -->
-        <div class="slide" data-slide="10">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 351.6px; top: 477.8px; font-family: 'OpenSans'; font-size: 25.99px; font-weight: 700; color: #ec36a3; width: 129.1px; height: 35.4px;">STRATEGY</div>
-                <div class="text-element" style="left: 372.8px; top: 527.4px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 171.0px; height: 25.2px;">Market Assessment</div>
-                <div class="text-element" style="left: 372.8px; top: 556.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 278.0px; height: 25.2px;">In-depth analysis of the French</div>
-                <div class="text-element" style="left: 372.8px; top: 585.9px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 286.7px; height: 25.2px;">e-commerce &amp; retail landscape</div>
-                <div class="text-element" style="left: 372.8px; top: 615.2px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 240.5px; height: 25.2px;">Benchmark of competitors,</div>
-                <div class="text-element" style="left: 372.8px; top: 644.4px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 206.2px; height: 25.2px;">opportunities, and risks</div>
-                <div class="text-element" style="left: 372.8px; top: 673.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 298.1px; height: 25.2px;">Actionable insights to shape your</div>
-                <div class="text-element" style="left: 372.8px; top: 702.9px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 173.2px; height: 25.2px;">Go-To-Market plan</div>
-                <div class="text-element" style="left: 287.3px; top: 474.2px; font-family: 'CocomatPro'; font-size: 53.02px; font-weight: 700; color: #000000; width: 19.4px; height: 53.0px;">1</div>
-                <div class="text-element" style="left: 867.7px; top: 479.8px; font-family: 'OpenSans'; font-size: 25.99px; font-weight: 700; color: #ec36a3; width: 148.1px; height: 35.4px;">EXECUTION</div>
-                <div class="text-element" style="left: 888.8px; top: 529.5px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 155.1px; height: 25.2px;">GTM Deployment</div>
-                <div class="text-element" style="left: 888.8px; top: 558.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 262.1px; height: 25.2px;">We act as your local team on</div>
-                <div class="text-element" style="left: 888.8px; top: 588.0px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 103.8px; height: 25.2px;">the ground.</div>
-                <div class="text-element" style="left: 888.8px; top: 617.2px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 227.6px; height: 25.2px;">Direct access to the right</div>
-                <div class="text-element" style="left: 888.8px; top: 646.5px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 251.9px; height: 25.2px;">decision-makers &amp; networks</div>
-                <div class="text-element" style="left: 888.8px; top: 675.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 254.5px; height: 25.2px;">Hands-on support to launch,</div>
-                <div class="text-element" style="left: 888.8px; top: 705.0px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 232.5px; height: 25.2px;">scale, and grow in France</div>
-                <div class="text-element" style="left: 802.6px; top: 474.2px; font-family: 'CocomatPro'; font-size: 53.02px; font-weight: 700; color: #000000; width: 33.4px; height: 53.0px;">2</div>
-                <div class="text-element" style="left: 414.4px; top: 85.6px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 611.1px; height: 64.0px;">CONSULTING GTM</div>
-                <div class="text-element" style="left: 1147.7px; top: 366.5px; font-family: 'CocomatPro'; font-size: 34.45px; font-weight: 700; color: #ffffff; width: 27.9px; height: 34.5px;">...</div>
-                <div class="image-element" style="left: 264.8px; top: 463.5px; width: 64.4px; height: 66.1px; background-image: url('assets/p10-00.png');"></div>
-                <div class="image-element" style="left: 788.4px; top: 463.5px; width: 61.8px; height: 66.1px; background-image: url('assets/p10-01.png');"></div>
-                <div class="image-element" style="left: 328.3px; top: 227.1px; width: 159.0px; height: 37.5px; background-image: url('assets/p10-02.png');"></div>
-                <div class="image-element" style="left: 537.4px; top: 344.9px; width: 155.2px; height: 28.5px; background-image: url('assets/p10-03.png');"></div>
-                <div class="image-element" style="left: 742.3px; top: 316.3px; width: 163.5px; height: 85.5px; background-image: url('assets/p10-04.png');"></div>
-                <div class="image-element" style="left: 955.5px; top: 336.3px; width: 151.5px; height: 45.8px; background-image: url('assets/p10-05.png');"></div>
-                <div class="image-element" style="left: 533.6px; top: 232.8px; width: 164.2px; height: 27.0px; background-image: url('assets/p10-06.png');"></div>
-                <div class="image-element" style="left: 342.5px; top: 341.8px; width: 130.5px; height: 35.2px; background-image: url('assets/p10-07.png');"></div>
-                <div class="image-element" style="left: 980.5px; top: 216.4px; width: 101.2px; height: 59.2px; background-image: url('assets/p10-08.png');"></div>
-                <div class="image-element" style="left: 757.8px; top: 223.3px; width: 132.8px; height: 45.0px; background-image: url('assets/p10-09.png');"></div>
-            </div>
+    <section class="slide" data-slide="10">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-10.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-10.png" alt="Slide 10" draggable="false">
+            </picture>
+            <div class="sr-only">STRATEGY | Market Assessment | In-depth analysis of the French | e-commerce & retail landscape | Benchmark of competitors, | opportunities, and risks | Actionable insights to shape your | Go-To-Market plan | 1 | EXECUTION | GTM Deployment | We act as your local team on | the ground. | Direct access to the right | decision-makers & networks | Hands-on support to launch, | scale, and grow in France | 2 | CONSULTING GTM | ...</div>
         </div>
+    </section>
 
-        <!-- SLIDE 11 -->
-        <div class="slide" data-slide="11">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 930.1px; top: 305.8px; font-family: 'CocomatPro'; font-size: 73.47px; font-weight: 700; color: #000000; width: 46.2px; height: 73.5px;">2</div>
-                <div class="text-element" style="left: 789.1px; top: 400.9px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 328.1px; height: 33.0px;">INDUSTRY EVENTS</div>
-                <div class="text-element" style="left: 583.9px; top: 98.4px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 272.1px; height: 64.0px;">EVENTS</div>
-                <div class="text-element" style="left: 378.5px; top: 305.8px; font-family: 'CocomatPro'; font-size: 73.47px; font-weight: 700; color: #000000; width: 26.8px; height: 73.5px;">1</div>
-                <div class="text-element" style="left: 277.5px; top: 400.9px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 229.0px; height: 33.0px;">OUR EVENTS</div>
-                <div class="text-element" style="left: 181.1px; top: 187.6px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 555.9px; height: 28.0px;">WITH A CONSTANT ROI MINDSET, WE </div>
-                <div class="text-element" style="left: 737.0px; top: 187.7px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 521.8px; height: 28.0px;">REDEFINE THE EVENT LANDSCAPE</div>
-                <div class="text-element" style="left: 154.7px; top: 227.4px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 1130.5px; height: 28.0px;">WITH SMART STRATEGIES, STRONG NETWORK AND UNMATCHED EXPERTISE.</div>
-                <div class="text-element" style="left: 1216.0px; top: 691.5px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 26.7px; height: 33.0px;">...</div>
-                <div class="image-element" style="left: 346.1px; top: 290.9px; width: 91.6px; height: 91.6px; background-image: url('assets/p11-00.png');"></div>
-                <div class="image-element" style="left: 398.1px; top: 452.5px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-01.png');"></div>
-                <div class="image-element" style="left: 231.9px; top: 452.5px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-02.png');"></div>
-                <div class="image-element" style="left: 398.1px; top: 547.8px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-03.png');"></div>
-                <div class="image-element" style="left: 231.9px; top: 547.8px; width: 154.5px; height: 85.5px; background-image: url('assets/p11-04.png');"></div>
-                <div class="image-element" style="left: 231.8px; top: 643.4px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-05.png');"></div>
-                <div class="image-element" style="left: 398.1px; top: 643.4px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-06.png');"></div>
-                <div class="image-element" style="left: 907.4px; top: 290.9px; width: 91.6px; height: 91.6px; background-image: url('assets/p11-07.png');"></div>
-                <div class="image-element" style="left: 709.5px; top: 451.7px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-08.png');"></div>
-                <div class="image-element" style="left: 875.5px; top: 451.7px; width: 153.7px; height: 85.5px; background-image: url('assets/p11-09.png');"></div>
-                <div class="image-element" style="left: 1041.5px; top: 451.7px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-10.png');"></div>
-                <div class="image-element" style="left: 709.5px; top: 547.1px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-11.png');"></div>
-                <div class="image-element" style="left: 875.5px; top: 546.3px; width: 153.7px; height: 85.5px; background-image: url('assets/p11-12.png');"></div>
-                <div class="image-element" style="left: 1041.5px; top: 547.1px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-13.png');"></div>
-                <div class="image-element" style="left: 709.5px; top: 642.7px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-14.png');"></div>
-                <div class="image-element" style="left: 875.5px; top: 642.7px; width: 153.7px; height: 85.5px; background-image: url('assets/p11-15.png');"></div>
-                <div class="image-element" style="left: 1041.5px; top: 642.7px; width: 155.2px; height: 86.2px; background-image: url('assets/p11-16.png');"></div>
-            </div>
+    <section class="slide" data-slide="11">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-11.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-11.png" alt="Slide 11" draggable="false">
+            </picture>
+            <div class="sr-only">2 | INDUSTRY EVENTS | EVENTS | 1 | OUR EVENTS | WITH A CONSTANT ROI MINDSET, WE REDEFINE THE EVENT LANDSCAPE | WITH SMART STRATEGIES, STRONG NETWORK AND UNMATCHED EXPERTISE. | ...</div>
         </div>
+    </section>
 
-        <!-- SLIDE 12 -->
-        <div class="slide" data-slide="12">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 82.4px; top: 119.3px; font-family: 'CocomatPro'; font-size: 80.0px; font-weight: 700; color: #ffffff; width: 555.2px; height: 80.0px;">OUR EVENTS</div>
-                <div class="text-element" style="left: 119.5px; top: 208.1px; font-family: 'GlacialIndifference'; font-size: 40.0px; font-weight: 400; color: #ec36a3; width: 480.8px; height: 48.0px;">MEETING OUR COMMUNITY</div>
-                <div class="text-element" style="left: 268.5px; top: 403.2px; font-family: 'OpenSans'; font-size: 13.99px; font-weight: 700; color: #ffffff; width: 31.9px; height: 19.0px;">2025</div>
-                <div class="text-element" style="left: 261.3px; top: 411.5px; font-family: 'OpenSans'; font-size: 13.99px; font-weight: 700; color: #ffffff; width: 31.9px; height: 19.0px;">2025</div>
-                <div class="text-element" style="left: 159.3px; top: 620.1px; font-family: 'CocomatPro'; font-size: 28.57px; font-weight: 700; color: #ffffff; width: 401.3px; height: 28.6px;">+2K DE EXECS ATTENDEES</div>
-                <div class="text-element" style="left: 201.7px; top: 654.6px; font-family: 'CocomatPro'; font-size: 28.57px; font-weight: 700; color: #ffffff; width: 316.5px; height: 28.6px;">3 EVENTS /QUARTER</div>
-                <div class="image-element" style="left: 694.9px; top: 50.5px; width: 442.0px; height: 336.9px; background-image: url('assets/p12-00.png');"></div>
-                <div class="image-element" style="left: 676.5px; top: 39.0px; width: 476.5px; height: 363.8px; background-image: url('assets/p12-01.png');"></div>
-                <div class="image-element" style="left: 1162.4px; top: 147.2px; width: 247.0px; height: 239.5px; background-image: url('assets/p12-02.png');"></div>
-                <div class="image-element" style="left: 1109.1px; top: 479.6px; width: 237.4px; height: 229.4px; background-image: url('assets/p12-03.png');"></div>
-                <div class="image-element" style="left: 965.4px; top: 305.9px; width: 244.1px; height: 236.4px; background-image: url('assets/p12-04.png');"></div>
-                <div class="image-element" style="left: 792.8px; top: 448.1px; width: 247.0px; height: 239.5px; background-image: url('assets/p12-05.png');"></div>
-                <div class="image-element" style="left: 95.6px; top: 272.0px; width: 495.0px; height: 322.5px; background-image: url('assets/p12-06.png');"></div>
-            </div>
+    <section class="slide" data-slide="12">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-12.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-12.png" alt="Slide 12" draggable="false">
+            </picture>
+            <div class="sr-only">OUR EVENTS | MEETING OUR COMMUNITY | 2025 | 2025 | +2K DE EXECS ATTENDEES | 3 EVENTS /QUARTER</div>
         </div>
+    </section>
 
-        <!-- SLIDE 13 -->
-        <div class="slide" data-slide="13">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 925.5px; top: 205.3px; font-family: 'AmbiguityNormate'; font-size: 115.98px; font-weight: 400; color: #ffffff; width: 314.1px; height: 196.2px;">S T P</div>
-                <div class="text-element" style="left: 930.6px; top: 373.4px; font-family: 'Brice'; font-size: 18.66px; font-weight: 400; color: #ffffff; width: 303.8px; height: 18.7px;">S T O R E  T O U R  P A R I S</div>
-                <div class="text-element" style="left: 780.0px; top: 509.4px; font-family: 'GlacialIndifference'; font-size: 23.99px; font-weight: 400; color: #ffffff; width: 605.2px; height: 28.8px;">Store Tour Paris (STP) is a quarterly half-day event where</div>
-                <div class="text-element" style="left: 780.0px; top: 544.6px; font-family: 'GlacialIndifference'; font-size: 23.99px; font-weight: 400; color: #ffffff; width: 605.2px; height: 28.8px;">retail professionals discover the latest omnichannel</div>
-                <div class="text-element" style="left: 780.0px; top: 579.9px; font-family: 'GlacialIndifference'; font-size: 23.99px; font-weight: 400; color: #ffffff; width: 306.7px; height: 28.8px;">innovations in Parisian stores. </div>
-                <div class="text-element" style="left: 780.0px; top: 650.4px; font-family: 'GlacialIndifference'; font-size: 23.99px; font-weight: 400; color: #ffffff; width: 605.2px; height: 28.8px;">It offers a clear view of customer experience trends, new</div>
-                <div class="text-element" style="left: 780.0px; top: 685.6px; font-family: 'GlacialIndifference'; font-size: 23.99px; font-weight: 400; color: #ffffff; width: 444.2px; height: 28.8px;">technologies, and online/offline strategies.</div>
-                <div class="text-element" style="left: 805.7px; top: 428.3px; font-family: 'GlacialIndifference'; font-size: 39.99px; font-weight: 400; color: #ec36a3; width: 553.8px; height: 48.0px;">A UNIQUE CONCEPT IN FRANCE</div>
-                <div class="image-element" style="left: 54.8px; top: 95.4px; width: 667.8px; height: 489.0px; background-image: url('assets/p13-00.png');"></div>
-            </div>
+    <section class="slide" data-slide="13">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-13.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-13.png" alt="Slide 13" draggable="false">
+            </picture>
+            <div class="sr-only">S T P | S T O R E  T O U R  P A R I S | Store Tour Paris (STP) is a quarterly half-day event where | retail professionals discover the latest omnichannel | innovations in Parisian stores. | It offers a clear view of customer experience trends, new | technologies, and online/offline strategies. | A UNIQUE CONCEPT IN FRANCE</div>
         </div>
+    </section>
 
-        <!-- SLIDE 14 -->
-        <div class="slide" data-slide="14">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 283.1px; top: 322.9px; font-family: 'GlacialIndifference'; font-size: 25.0px; font-weight: 400; color: #ffffff; width: 882.7px; height: 30.0px;">WIRE is the largest and #1 french community for women in retail and e-commerce. </div>
-                <div class="text-element" style="left: 307.4px; top: 359.7px; font-family: 'GlacialIndifference'; font-size: 25.0px; font-weight: 400; color: #ffffff; width: 834.0px; height: 30.0px;">Every quarter, we host a VIP dinner where leaders and experts meet in a small</div>
-                <div class="text-element" style="left: 275.6px; top: 396.4px; font-family: 'GlacialIndifference'; font-size: 25.0px; font-weight: 400; color: #ffffff; width: 897.6px; height: 30.0px;">group to exchange ideas and experiences. These dinners create strong connections</div>
-                <div class="text-element" style="left: 425.7px; top: 433.2px; font-family: 'GlacialIndifference'; font-size: 25.0px; font-weight: 400; color: #ffffff; width: 597.5px; height: 30.0px;">and real conversations that you don’t find at big events.</div>
-                <div class="text-element" style="left: 557.6px; top: 254.3px; font-family: 'GlacialIndifference'; font-size: 39.99px; font-weight: 400; color: #ec36a3; width: 324.7px; height: 48.0px;">A VIP COMMUNITY</div>
-                <div class="image-element" style="left: 368.1px; top: 507.3px; width: 703.8px; height: 242.6px; background-image: url('assets/p14-00.png');"></div>
-                <div class="image-element" style="left: 316.7px; top: 65.9px; width: 806.2px; height: 173.2px; background-image: url('assets/p14-01.png');"></div>
-            </div>
+    <section class="slide" data-slide="14">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-14.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-14.png" alt="Slide 14" draggable="false">
+            </picture>
+            <div class="sr-only">WIRE is the largest and #1 french community for women in retail and e-commerce. | Every quarter, we host a VIP dinner where leaders and experts meet in a small | group to exchange ideas and experiences. These dinners create strong connections | and real conversations that you don’t find at big events. | A VIP COMMUNITY</div>
         </div>
+    </section>
 
-        <!-- SLIDE 15 -->
-        <div class="slide" data-slide="15">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 126.6px; top: 404.2px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 513.6px; height: 31.2px;">Brands2Buyers is an exclusive event gathering</div>
-                <div class="text-element" style="left: 126.6px; top: 442.4px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 513.6px; height: 31.2px;">50 top decision-makers to explore strategies,</div>
-                <div class="text-element" style="left: 126.6px; top: 480.7px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 513.6px; height: 31.2px;">tools, and solutions for business growth. It</div>
-                <div class="text-element" style="left: 126.6px; top: 518.9px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 81.9px; height: 31.2px;">fosters </div>
-                <div class="text-element" style="left: 233.6px; top: 518.9px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 131.0px; height: 31.2px;">meaningful </div>
-                <div class="text-element" style="left: 389.8px; top: 518.9px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 127.2px; height: 31.2px;">exchanges </div>
-                <div class="text-element" style="left: 542.2px; top: 518.9px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 97.9px; height: 31.2px;">between</div>
-                <div class="text-element" style="left: 126.6px; top: 557.2px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 513.6px; height: 31.2px;">brands and buyers through conferences,</div>
-                <div class="text-element" style="left: 126.6px; top: 595.4px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 406.6px; height: 31.2px;">interactive sessions, and networking.</div>
-                <div class="text-element" style="left: 232.3px; top: 280.2px; font-family: 'GlacialIndifference'; font-size: 39.99px; font-weight: 400; color: #ec36a3; width: 302.0px; height: 48.0px;">THE PREMIER B2B</div>
-                <div class="text-element" style="left: 213.0px; top: 335.7px; font-family: 'GlacialIndifference'; font-size: 39.99px; font-weight: 400; color: #ec36a3; width: 340.7px; height: 48.0px;">COMMERCE EVENT</div>
-                <div class="image-element" style="left: 283.9px; top: 81.0px; width: 198.8px; height: 168.0px; background-image: url('assets/p15-00.png');"></div>
-                <div class="image-element" style="left: 736.8px; top: 372.2px; width: 621.9px; height: 357.0px; background-image: url('assets/p15-01.png');"></div>
-            </div>
+    <section class="slide" data-slide="15">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-15.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-15.png" alt="Slide 15" draggable="false">
+            </picture>
+            <div class="sr-only">Brands2Buyers is an exclusive event gathering | 50 top decision-makers to explore strategies, | tools, and solutions for business growth. It | fosters | meaningful | exchanges | between | brands and buyers through conferences, | interactive sessions, and networking. | THE PREMIER B2B | COMMERCE EVENT</div>
         </div>
+    </section>
 
-        <!-- SLIDE 16 -->
-        <div class="slide" data-slide="16">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 155.9px; top: 444.5px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 643.6px; height: 64.0px;">+ 1500 EXPERTS IN</div>
-                <div class="text-element" style="left: 147.3px; top: 521.7px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 660.9px; height: 64.0px;">OUR COMMUNITIES</div>
-                <div class="image-element" style="left: 962.7px; top: 11.7px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-00.jpeg');"></div>
-                <div class="image-element" style="left: 962.7px; top: 493.1px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-01.jpeg');"></div>
-                <div class="image-element" style="left: 1122.5px; top: 332.7px; width: 144.8px; height: 144.8px; background-image: url('assets/p16-02.jpeg');"></div>
-                <div class="image-element" style="left: 1122.5px; top: 493.1px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-03.jpeg');"></div>
-                <div class="image-element" style="left: 1282.3px; top: 332.7px; width: 144.7px; height: 144.8px; background-image: url('assets/p16-04.jpeg');"></div>
-                <div class="image-element" style="left: 1282.3px; top: 493.1px; width: 144.7px; height: 144.7px; background-image: url('assets/p16-05.jpeg');"></div>
-                <div class="image-element" style="left: 1122.5px; top: 172.2px; width: 144.8px; height: 144.8px; background-image: url('assets/p16-06.jpeg');"></div>
-                <div class="image-element" style="left: 962.7px; top: 172.1px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-07.jpeg');"></div>
-                <div class="image-element" style="left: 962.7px; top: 653.7px; width: 144.8px; height: 144.8px; background-image: url('assets/p16-08.jpeg');"></div>
-                <div class="image-element" style="left: 1122.5px; top: 653.7px; width: 144.8px; height: 144.8px; background-image: url('assets/p16-09.jpeg');"></div>
-                <div class="image-element" style="left: 1282.3px; top: 653.7px; width: 144.7px; height: 144.8px; background-image: url('assets/p16-10.jpeg');"></div>
-                <div class="image-element" style="left: 963.0px; top: 332.6px; width: 144.8px; height: 144.8px; background-image: url('assets/p16-11.jpeg');"></div>
-                <div class="image-element" style="left: 1282.1px; top: 172.1px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-12.jpeg');"></div>
-                <div class="image-element" style="left: 1122.5px; top: 11.7px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-13.jpeg');"></div>
-                <div class="image-element" style="left: 1282.0px; top: 11.6px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-14.jpeg');"></div>
-                <div class="image-element" style="left: 351.6px; top: 217.1px; width: 252.0px; height: 192.7px; background-image: url('assets/p16-15.png');"></div>
-            </div>
+    <section class="slide" data-slide="16">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-16.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-16.png" alt="Slide 16" draggable="false">
+            </picture>
+            <div class="sr-only">+ 1500 EXPERTS IN | OUR COMMUNITIES</div>
         </div>
+    </section>
 
-        <!-- SLIDE 17 -->
-        <div class="slide" data-slide="17">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 164.0px; top: 111.4px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 1114.3px; height: 64.0px;">THE TECH IN OUR COMMUNITIES</div>
-                <div class="image-element" style="left: 225.6px; top: 275.3px; width: 155.2px; height: 48.0px; background-image: url('assets/p17-00.png');"></div>
-                <div class="image-element" style="left: 642.5px; top: 275.5px; width: 157.5px; height: 48.0px; background-image: url('assets/p17-01.png');"></div>
-                <div class="image-element" style="left: 853.8px; top: 265.0px; width: 149.2px; height: 68.2px; background-image: url('assets/p17-02.png');"></div>
-                <div class="image-element" style="left: 1060.0px; top: 282.1px; width: 153.0px; height: 34.5px; background-image: url('assets/p17-03.png');"></div>
-                <div class="image-element" style="left: 215.7px; top: 388.4px; width: 175.5px; height: 58.5px; background-image: url('assets/p17-04.png');"></div>
-                <div class="image-element" style="left: 427.2px; top: 391.6px; width: 168.7px; height: 55.5px; background-image: url('assets/p17-05.png');"></div>
-                <div class="image-element" style="left: 640.4px; top: 398.0px; width: 159.0px; height: 37.5px; background-image: url('assets/p17-06.png');"></div>
-                <div class="image-element" style="left: 861.0px; top: 393.8px; width: 134.2px; height: 54.8px; background-image: url('assets/p17-07.png');"></div>
-                <div class="image-element" style="left: 1060.0px; top: 401.8px; width: 153.8px; height: 35.2px; background-image: url('assets/p17-08.png');"></div>
-                <div class="image-element" style="left: 214.3px; top: 515.9px; width: 179.2px; height: 40.5px; background-image: url('assets/p17-09.png');"></div>
-                <div class="image-element" style="left: 439.8px; top: 495.7px; width: 144.0px; height: 81.0px; background-image: url('assets/p17-10.png');"></div>
-                <div class="image-element" style="left: 640.4px; top: 513.6px; width: 156.8px; height: 45.0px; background-image: url('assets/p17-11.png');"></div>
-                <div class="image-element" style="left: 854.6px; top: 513.6px; width: 147.0px; height: 50.2px; background-image: url('assets/p17-12.png');"></div>
-                <div class="image-element" style="left: 1054.9px; top: 523.7px; width: 163.5px; height: 30.0px; background-image: url('assets/p17-13.png');"></div>
-                <div class="image-element" style="left: 222.6px; top: 636.3px; width: 162.8px; height: 35.2px; background-image: url('assets/p17-14.png');"></div>
-                <div class="image-element" style="left: 424.9px; top: 629.4px; width: 174.0px; height: 48.0px; background-image: url('assets/p17-15.png');"></div>
-                <div class="image-element" style="left: 638.4px; top: 638.4px; width: 162.8px; height: 33.0px; background-image: url('assets/p17-16.png');"></div>
-                <div class="image-element" style="left: 849.0px; top: 629.4px; width: 159.7px; height: 47.2px; background-image: url('assets/p17-17.png');"></div>
-                <div class="image-element" style="left: 1073.6px; top: 621.5px; width: 126.0px; height: 66.8px; background-image: url('assets/p17-18.png');"></div>
-            </div>
+    <section class="slide" data-slide="17">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-17.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-17.png" alt="Slide 17" draggable="false">
+            </picture>
+            <div class="sr-only">THE TECH IN OUR COMMUNITIES</div>
         </div>
+    </section>
 
-        <!-- SLIDE 18 -->
-        <div class="slide" data-slide="18">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 475.6px; top: 171.8px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 488.8px; height: 64.0px;">COMMUNITIES</div>
-                <div class="text-element" style="left: 376.7px; top: 275.8px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 438.5px; height: 28.0px;">WE HAVE CREATED VARIOUS </div>
-                <div class="text-element" style="left: 815.3px; top: 275.9px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 248.0px; height: 28.0px;">PREMIUM CLUBS</div>
-                <div class="text-element" style="left: 493.7px; top: 309.6px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 452.5px; height: 28.0px;">WITH KEY OPINIONS LEADERS.</div>
-                <div class="text-element" style="left: 844.1px; top: 420.6px; font-family: 'CocomatPro'; font-size: 48.0px; font-weight: 700; color: #2680f5; width: 98.8px; height: 48.0px;">B2B</div>
-                <div class="text-element" style="left: 765.9px; top: 572.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 255.3px; height: 33.6px;">Key Opinion leaders in</div>
-                <div class="text-element" style="left: 781.2px; top: 611.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 224.7px; height: 33.6px;">B2B large accounts</div>
-                <div class="text-element" style="left: 819.7px; top: 485.2px; font-family: 'CocomatPro'; font-size: 16.99px; font-weight: 700; color: #ffde4c; width: 147.7px; height: 17.0px;">LE CLUB DU B2B</div>
-                <div class="text-element" style="left: 477.3px; top: 420.6px; font-family: 'CocomatPro'; font-size: 48.0px; font-weight: 700; color: #2680f5; width: 137.6px; height: 48.0px;">WIRE</div>
-                <div class="text-element" style="left: 441.1px; top: 572.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 210.1px; height: 33.6px;">Women in Retail &amp;</div>
-                <div class="text-element" style="left: 477.4px; top: 611.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 137.5px; height: 33.6px;">Ecommerce</div>
-                <div class="text-element" style="left: 446.0px; top: 475.1px; font-family: 'CocomatPro'; font-size: 16.99px; font-weight: 700; color: #ffde4c; width: 200.2px; height: 17.0px;">LE CLUB DES FEMMES</div>
-                <div class="text-element" style="left: 460.1px; top: 498.4px; font-family: 'CocomatPro'; font-size: 16.99px; font-weight: 700; color: #ffde4c; width: 172.1px; height: 17.0px;">DE L’E-COMMERCE</div>
-                <div class="text-element" style="left: 140.6px; top: 420.6px; font-family: 'CocomatPro'; font-size: 48.0px; font-weight: 700; color: #2680f5; width: 116.8px; height: 48.0px;">LCDI</div>
-                <div class="text-element" style="left: 92.6px; top: 572.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 212.8px; height: 33.6px;">Innovation club for</div>
-                <div class="text-element" style="left: 165.7px; top: 611.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 66.7px; height: 33.6px;">execs</div>
-                <div class="text-element" style="left: 76.9px; top: 485.2px; font-family: 'CocomatPro'; font-size: 16.99px; font-weight: 700; color: #ffde4c; width: 244.2px; height: 17.0px;">LE CLUB DE L’INNOVATION</div>
-                <div class="text-element" style="left: 1168.4px; top: 420.6px; font-family: 'CocomatPro'; font-size: 48.0px; font-weight: 700; color: #2680f5; width: 145.1px; height: 48.0px;">CORE</div>
-                <div class="text-element" style="left: 1135.4px; top: 571.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 211.2px; height: 33.6px;">True tech minds of</div>
-                <div class="text-element" style="left: 1166.8px; top: 610.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 148.2px; height: 33.6px;">e-commerce</div>
-                <div class="text-element" style="left: 1123.9px; top: 484.9px; font-family: 'CocomatPro'; font-size: 16.99px; font-weight: 700; color: #ffde4c; width: 234.1px; height: 17.0px;">CLUB OF RETAIL EXPERTS</div>
-            </div>
+    <section class="slide" data-slide="18">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-18.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-18.png" alt="Slide 18" draggable="false">
+            </picture>
+            <div class="sr-only">COMMUNITIES | WE HAVE CREATED VARIOUS PREMIUM CLUBS | WITH KEY OPINIONS LEADERS. | B2B | Key Opinion leaders in | B2B large accounts | LE CLUB DU B2B | WIRE | Women in Retail & | Ecommerce | LE CLUB DES FEMMES | DE L’E-COMMERCE | LCDI | Innovation club for | execs | LE CLUB DE L’INNOVATION | CORE | True tech minds of | e-commerce | CLUB OF RETAIL EXPERTS</div>
         </div>
+    </section>
 
-        <!-- SLIDE 19 -->
-        <div class="slide" data-slide="19">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 110.6px; top: 113.9px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 1218.9px; height: 64.0px;">THE BRANDS IN OUR COMMUNITIES</div>
-                <div class="image-element" style="left: 112.1px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-00.png');"></div>
-                <div class="image-element" style="left: 235.4px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-01.jpeg');"></div>
-                <div class="image-element" style="left: 358.7px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-02.jpeg');"></div>
-                <div class="image-element" style="left: 482.1px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-03.png');"></div>
-                <div class="image-element" style="left: 605.4px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-04.jpeg');"></div>
-                <div class="image-element" style="left: 728.7px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-05.jpeg');"></div>
-                <div class="image-element" style="left: 852.0px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-06.jpeg');"></div>
-                <div class="image-element" style="left: 975.4px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-07.png');"></div>
-                <div class="image-element" style="left: 112.1px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-08.jpeg');"></div>
-                <div class="image-element" style="left: 235.4px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-09.png');"></div>
-                <div class="image-element" style="left: 358.7px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-10.png');"></div>
-                <div class="image-element" style="left: 482.1px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-11.png');"></div>
-                <div class="image-element" style="left: 605.4px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-12.png');"></div>
-                <div class="image-element" style="left: 728.7px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-13.jpeg');"></div>
-                <div class="image-element" style="left: 852.0px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-14.png');"></div>
-                <div class="image-element" style="left: 975.4px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-15.jpeg');"></div>
-                <div class="image-element" style="left: 112.1px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-16.png');"></div>
-                <div class="image-element" style="left: 235.4px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-17.png');"></div>
-                <div class="image-element" style="left: 358.7px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-18.png');"></div>
-                <div class="image-element" style="left: 482.1px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-19.png');"></div>
-                <div class="image-element" style="left: 605.4px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-20.jpeg');"></div>
-                <div class="image-element" style="left: 728.7px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-21.png');"></div>
-                <div class="image-element" style="left: 852.0px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-22.png');"></div>
-                <div class="image-element" style="left: 975.4px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-23.png');"></div>
-                <div class="image-element" style="left: 112.1px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-24.png');"></div>
-                <div class="image-element" style="left: 235.4px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-25.png');"></div>
-                <div class="image-element" style="left: 358.7px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-26.png');"></div>
-                <div class="image-element" style="left: 482.1px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-27.png');"></div>
-                <div class="image-element" style="left: 605.4px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-28.png');"></div>
-                <div class="image-element" style="left: 728.7px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-29.png');"></div>
-                <div class="image-element" style="left: 852.0px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-30.png');"></div>
-                <div class="image-element" style="left: 975.4px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-31.png');"></div>
-                <div class="image-element" style="left: 112.1px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-32.jpeg');"></div>
-                <div class="image-element" style="left: 235.4px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-33.png');"></div>
-                <div class="image-element" style="left: 358.7px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-34.png');"></div>
-                <div class="image-element" style="left: 482.1px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-35.jpeg');"></div>
-                <div class="image-element" style="left: 605.4px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-36.jpeg');"></div>
-                <div class="image-element" style="left: 728.7px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-37.png');"></div>
-                <div class="image-element" style="left: 852.0px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-38.png');"></div>
-                <div class="image-element" style="left: 975.4px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-39.png');"></div>
-                <div class="image-element" style="left: 1098.6px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-40.png');"></div>
-                <div class="image-element" style="left: 1222.0px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-41.png');"></div>
-                <div class="image-element" style="left: 1098.6px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-42.png');"></div>
-                <div class="image-element" style="left: 1222.0px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-43.png');"></div>
-                <div class="image-element" style="left: 1098.6px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-44.png');"></div>
-                <div class="image-element" style="left: 1222.0px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-45.png');"></div>
-                <div class="image-element" style="left: 1098.6px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-46.png');"></div>
-                <div class="image-element" style="left: 1222.0px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-47.png');"></div>
-                <div class="image-element" style="left: 1098.6px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-48.jpeg');"></div>
-                <div class="image-element" style="left: 1222.0px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-49.jpeg');"></div>
-                <div class="image-element" style="left: 112.1px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-50.jpeg');"></div>
-                <div class="image-element" style="left: 235.4px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-51.png');"></div>
-                <div class="image-element" style="left: 358.7px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-52.png');"></div>
-                <div class="image-element" style="left: 482.1px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-53.png');"></div>
-                <div class="image-element" style="left: 605.4px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-54.png');"></div>
-                <div class="image-element" style="left: 728.7px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-55.jpeg');"></div>
-                <div class="image-element" style="left: 852.0px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-56.png');"></div>
-                <div class="image-element" style="left: 975.4px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-57.png');"></div>
-                <div class="image-element" style="left: 1098.6px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-58.jpeg');"></div>
-                <div class="image-element" style="left: 1222.0px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-59.png');"></div>
-            </div>
+    <section class="slide" data-slide="19">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-19.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-19.png" alt="Slide 19" draggable="false">
+            </picture>
+            <div class="sr-only">THE BRANDS IN OUR COMMUNITIES</div>
         </div>
+    </section>
 
-        <!-- SLIDE 20 -->
-        <div class="slide" data-slide="20">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 455.9px; top: 107.2px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 525.3px; height: 64.0px;">OUR OFFERING</div>
-                <div class="text-element" style="left: 94.9px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 70.0px; height: 28.8px;">Media</div>
-                <div class="text-element" style="left: 164.4px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 270.8px; height: 28.8px;"> : Le Café de l’E-commerce</div>
-                <div class="text-element" style="left: 94.9px; top: 494.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 280.7px; height: 28.8px;">podcast, sponsored content,</div>
-                <div class="text-element" style="left: 94.9px; top: 520.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 62.9px; height: 28.8px;">videos</div>
-                <div class="text-element" style="left: 94.9px; top: 547.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 69.3px; height: 28.8px;">Events</div>
-                <div class="text-element" style="left: 163.8px; top: 547.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 236.2px; height: 28.8px;"> : Store Tour Paris, WIRE,</div>
-                <div class="text-element" style="left: 94.9px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 257.6px; height: 28.8px;">Back From, Brands2Buyers</div>
-                <div class="text-element" style="left: 94.9px; top: 599.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 102.5px; height: 28.8px;">Speaking</div>
-                <div class="text-element" style="left: 196.9px; top: 599.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 227.7px; height: 28.8px;"> : Thought leadership &amp;</div>
-                <div class="text-element" style="left: 94.9px; top: 625.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 153.1px; height: 28.8px;">stage presence</div>
-                <div class="text-element" style="left: 94.9px; top: 652.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 66.4px; height: 28.8px;">Reach</div>
-                <div class="text-element" style="left: 160.8px; top: 652.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 253.2px; height: 28.8px;"> : Online &amp; offline visibility</div>
-                <div class="text-element" style="left: 230.9px; top: 245.3px; font-family: 'CocomatPro'; font-size: 82.65px; font-weight: 700; color: #000000; width: 30.2px; height: 82.6px;">1</div>
-                <div class="text-element" style="left: 118.0px; top: 366.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 256.0px; height: 33.0px;">SPONSORSHIP</div>
-                <div class="text-element" style="left: 141.0px; top: 405.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 209.9px; height: 33.0px;">&amp; VISIBILITY</div>
-                <div class="text-element" style="left: 597.6px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 257.1px; height: 28.8px;">Access to France’s largest</div>
-                <div class="text-element" style="left: 597.6px; top: 494.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 133.1px; height: 28.8px;">e-commerce </div>
-                <div class="text-element" style="left: 730.2px; top: 494.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 117.5px; height: 28.8px;">community</div>
-                <div class="text-element" style="left: 597.6px; top: 520.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 171.2px; height: 28.8px;">(1,500+ members)</div>
-                <div class="text-element" style="left: 597.6px; top: 547.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 279.4px; height: 28.8px;">Evangelization &amp; positioning</div>
-                <div class="text-element" style="left: 597.6px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 47.5px; height: 28.8px;">with </div>
-                <div class="text-element" style="left: 644.7px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 201.5px; height: 28.8px;">top retail decision-</div>
-                <div class="text-element" style="left: 597.6px; top: 599.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 80.3px; height: 28.8px;">makers</div>
-                <div class="text-element" style="left: 597.6px; top: 625.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 176.6px; height: 28.8px;">Building trust and </div>
-                <div class="text-element" style="left: 773.8px; top: 625.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 64.8px; height: 28.8px;">brand</div>
-                <div class="text-element" style="left: 597.6px; top: 652.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 95.9px; height: 28.8px;">authority</div>
-                <div class="text-element" style="left: 693.2px; top: 245.3px; font-family: 'CocomatPro'; font-size: 82.65px; font-weight: 700; color: #000000; width: 52.0px; height: 82.6px;">2</div>
-                <div class="text-element" style="left: 617.8px; top: 366.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 202.8px; height: 33.0px;">INFLUENCE</div>
-                <div class="text-element" style="left: 591.2px; top: 405.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 256.0px; height: 33.0px;">&amp; COMMUNITY</div>
-                <div class="text-element" style="left: 1066.3px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 141.4px; height: 28.8px;">Go-To-Market</div>
-                <div class="text-element" style="left: 1207.2px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 89.0px; height: 28.8px;"> support</div>
-                <div class="text-element" style="left: 1295.7px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 33.9px; height: 28.8px;"> for</div>
-                <div class="text-element" style="left: 1066.3px; top: 494.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 171.2px; height: 28.8px;">SaaS &amp; agencies</div>
-                <div class="text-element" style="left: 1066.3px; top: 520.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 263.2px; height: 28.8px;">Market assessment &amp; entry</div>
-                <div class="text-element" style="left: 1066.3px; top: 547.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 89.7px; height: 28.8px;">strategy</div>
-                <div class="text-element" style="left: 1066.3px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 101.5px; height: 28.8px;">Hands-on </div>
-                <div class="text-element" style="left: 1167.3px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 104.8px; height: 28.8px;">execution</div>
-                <div class="text-element" style="left: 1271.6px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 75.6px; height: 28.8px;"> to land</div>
-                <div class="text-element" style="left: 1066.3px; top: 599.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 193.2px; height: 28.8px;">and scale in France</div>
-                <div class="text-element" style="left: 1066.3px; top: 625.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 120.6px; height: 28.8px;">TikTok Shop </div>
-                <div class="text-element" style="left: 1186.4px; top: 625.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 107.6px; height: 28.8px;">activation</div>
-                <div class="text-element" style="left: 1166.7px; top: 245.3px; font-family: 'CocomatPro'; font-size: 82.65px; font-weight: 700; color: #000000; width: 51.1px; height: 82.6px;">3</div>
-                <div class="text-element" style="left: 1101.4px; top: 366.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 181.7px; height: 33.0px;">ADVISORY</div>
-                <div class="text-element" style="left: 1047.8px; top: 405.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 288.8px; height: 33.0px;">&amp; GTM SUPPORT</div>
-                <div class="image-element" style="left: 194.4px; top: 228.6px; width: 103.1px; height: 103.1px; background-image: url('assets/p20-00.png');"></div>
-                <div class="image-element" style="left: 667.7px; top: 228.6px; width: 103.1px; height: 103.1px; background-image: url('assets/p20-01.png');"></div>
-                <div class="image-element" style="left: 1140.7px; top: 228.6px; width: 103.1px; height: 103.1px; background-image: url('assets/p20-02.png');"></div>
-            </div>
+    <section class="slide" data-slide="20">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-20.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-20.png" alt="Slide 20" draggable="false">
+            </picture>
+            <div class="sr-only">OUR OFFERING | Media : Le Café de l’E-commerce | podcast, sponsored content, | videos | Events : Store Tour Paris, WIRE, | Back From, Brands2Buyers | Speaking : Thought leadership & | stage presence | Reach : Online & offline visibility | 1 | SPONSORSHIP | & VISIBILITY | Access to France’s largest | e-commerce community | (1,500+ members) | Evangelization & positioning | with top retail decision- | makers | Building trust and brand | authority | 2 | INFLUENCE | & COMMUNITY | Go-To-Market support for | SaaS & agencies | Market assessment & entry | strategy | Hands-on execution to land | and scale in France | TikTok Shop activation | 3 | ADVISORY | & GTM SUPPORT</div>
         </div>
+    </section>
 
-        <!-- SLIDE 21 -->
-        <div class="slide" data-slide="21">
-            <div class="slide-inner">
-                <div class="text-element" style="left: 744.6px; top: 442.7px; font-family: 'CocomatPro'; font-size: 36.84px; font-weight: 700; color: #ec36a3; width: 320.3px; height: 36.8px;">EMAIL ADDRESS</div>
-                <div class="text-element" style="left: 744.6px; top: 489.9px; font-family: 'GlacialIndifference'; font-size: 27.46px; font-weight: 400; color: #ffffff; width: 303.5px; height: 32.9px;">adrien@butterflyagency.io</div>
-                <div class="text-element" style="left: 744.6px; top: 530.1px; font-family: 'GlacialIndifference'; font-size: 27.46px; font-weight: 400; color: #ffffff; width: 311.4px; height: 32.9px;">laetitia@butterflyagency.io</div>
-                <div class="text-element" style="left: 744.6px; top: 620.0px; font-family: 'CocomatPro'; font-size: 36.84px; font-weight: 700; color: #ec36a3; width: 176.9px; height: 36.8px;">WEBSITE</div>
-                <div class="text-element" style="left: 744.6px; top: 666.8px; font-family: 'GlacialIndifference'; font-size: 27.46px; font-weight: 400; color: #ffffff; width: 280.3px; height: 32.9px;">www.butterflyagency.io</div>
-                <div class="text-element" style="left: 744.6px; top: 270.4px; font-family: 'CocomatPro'; font-size: 72.0px; font-weight: 700; color: #ffffff; width: 391.0px; height: 72.0px;">Thank You!</div>
-                <div class="text-element" style="left: 744.6px; top: 349.9px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 369.9px; height: 33.6px;">Contact us for more questions.</div>
-                <div class="image-element" style="left: 41.7px; top: 0.0px; width: 622.5px; height: 563.2px; background-image: url('assets/p21-00.jpeg');"></div>
-                <div class="image-element" style="left: 1169.5px; top: 81.0px; width: 189.8px; height: 144.8px; background-image: url('assets/p21-01.png');"></div>
-            </div>
+    <section class="slide" data-slide="21">
+        <div class="slide-inner">
+            <picture>
+                <source srcset="slides/slide-21.webp" type="image/webp">
+                <img class="slide-bg" src="slides/slide-21.png" alt="Slide 21" draggable="false">
+            </picture>
+            <div class="sr-only">EMAIL ADDRESS | adrien@butterflyagency.io | laetitia@butterflyagency.io | WEBSITE | www.butterflyagency.io | Thank You! | Contact us for more questions.</div>
         </div>
-
-    </div>
-
-    <!-- Navigation dots -->
-    <div class="nav-dots" id="navDots"></div>
+    </section>
+    <nav class="nav-dots" id="navDots">
+        <div class="nav-dot active" data-slide="1" title="Slide 1"></div>
+        <div class="nav-dot" data-slide="2" title="Slide 2"></div>
+        <div class="nav-dot" data-slide="3" title="Slide 3"></div>
+        <div class="nav-dot" data-slide="4" title="Slide 4"></div>
+        <div class="nav-dot" data-slide="5" title="Slide 5"></div>
+        <div class="nav-dot" data-slide="6" title="Slide 6"></div>
+        <div class="nav-dot" data-slide="7" title="Slide 7"></div>
+        <div class="nav-dot" data-slide="8" title="Slide 8"></div>
+        <div class="nav-dot" data-slide="9" title="Slide 9"></div>
+        <div class="nav-dot" data-slide="10" title="Slide 10"></div>
+        <div class="nav-dot" data-slide="11" title="Slide 11"></div>
+        <div class="nav-dot" data-slide="12" title="Slide 12"></div>
+        <div class="nav-dot" data-slide="13" title="Slide 13"></div>
+        <div class="nav-dot" data-slide="14" title="Slide 14"></div>
+        <div class="nav-dot" data-slide="15" title="Slide 15"></div>
+        <div class="nav-dot" data-slide="16" title="Slide 16"></div>
+        <div class="nav-dot" data-slide="17" title="Slide 17"></div>
+        <div class="nav-dot" data-slide="18" title="Slide 18"></div>
+        <div class="nav-dot" data-slide="19" title="Slide 19"></div>
+        <div class="nav-dot" data-slide="20" title="Slide 20"></div>
+        <div class="nav-dot" data-slide="21" title="Slide 21"></div>
+    </nav>
     <div class="slide-counter"><span id="slideNum">1</span> / 21</div>
 
     <script>
-        const presentation = document.getElementById('presentation');
-        const navDotsContainer = document.getElementById('navDots');
-        const slideNumDisplay = document.getElementById('slideNum');
-        const slides = document.querySelectorAll('.slide');
         let currentSlide = 1;
+        const totalSlides = 21;
+        const slideNumEl = document.getElementById('slideNum');
+        const progressBar = document.getElementById('progressBar');
+        const dots = document.querySelectorAll('.nav-dot');
 
-        // Initialize navigation dots
-        for (let i = 1; i <= 21; i++) {
-            const dot = document.createElement('div');
-            dot.className = 'nav-dot' + (i === 1 ? ' active' : '');
-            dot.addEventListener('click', () => goToSlide(i));
-            navDotsContainer.appendChild(dot);
-        }
-
-        // Scale slides to fit viewport
-        function scaleSlides() {
-            const vw = window.innerWidth;
-            const vh = window.innerHeight;
-            const scale = Math.min(vw / 1440, vh / 810);
-            slides.forEach(slide => {
-                const inner = slide.querySelector('.slide-inner');
-                inner.style.transform = `scale(${scale})`;
-            });
-        }
-
-        // Update current slide
-        function updateCurrentSlide() {
-            const scrollTop = presentation.scrollTop;
-            const slideHeight = window.innerHeight;
-            const newSlide = Math.round(scrollTop / slideHeight) + 1;
-            
-            if (newSlide !== currentSlide && newSlide >= 1 && newSlide <= 21) {
-                currentSlide = newSlide;
-                updateNavDots();
-                slideNumDisplay.textContent = currentSlide;
-            }
-        }
-
-        // Update nav dots
-        function updateNavDots() {
-            document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+        function updateUI() {
+            slideNumEl.textContent = currentSlide;
+            progressBar.style.width = ((currentSlide / totalSlides) * 100) + '%';
+            dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i + 1 === currentSlide);
             });
         }
 
-        // Navigate to slide
-        function goToSlide(slideNum) {
-            if (slideNum < 1 || slideNum > 21) return;
-            currentSlide = slideNum;
-            const scrollTop = (slideNum - 1) * window.innerHeight;
-            presentation.scrollTop = scrollTop;
-            updateNavDots();
-            slideNumDisplay.textContent = currentSlide;
-        }
+        // Scroll observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                    currentSlide = parseInt(entry.target.dataset.slide);
+                    updateUI();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.slide').forEach(slide => observer.observe(slide));
+
+        // Click on dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const num = parseInt(dot.dataset.slide);
+                document.querySelectorAll('.slide')[num - 1].scrollIntoView({ behavior: 'smooth' });
+            });
+        });
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
+            const slides = document.querySelectorAll('.slide');
             switch(e.key) {
-                case 'ArrowDown':
-                case ' ':
-                case 'PageDown':
+                case 'ArrowDown': case ' ': case 'PageDown':
                     e.preventDefault();
-                    if (currentSlide < 21) goToSlide(currentSlide + 1);
+                    if (currentSlide < totalSlides) slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
                     break;
-                case 'ArrowUp':
-                case 'PageUp':
+                case 'ArrowUp': case 'PageUp':
                     e.preventDefault();
-                    if (currentSlide > 1) goToSlide(currentSlide - 1);
-                    break;
-                case 'End':
-                    e.preventDefault();
-                    goToSlide(21);
+                    if (currentSlide > 1) slides[currentSlide - 2].scrollIntoView({ behavior: 'smooth' });
                     break;
                 case 'Home':
                     e.preventDefault();
-                    goToSlide(1);
+                    slides[0].scrollIntoView({ behavior: 'smooth' });
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    slides[totalSlides - 1].scrollIntoView({ behavior: 'smooth' });
                     break;
             }
         });
 
-        // Scroll event
-        presentation.addEventListener('scroll', updateCurrentSlide);
-
-        // Initial setup
-        window.addEventListener('resize', scaleSlides);
-        scaleSlides();
+        updateUI();
     </script>
 </body>
 </html>
