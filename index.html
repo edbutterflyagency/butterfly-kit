@@ -6,13 +6,14 @@
   <title>Butterfly Agency - KIT</title>
   <meta name="description" content="Butterfly Agency - Your GTM Partner in France. E-commerce media, events, community & consulting.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦋</text></svg>">
+  <!-- Preload first 5 slides for instant display -->
+  <link rel="preload" as="image" href="images/slide-01.jpg">
+  <link rel="preload" as="image" href="images/slide-02.jpg">
+  <link rel="preload" as="image" href="images/slide-03.jpg">
+  <link rel="preload" as="image" href="images/slide-04.jpg">
+  <link rel="preload" as="image" href="images/slide-05.jpg">
   <style>
-    /* Reset */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     html {
       scroll-snap-type: y mandatory;
@@ -20,7 +21,10 @@
       overflow-x: hidden;
       height: 100%;
       scroll-behavior: smooth;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
+    html::-webkit-scrollbar { display: none; }
 
     body {
       margin: 0;
@@ -30,7 +34,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Each section is a full-viewport slide */
     .slide {
       scroll-snap-align: start;
       scroll-snap-stop: always;
@@ -44,347 +47,173 @@
       overflow: hidden;
     }
 
-    /* The slide image maintains 16:9 aspect ratio and fills the viewport */
     .slide img {
       display: block;
-      max-width: 100vw;
-      max-height: 100vh;
-      width: auto;
-      height: auto;
       object-fit: contain;
-      /* Prevent any blurriness */
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
+      width: 100%;
+      height: 100%;
     }
 
-    /* For screens that match 16:9, make it fill completely */
-    @media (min-aspect-ratio: 16/9) {
-      .slide img {
-        width: 100vw;
-        height: auto;
-      }
-    }
-
-    @media (max-aspect-ratio: 16/9) {
-      .slide img {
-        height: 100vh;
-        width: auto;
-      }
-    }
-
-    /* Navigation dots */
+    /* Nav dots */
     .nav-dots {
       position: fixed;
-      right: 20px;
+      right: 16px;
       top: 50%;
       transform: translateY(-50%);
       z-index: 100;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
-
     .nav-dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(255,255,255,0.25);
+      border: none;
       cursor: pointer;
       transition: all 0.3s ease;
+      padding: 0;
     }
+    .nav-dot:hover { background: rgba(255,255,255,0.6); transform: scale(1.4); }
+    .nav-dot.active { background: #E91E90; transform: scale(1.3); }
 
-    .nav-dot:hover {
-      background: rgba(255, 255, 255, 0.6);
-      transform: scale(1.3);
-    }
-
-    .nav-dot.active {
-      background: #E91E90;
-      border-color: #E91E90;
-      transform: scale(1.2);
-    }
-
-    /* Slide counter */
+    /* Counter */
     .slide-counter {
       position: fixed;
-      bottom: 20px;
+      bottom: 16px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 100;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255,255,255,0.4);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 2px;
       pointer-events: none;
-      transition: opacity 0.3s ease;
     }
 
-    /* Progress bar */
+    /* Progress */
     .progress-bar {
       position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
+      top: 0; left: 0;
+      height: 2px;
       background: linear-gradient(90deg, #E91E90, #FFD700, #4FC3F7);
       z-index: 100;
       transition: width 0.3s ease;
       width: 0%;
     }
 
-    /* Hide scrollbar */
-    html::-webkit-scrollbar {
-      display: none;
-    }
-    html {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* Keyboard hint on first slide */
+    /* Scroll hint */
     .scroll-hint {
       position: fixed;
-      bottom: 50px;
+      bottom: 40px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 100;
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255,255,255,0.35);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 12px;
-      letter-spacing: 1px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      animation: fadeInOut 3s ease infinite;
-      pointer-events: none;
-    }
-
-    .scroll-hint .arrow {
-      display: block;
       text-align: center;
-      font-size: 18px;
-      margin-top: 4px;
-      animation: bounce 2s ease infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(6px); }
-    }
-
-    @keyframes fadeInOut {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.7; }
-    }
-
-    /* Mobile adjustments */
-    @media (max-width: 768px) {
-      .nav-dots {
-        right: 10px;
-        gap: 6px;
-      }
-      .nav-dot {
-        width: 7px;
-        height: 7px;
-      }
-    }
-
-    /* Preloader */
-    .preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      pointer-events: none;
       transition: opacity 0.5s ease;
     }
-
-    .preloader.hidden {
-      opacity: 0;
-      pointer-events: none;
+    .scroll-hint .arrow {
+      display: block;
+      margin-top: 3px;
+      font-size: 16px;
+      animation: bounce 2s ease infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
     }
 
-    .preloader-text {
-      color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 14px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    .preloader-bar {
-      position: absolute;
-      bottom: 40%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: 2px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .preloader-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #E91E90, #FFD700);
-      width: 0%;
-      transition: width 0.3s ease;
+    @media (max-width: 768px) {
+      .nav-dots { right: 8px; gap: 4px; }
+      .nav-dot { width: 6px; height: 6px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Preloader -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-text">Butterfly Agency</div>
-    <div class="preloader-bar">
-      <div class="preloader-bar-fill" id="preloaderFill"></div>
-    </div>
-  </div>
-
-  <!-- Progress bar -->
   <div class="progress-bar" id="progressBar"></div>
-
-  <!-- Navigation dots -->
   <nav class="nav-dots" id="navDots"></nav>
-
-  <!-- Slide counter -->
   <div class="slide-counter" id="slideCounter">01 / 21</div>
+  <div class="scroll-hint" id="scrollHint">Scroll<span class="arrow">&#8595;</span></div>
 
-  <!-- Scroll hint -->
-  <div class="scroll-hint" id="scrollHint">
-    Scroll
-    <span class="arrow">&#8595;</span>
-  </div>
-
-  <!-- Slides -->
-  <section class="slide" data-slide="1"><img src="images/slide-01.png" alt="Butterfly Agency - Your GTM Partner in France" loading="eager"></section>
-  <section class="slide" data-slide="2"><img src="images/slide-02.png" alt="Exec Summary" loading="lazy"></section>
-  <section class="slide" data-slide="3"><img src="images/slide-03.png" alt="Agenda" loading="lazy"></section>
-  <section class="slide" data-slide="4"><img src="images/slide-04.png" alt="Who We Are" loading="lazy"></section>
-  <section class="slide" data-slide="5"><img src="images/slide-05.png" alt="One Team" loading="lazy"></section>
-  <section class="slide" data-slide="6"><img src="images/slide-06.png" alt="We Are Butterfly" loading="lazy"></section>
-  <section class="slide" data-slide="7"><img src="images/slide-07.png" alt="What We Do" loading="lazy"></section>
-  <section class="slide" data-slide="8"><img src="images/slide-08.png" alt="Media - Le Café de l'E-Commerce" loading="lazy"></section>
-  <section class="slide" data-slide="9"><img src="images/slide-09.png" alt="Media - 30,000 Audience" loading="lazy"></section>
-  <section class="slide" data-slide="10"><img src="images/slide-10.png" alt="Consulting GTM" loading="lazy"></section>
-  <section class="slide" data-slide="11"><img src="images/slide-11.png" alt="Events" loading="lazy"></section>
-  <section class="slide" data-slide="12"><img src="images/slide-12.png" alt="Our Events - Meeting Our Community" loading="lazy"></section>
-  <section class="slide" data-slide="13"><img src="images/slide-13.png" alt="Store Tour Paris" loading="lazy"></section>
-  <section class="slide" data-slide="14"><img src="images/slide-14.png" alt="WIRE - Women in Retail and Ecommerce" loading="lazy"></section>
-  <section class="slide" data-slide="15"><img src="images/slide-15.png" alt="Brands2Buyers" loading="lazy"></section>
-  <section class="slide" data-slide="16"><img src="images/slide-16.png" alt="1500 Experts in Our Communities" loading="lazy"></section>
-  <section class="slide" data-slide="17"><img src="images/slide-17.png" alt="The Tech in Our Communities" loading="lazy"></section>
-  <section class="slide" data-slide="18"><img src="images/slide-18.png" alt="Communities - Premium Clubs" loading="lazy"></section>
-  <section class="slide" data-slide="19"><img src="images/slide-19.png" alt="The Brands in Our Communities" loading="lazy"></section>
-  <section class="slide" data-slide="20"><img src="images/slide-20.png" alt="Our Offering" loading="lazy"></section>
-  <section class="slide" data-slide="21"><img src="images/slide-21.png" alt="Butterfly Agency" loading="lazy"></section>
+  <section class="slide" data-slide="1"><img src="images/slide-01.jpg" alt="Butterfly Agency - Your GTM Partner in France"></section>
+  <section class="slide" data-slide="2"><img src="images/slide-02.jpg" alt="Exec Summary"></section>
+  <section class="slide" data-slide="3"><img src="images/slide-03.jpg" alt="Agenda"></section>
+  <section class="slide" data-slide="4"><img src="images/slide-04.jpg" alt="Who We Are"></section>
+  <section class="slide" data-slide="5"><img src="images/slide-05.jpg" alt="One Team"></section>
+  <section class="slide" data-slide="6"><img src="images/slide-06.jpg" alt="We Are Butterfly"></section>
+  <section class="slide" data-slide="7"><img src="images/slide-07.jpg" alt="What We Do"></section>
+  <section class="slide" data-slide="8"><img src="images/slide-08.jpg" alt="Media - Le Caf&eacute; de l'E-Commerce"></section>
+  <section class="slide" data-slide="9"><img src="images/slide-09.jpg" alt="Media - 30,000 Audience"></section>
+  <section class="slide" data-slide="10"><img src="images/slide-10.jpg" alt="Consulting GTM"></section>
+  <section class="slide" data-slide="11"><img src="images/slide-11.jpg" alt="Events"></section>
+  <section class="slide" data-slide="12"><img src="images/slide-12.jpg" alt="Our Events"></section>
+  <section class="slide" data-slide="13"><img src="images/slide-13.jpg" alt="Store Tour Paris"></section>
+  <section class="slide" data-slide="14"><img src="images/slide-14.jpg" alt="WIRE Community"></section>
+  <section class="slide" data-slide="15"><img src="images/slide-15.jpg" alt="Brands2Buyers"></section>
+  <section class="slide" data-slide="16"><img src="images/slide-16.jpg" alt="1500 Experts"></section>
+  <section class="slide" data-slide="17"><img src="images/slide-17.jpg" alt="Tech in Communities"></section>
+  <section class="slide" data-slide="18"><img src="images/slide-18.jpg" alt="Communities"></section>
+  <section class="slide" data-slide="19"><img src="images/slide-19.jpg" alt="Brands in Communities"></section>
+  <section class="slide" data-slide="20"><img src="images/slide-20.jpg" alt="Our Offering"></section>
+  <section class="slide" data-slide="21"><img src="images/slide-21.jpg" alt="Butterfly Agency"></section>
 
   <script>
     (function() {
-      const totalSlides = 21;
+      const TOTAL = 21;
       const navDots = document.getElementById('navDots');
-      const slideCounter = document.getElementById('slideCounter');
-      const progressBar = document.getElementById('progressBar');
-      const scrollHint = document.getElementById('scrollHint');
-      const preloader = document.getElementById('preloader');
-      const preloaderFill = document.getElementById('preloaderFill');
-      let currentSlide = 0;
+      const counter = document.getElementById('slideCounter');
+      const progress = document.getElementById('progressBar');
+      const hint = document.getElementById('scrollHint');
+      const slides = document.querySelectorAll('.slide');
+      let current = 0;
 
-      // Create nav dots
-      for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => {
-          document.querySelectorAll('.slide')[i].scrollIntoView({ behavior: 'smooth' });
-        });
-        navDots.appendChild(dot);
+      // Build dots
+      for (let i = 0; i < TOTAL; i++) {
+        const d = document.createElement('button');
+        d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Slide ' + (i + 1));
+        d.onclick = () => slides[i].scrollIntoView({ behavior: 'smooth' });
+        navDots.appendChild(d);
       }
 
-      // Preload images
-      let loaded = 0;
-      const images = document.querySelectorAll('.slide img');
+      const dots = document.querySelectorAll('.nav-dot');
 
-      function checkAllLoaded() {
-        loaded++;
-        const pct = Math.round((loaded / totalSlides) * 100);
-        preloaderFill.style.width = pct + '%';
-
-        if (loaded >= totalSlides) {
-          setTimeout(() => {
-            preloader.classList.add('hidden');
-          }, 300);
-        }
-      }
-
-      images.forEach(img => {
-        if (img.complete) {
-          checkAllLoaded();
-        } else {
-          img.addEventListener('load', checkAllLoaded);
-          img.addEventListener('error', checkAllLoaded);
-        }
-      });
-
-      // Fallback: remove preloader after 5s
-      setTimeout(() => {
-        preloader.classList.add('hidden');
-      }, 5000);
-
-      // Intersection Observer for active slide detection
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const slideNum = parseInt(entry.target.dataset.slide);
-            currentSlide = slideNum - 1;
-
-            // Update dots
-            document.querySelectorAll('.nav-dot').forEach((dot, i) => {
-              dot.classList.toggle('active', i === currentSlide);
-            });
-
-            // Update counter
-            slideCounter.textContent = String(slideNum).padStart(2, '0') + ' / ' + totalSlides;
-
-            // Update progress
-            progressBar.style.width = ((slideNum / totalSlides) * 100) + '%';
-
-            // Hide scroll hint after first slide
-            if (slideNum > 1) {
-              scrollHint.style.opacity = '0';
-            } else {
-              scrollHint.style.opacity = '1';
-            }
+      // Intersection Observer
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const n = parseInt(e.target.dataset.slide);
+            current = n - 1;
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+            counter.textContent = String(n).padStart(2, '0') + ' / ' + TOTAL;
+            progress.style.width = ((n / TOTAL) * 100) + '%';
+            hint.style.opacity = n > 1 ? '0' : '1';
           }
         });
-      }, {
-        threshold: 0.5
-      });
+      }, { threshold: 0.5 });
 
-      document.querySelectorAll('.slide').forEach(slide => {
-        observer.observe(slide);
-      });
+      slides.forEach(s => obs.observe(s));
 
-      // Keyboard navigation
-      document.addEventListener('keydown', (e) => {
-        const slides = document.querySelectorAll('.slide');
-        if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+      // Keyboard nav
+      document.addEventListener('keydown', e => {
+        if (['ArrowDown', 'PageDown', ' '].includes(e.key)) {
           e.preventDefault();
-          const next = Math.min(currentSlide + 1, totalSlides - 1);
-          slides[next].scrollIntoView({ behavior: 'smooth' });
-        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+          slides[Math.min(current + 1, TOTAL - 1)].scrollIntoView({ behavior: 'smooth' });
+        } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
           e.preventDefault();
-          const prev = Math.max(currentSlide - 1, 0);
-          slides[prev].scrollIntoView({ behavior: 'smooth' });
+          slides[Math.max(current - 1, 0)].scrollIntoView({ behavior: 'smooth' });
         } else if (e.key === 'Home') {
-          e.preventDefault();
-          slides[0].scrollIntoView({ behavior: 'smooth' });
+          e.preventDefault(); slides[0].scrollIntoView({ behavior: 'smooth' });
         } else if (e.key === 'End') {
-          e.preventDefault();
-          slides[totalSlides - 1].scrollIntoView({ behavior: 'smooth' });
+          e.preventDefault(); slides[TOTAL - 1].scrollIntoView({ behavior: 'smooth' });
         }
       });
     })();
