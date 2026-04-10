@@ -1,1854 +1,839 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Butterfly Agency - KIT</title>
-  <meta name="description" content="Butterfly Agency - Your GTM Partner in France. E-commerce media, events, community & consulting.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦋</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butterfly Agency Presentation</title>
+    <style>
+        /* Font declarations */
+        @font-face {
+            font-family: 'CocomatPro';
+            src: url('assets/fonts/CocomatPro-Regular.ttf') format('truetype');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'CocomatPro';
+            src: url('assets/fonts/CocomatPro-Bold.ttf') format('truetype');
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'GlacialIndifference';
+            src: url('assets/fonts/GlacialIndifference-Regular.ttf') format('truetype');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'GlacialIndifference';
+            src: url('assets/fonts/GlacialIndifference-Bold.ttf') format('truetype');
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'OpenSans';
+            src: url('assets/fonts/OpenSans-Bold.ttf') format('truetype');
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'AmbiguityNormate';
+            src: url('assets/fonts/AmbiguityNormate-Inline.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'Brice';
+            src: url('assets/fonts/Brice-RegularSemiExpanded.ttf') format('truetype');
+        }
 
-  <!-- Preload critical images -->
-  <link rel="preload" as="image" href="assets/p01-00.png">
-  <link rel="preload" as="image" href="assets/p02-00.png">
-  <link rel="preload" as="image" href="assets/p04-01.jpeg">
-  <link rel="preload" as="image" href="assets/p04-02.png">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    html {
-      scroll-snap-type: y mandatory;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      height: 100%;
-      scroll-behavior: smooth;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    html::-webkit-scrollbar { display: none; }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
 
-    body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+        body {
+            background: #000;
+            font-family: 'GlacialIndifference', sans-serif;
+            overflow: hidden;
+        }
 
-    .slide {
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 16/9;
-    }
+        .presentation-container {
+            width: 100%;
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+        }
 
-    /* Typography */
-    h1 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 4rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            flex-shrink: 0;
+        }
 
-    h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 3rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
+        .slide-inner {
+            position: relative;
+            width: 1440px;
+            height: 810px;
+            background: #000;
+            transform-origin: top left;
+            overflow: hidden;
+        }
 
-    h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
+        .text-element {
+            position: absolute;
+            white-space: nowrap;
+            overflow: hidden;
+            line-height: 1;
+            font-kerning: auto;
+        }
 
-    /* Colors */
-    .pink { color: #E91E90; }
-    .yellow { color: #FFD700; }
-    .blue { color: #4FC3F7; }
-    .gray { color: #B8B8B8; }
+        .image-element {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            overflow: hidden;
+        }
 
-    /* Nav dots */
-    .nav-dots {
-      position: fixed;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .nav-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.25);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      padding: 0;
-    }
-    .nav-dot:hover { background: rgba(255,255,255,0.6); transform: scale(1.4); }
-    .nav-dot.active { background: #E91E90; transform: scale(1.3); }
+        .shape-element {
+            position: absolute;
+        }
 
-    /* Counter */
-    .slide-counter {
-      position: fixed;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      color: rgba(255,255,255,0.4);
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      letter-spacing: 2px;
-      pointer-events: none;
-    }
+        /* Navigation */
+        .nav-dots {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-    /* Progress */
-    .progress-bar {
-      position: fixed;
-      top: 0; left: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #E91E90, #FFD700, #4FC3F7);
-      z-index: 100;
-      transition: width 0.3s ease;
-      width: 0%;
-    }
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
 
-    /* Scroll hint */
-    .scroll-hint {
-      position: fixed;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      color: rgba(255,255,255,0.35);
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-align: center;
-      pointer-events: none;
-      transition: opacity 0.5s ease;
-    }
-    .scroll-hint .arrow {
-      display: block;
-      margin-top: 3px;
-      font-size: 16px;
-      animation: bounce 2s ease infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(5px); }
-    }
+        .nav-dot:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
 
-    /* ===== SLIDE 1 ===== */
-    .slide-1 {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-    }
-    .slide-1-logo {
-      width: 12vw;
-      height: auto;
-      margin-bottom: 1rem;
-    }
-    .slide-1 h1 {
-      font-size: 5.5rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.5rem;
-    }
-    .slide-1 .subtitle {
-      font-size: 1.2rem;
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      margin-bottom: 2rem;
-    }
-    .slide-1 .divider {
-      width: 20vw;
-      height: 1px;
-      background: #fff;
-      margin: 1.5rem 0;
-    }
-    .slide-1 .tagline {
-      font-size: 1.1rem;
-      font-weight: 700;
-      font-style: italic;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-    }
-    .slide-1 .authors {
-      font-size: 1rem;
-      font-style: italic;
-      letter-spacing: 0.04em;
-      color: rgba(255, 255, 255, 0.8);
-    }
+        .nav-dot.active {
+            background: #ec36a3;
+            border-color: #ec36a3;
+            width: 16px;
+            height: 16px;
+            margin: -2px 0;
+        }
 
-    /* ===== SLIDE 2 ===== */
-    .slide-2 {
-      padding: 4vw;
-      justify-content: flex-start;
-      align-items: flex-start;
-    }
-    .slide-2-container {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      max-width: 90vw;
-    }
-    .slide-2-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-    .slide-2-header h2 {
-      font-size: 3.5rem;
-    }
-    .slide-2-logo {
-      width: 8vw;
-      height: auto;
-    }
-    .slide-2-content {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      max-width: 80vw;
-    }
-    .slide-2-content p {
-      margin-bottom: 1.2rem;
-    }
-
-    /* ===== SLIDE 3 ===== */
-    .slide-3 {
-      padding: 4vw;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-    }
-    .slide-3-header {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-    .slide-3-logo {
-      width: 4vw;
-      height: auto;
-    }
-    .slide-3-header h2 {
-      font-size: 3rem;
-    }
-    .slide-3-list {
-      list-style: none;
-      font-size: 1.5rem;
-      line-height: 2.5;
-    }
-    .slide-3-list li {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    .slide-3-list li::before {
-      content: '';
-      width: 12px;
-      height: 12px;
-      background: #E91E90;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    /* ===== SLIDE 4 ===== */
-    .slide-4 {
-      flex-direction: column;
-      justify-content: center;
-      padding: 3vw;
-      gap: 2rem;
-    }
-    .slide-4 h2 {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .slide-4-subtitle {
-      text-align: center;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      max-width: 85vw;
-      margin: 0 auto 2rem;
-    }
-    .slide-4-subtitle .pink {
-      font-weight: 700;
-    }
-    .slide-4-content {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 3vw;
-      margin-bottom: 2rem;
-    }
-    .slide-4-person {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    .slide-4-person img {
-      width: 15vw;
-      height: 20vw;
-      object-fit: cover;
-      border: 8px solid #00BFFF;
-      border-radius: 0.5vw;
-    }
-    .slide-4-person .name {
-      text-align: center;
-      font-size: 1.1rem;
-    }
-    .slide-4-person .name .first {
-      color: #FFD700;
-      font-weight: 600;
-    }
-    .slide-4-badge {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 20vw;
-      height: auto;
-      z-index: 10;
-    }
-    .slide-4-bullets {
-      display: flex;
-      justify-content: center;
-      gap: 10vw;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      max-width: 80vw;
-      margin: 0 auto;
-    }
-    .slide-4-bullets ul {
-      list-style: none;
-      flex: 1;
-    }
-    .slide-4-bullets li {
-      margin-bottom: 0.5rem;
-    }
-    .slide-4-bullets li::before {
-      content: '▪ ';
-      color: #E91E90;
-      margin-right: 0.5rem;
-      font-weight: bold;
-    }
-
-    /* ===== SLIDE 5 ===== */
-    .slide-5 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 3rem;
-    }
-    .slide-5 h2 {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-    }
-    .slide-5-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 2rem;
-      max-width: 90vw;
-      margin: 0 auto;
-    }
-    .slide-5-member {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    .slide-5-member img {
-      width: 10vw;
-      height: 10vw;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid;
-      border-color: var(--border-color, #E91E90);
-    }
-    .slide-5-member .name {
-      text-align: center;
-      font-size: 0.95rem;
-      line-height: 1.3;
-    }
-    .slide-5-member .first {
-      color: #FFD700;
-      font-weight: 600;
-    }
-    .slide-5-member .last {
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .slide-5-member .role {
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.6);
-      text-align: center;
-      line-height: 1.2;
-    }
-
-    /* ===== SLIDE 6 ===== */
-    .slide-6 {
-      justify-content: space-between;
-      align-items: center;
-      padding: 4vw;
-      gap: 4rem;
-    }
-    .slide-6-left {
-      flex: 1;
-      font-size: 1.4rem;
-      line-height: 2.2;
-      font-style: italic;
-      text-transform: uppercase;
-    }
-    .slide-6-left p {
-      margin-bottom: 1rem;
-    }
-    .slide-6-left .highlight {
-      color: #FFD700;
-      font-weight: 700;
-    }
-    .slide-6-logo {
-      width: 6vw;
-      height: auto;
-      margin: 2rem 0;
-    }
-    .slide-6-butterfly-text {
-      font-size: 2rem;
-      color: #fff;
-      font-weight: 700;
-    }
-    .slide-6-right img {
-      width: 35vw;
-      height: auto;
-      border: 8px solid #fff;
-      border-radius: 0.5vw;
-      object-fit: cover;
-    }
-
-    /* ===== SLIDE 7 ===== */
-    .slide-7 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 3rem;
-    }
-    .slide-7 h2 {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-    }
-    .slide-7-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      max-width: 90vw;
-      margin: 0 auto;
-    }
-    .slide-7-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    .slide-7-item img {
-      width: 15vw;
-      height: 15vw;
-      object-fit: contain;
-    }
-    .slide-7-item h3 {
-      font-size: 1.3rem;
-      text-align: center;
-    }
-    .slide-7-item p {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    /* ===== SLIDE 8 ===== */
-    .slide-8 {
-      justify-content: space-between;
-      align-items: center;
-      padding: 4vw;
-      gap: 3rem;
-    }
-    .slide-8-left {
-      flex: 1;
-    }
-    .slide-8-left img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 0.5vw;
-    }
-    .slide-8-right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .slide-8-right h2 {
-      font-size: 2.5rem;
-    }
-    .slide-8-description {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: rgba(255, 255, 255, 0.9);
-    }
-    .slide-8-description .highlight {
-      color: #FFD700;
-      font-weight: 700;
-    }
-    .slide-8-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .slide-8-stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .slide-8-stat-value {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #FFD700;
-    }
-    .slide-8-stat-label {
-      font-size: 0.9rem;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    /* ===== SLIDE 9 ===== */
-    .slide-9 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 2rem;
-    }
-    .slide-9 h2 {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .slide-9-subtitle {
-      text-align: center;
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-    .slide-9-subtitle .highlight {
-      color: #E91E90;
-      font-weight: 700;
-    }
-    .slide-9-circles {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 3rem;
-      margin-bottom: 2rem;
-    }
-    .slide-9-circle {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    .slide-9-circle img {
-      width: 12vw;
-      height: 12vw;
-      object-fit: contain;
-      border-radius: 50%;
-      padding: 1rem;
-    }
-    .slide-9-circle h3 {
-      font-size: 1.1rem;
-    }
-    .slide-9-stats {
-      display: flex;
-      justify-content: center;
-      gap: 4rem;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-    .slide-9-stat-block {
-      text-align: center;
-    }
-    .slide-9-stat-number {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #FFD700;
-    }
-
-    /* ===== SLIDE 10 ===== */
-    .slide-10 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 2rem;
-    }
-    .slide-10 h2 {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 2rem;
-    }
-    .slide-10-logos {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      max-width: 80vw;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .slide-10-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 0.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      min-height: 5vw;
-    }
-    .slide-10-logo img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-    }
-    .slide-10-sections {
-      display: flex;
-      gap: 4rem;
-      justify-content: center;
-      font-size: 1rem;
-      line-height: 1.8;
-    }
-    .slide-10-section {
-      flex: 1;
-      max-width: 35vw;
-    }
-    .slide-10-section h3 {
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    .slide-10-section-circle {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      background: #E91E90;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .slide-10-section ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .slide-10-section li {
-      margin-bottom: 0.7rem;
-    }
-    .slide-10-section li::before {
-      content: '•';
-      color: #FFD700;
-      margin-right: 0.7rem;
-      font-weight: bold;
-    }
-
-    /* ===== SLIDE 11 ===== */
-    .slide-11 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 2rem;
-    }
-    .slide-11 h2 {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .slide-11-subtitle {
-      text-align: center;
-      font-size: 1.1rem;
-      color: #E91E90;
-      font-weight: 600;
-      margin-bottom: 2rem;
-    }
-    .slide-11-columns {
-      display: flex;
-      gap: 4rem;
-      justify-content: center;
-      max-width: 90vw;
-      margin: 0 auto;
-    }
-    .slide-11-column {
-      flex: 1;
-    }
-    .slide-11-column h3 {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .slide-11-circle {
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      background: #E91E90;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-    }
-    .slide-11-logos {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-    .slide-11-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 0.3rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      min-height: 4rem;
-    }
-    .slide-11-logo img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-    }
-
-    /* ===== SLIDE 12 ===== */
-    .slide-12 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 2rem;
-    }
-    .slide-12-header {
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    .slide-12 h2 {
-      font-size: 3.5rem;
-    }
-    .slide-12-subtitle {
-      font-size: 1.2rem;
-      color: #E91E90;
-      font-weight: 600;
-    }
-    .slide-12-content {
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-    }
-    .slide-12-event-card {
-      flex: 0.5;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1.5rem;
-      border-radius: 0.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .slide-12-event-title {
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-    .slide-12-photos {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-    .slide-12-photo {
-      position: relative;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 0.3rem;
-      overflow: hidden;
-    }
-    .slide-12-photo img {
-      width: 100%;
-      height: 12vw;
-      object-fit: cover;
-      border-radius: 0.3rem;
-    }
-    .slide-12-stats {
-      text-align: center;
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-top: 1.5rem;
-    }
-    .slide-12-stats .highlight {
-      color: #E91E90;
-      font-weight: 700;
-    }
-
-    /* ===== SLIDE 13 ===== */
-    .slide-13 {
-      justify-content: space-between;
-      align-items: center;
-      padding: 4vw;
-      gap: 3rem;
-    }
-    .slide-13-left img {
-      width: 40vw;
-      height: auto;
-      object-fit: cover;
-      border-radius: 0.5vw;
-    }
-    .slide-13-right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .slide-13-logo {
-      font-size: 2rem;
-      font-weight: 700;
-    }
-    .slide-13-logo img {
-      width: 15vw;
-      height: auto;
-      margin-bottom: 1rem;
-    }
-    .slide-13-title {
-      font-size: 1.4rem;
-      color: #E91E90;
-      font-weight: 700;
-    }
-    .slide-13-text {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    /* ===== SLIDE 14 ===== */
-    .slide-14 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 2rem;
-    }
-    .slide-14-logo {
-      width: 25vw;
-      height: auto;
-      margin: 0 auto 1rem;
-    }
-    .slide-14-logo img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
-    .slide-14-title {
-      text-align: center;
-      font-size: 1.4rem;
-      color: #E91E90;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .slide-14-content {
-      display: flex;
-      gap: 3rem;
-      align-items: center;
-      max-width: 80vw;
-      margin: 0 auto;
-    }
-    .slide-14-text {
-      flex: 1;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-    .slide-14-photo {
-      flex: 1;
-    }
-    .slide-14-photo img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      border-radius: 0.5vw;
-    }
-
-    /* ===== SLIDE 15 ===== */
-    .slide-15 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 2rem;
-    }
-    .slide-15-logo {
-      width: 25vw;
-      height: auto;
-      margin: 0 auto 1rem;
-    }
-    .slide-15-logo img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
-    .slide-15-title {
-      text-align: center;
-      font-size: 1.4rem;
-      color: #E91E90;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .slide-15-content {
-      display: flex;
-      gap: 3rem;
-      align-items: center;
-      max-width: 80vw;
-      margin: 0 auto;
-    }
-    .slide-15-text {
-      flex: 1;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-    .slide-15-photo {
-      flex: 1;
-    }
-    .slide-15-photo img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      border-radius: 0.5vw;
-    }
-
-    /* ===== SLIDE 16 ===== */
-    .slide-16 {
-      justify-content: space-between;
-      align-items: center;
-      padding: 4vw;
-      gap: 3rem;
-    }
-    .slide-16-left {
-      flex: 0.4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    .slide-16-logo {
-      width: 8vw;
-      height: auto;
-    }
-    .slide-16-left h2 {
-      text-align: center;
-      font-size: 1.5rem;
-      line-height: 1.5;
-    }
-    .slide-16-left .number {
-      color: #E91E90;
-      font-weight: 700;
-      font-size: 1.3rem;
-    }
-    .slide-16-right {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1rem;
-    }
-    .slide-16-headshot {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 0.3rem;
-      overflow: hidden;
-      aspect-ratio: 1;
-    }
-    .slide-16-headshot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* ===== SLIDE 17 ===== */
-    .slide-17 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 2rem;
-    }
-    .slide-17 h2 {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 2rem;
-    }
-    .slide-17-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1.5rem;
-      max-width: 90vw;
-      margin: 0 auto;
-    }
-    .slide-17-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 0.4rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      min-height: 6rem;
-    }
-    .slide-17-logo img {
-      max-width: 85%;
-      max-height: 85%;
-      object-fit: contain;
-    }
-
-    /* ===== SLIDE 18 ===== */
-    .slide-18 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 2rem;
-    }
-    .slide-18 h2 {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-    }
-    .slide-18-subtitle {
-      text-align: center;
-      font-size: 1.2rem;
-      color: #E91E90;
-      font-weight: 600;
-      margin-bottom: 2rem;
-    }
-    .slide-18-clubs {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      max-width: 85vw;
-      margin: 0 auto;
-    }
-    .slide-18-club {
-      padding: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 0.4rem;
-      text-align: center;
-    }
-    .slide-18-club.blue { border-color: #4FC3F7; }
-    .slide-18-club.pink { border-color: #E91E90; }
-    .slide-18-club.white { border-color: #fff; }
-    .slide-18-club.yellow { border-color: #FFD700; }
-    .slide-18-club h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-    }
-    .slide-18-club p {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    /* ===== SLIDE 19 ===== */
-    .slide-19 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 2rem;
-    }
-    .slide-19 h2 {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 2rem;
-    }
-    .slide-19-grid {
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      gap: 1rem;
-      max-width: 95vw;
-      margin: 0 auto;
-    }
-    .slide-19-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 0.3rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      min-height: 4.5rem;
-    }
-    .slide-19-logo img {
-      max-width: 80%;
-      max-height: 80%;
-      object-fit: contain;
-    }
-
-    /* ===== SLIDE 20 ===== */
-    .slide-20 {
-      flex-direction: column;
-      padding: 4vw;
-      gap: 2rem;
-    }
-    .slide-20 h2 {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 2rem;
-    }
-    .slide-20-columns {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      max-width: 85vw;
-      margin: 0 auto;
-    }
-    .slide-20-column {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .slide-20-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .slide-20-circle {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 50%;
-      background: #E91E90;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-    .slide-20-column h3 {
-      font-size: 1.2rem;
-    }
-    .slide-20-column ul {
-      list-style: none;
-      font-size: 1rem;
-      line-height: 1.8;
-    }
-    .slide-20-column li {
-      margin-bottom: 0.5rem;
-    }
-    .slide-20-column li::before {
-      content: '▪ ';
-      margin-right: 0.5rem;
-    }
-    .slide-20-keyword {
-      font-weight: 700;
-      color: #E91E90;
-    }
-    .slide-20-keyword.yellow {
-      color: #FFD700;
-    }
-
-    /* ===== SLIDE 21 ===== */
-    .slide-21 {
-      position: relative;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/p21-00.jpeg');
-      background-size: cover;
-      background-position: center;
-    }
-    .slide-21-content {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .slide-21-logo {
-      width: 15vw;
-      height: auto;
-    }
-    .slide-21-logo img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
-
-    @media (max-width: 768px) {
-      .nav-dots { right: 8px; gap: 4px; }
-      .nav-dot { width: 6px; height: 6px; }
-      h1 { font-size: 2.5rem; }
-      h2 { font-size: 1.8rem; }
-      .slide-5-grid { grid-template-columns: repeat(3, 1fr); }
-      .slide-17-grid { grid-template-columns: repeat(3, 1fr); }
-      .slide-19-grid { grid-template-columns: repeat(5, 1fr); }
-    }
-  </style>
+        .slide-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 14px;
+            font-family: 'GlacialIndifference', sans-serif;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
+    <div class="presentation-container" id="presentation">
 
-  <div class="progress-bar" id="progressBar"></div>
-  <nav class="nav-dots" id="navDots"></nav>
-  <div class="slide-counter" id="slideCounter">01 / 21</div>
-  <div class="scroll-hint" id="scrollHint">Scroll<span class="arrow">&#8595;</span></div>
-
-  <!-- SLIDE 1: Title -->
-  <section class="slide slide-1" data-slide="1">
-    <img src="assets/p01-00.png" alt="Butterfly Logo" class="slide-1-logo">
-    <h1>BUTTERFLY</h1>
-    <div class="subtitle">AGENCY</div>
-    <div class="divider"></div>
-    <div class="tagline">YOUR GTM PARTNER IN FRANCE</div>
-    <div class="authors">Laëtitia Lamari – Adrien Naeem</div>
-  </section>
-
-  <!-- SLIDE 2: Exec Summary -->
-  <section class="slide slide-2" data-slide="2">
-    <div class="slide-2-container">
-      <div class="slide-2-header">
-        <h2>EXEC SUMMARY</h2>
-        <img src="assets/p02-00.png" alt="Butterfly Logo" class="slide-2-logo">
-      </div>
-      <div class="slide-2-content">
-        <p>Butterfly is the expert platform powering the <span class="yellow">French e-commerce market</span>, positioning ourselves as the <span class="pink">#1 e-commerce media in France</span>.</p>
-        <p>We combine <span class="pink">media, events, community, and GTM support</span> to deliver comprehensive solutions for brands entering or expanding in France.</p>
-        <p>Through our integrated approach, we provide brands with the <span class="pink">visibility</span>, <span class="pink">right connections</span>, and <span class="pink">real business results</span> they need.</p>
-        <p>Whether you need to <span class="pink">enter</span>, <span class="yellow">grow</span>, or <span class="pink">stand out in France</span>, Butterfly is your partner.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 3: Agenda -->
-  <section class="slide slide-3" data-slide="3">
-    <div class="slide-3-header">
-      <img src="assets/p03-00.png" alt="Butterfly Logo" class="slide-3-logo">
-      <h2>AGENDA</h2>
-    </div>
-    <ul class="slide-3-list">
-      <li>Who we are</li>
-      <li>What we do</li>
-      <li>Our communities</li>
-      <li>Our methodology</li>
-      <li>Our offering</li>
-    </ul>
-  </section>
-
-  <!-- SLIDE 4: Who We Are -->
-  <section class="slide slide-4" data-slide="4">
-    <h2>WHO WE ARE</h2>
-    <div class="slide-4-subtitle">
-      <span>A DUO OF KEY OPINION LEADERS AND E-COMMERCE (B2B/B2C) & RETAIL TECH EXPERTS.</span>
-    </div>
-    <div class="slide-4-content">
-      <div class="slide-4-person">
-        <img src="assets/p04-01.jpeg" alt="Adrien Naeem">
-        <div class="name"><span class="first">Adrien</span> <span>NAEEM</span></div>
-        <div style="font-size: 0.9rem; color: #FFD700;">LinkedIn</div>
-      </div>
-      <img src="assets/p04-03.png" alt="Ranked #1 Badge" class="slide-4-badge">
-      <div class="slide-4-person">
-        <img src="assets/p04-02.png" alt="Laetitia Lamari">
-        <div class="name"><span class="first">Laëtitia</span> <span>LAMARI</span></div>
-        <div style="font-size: 0.9rem; color: #FFD700;">LinkedIn</div>
-      </div>
-    </div>
-    <div class="slide-4-bullets">
-      <ul>
-        <li>15+ years in e-commerce</li>
-        <li>Founded 3 startups</li>
-        <li>International experience</li>
-      </ul>
-      <ul>
-        <li>Expert in GTM</li>
-        <li>Community builder</li>
-        <li>Industry influencer</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- SLIDE 5: One Team -->
-  <section class="slide slide-5" data-slide="5">
-    <h2>ONE TEAM</h2>
-    <div class="slide-5-grid">
-      <div class="slide-5-member" style="--border-color: #E91E90;">
-        <img src="assets/p05-00.jpeg" alt="Edouard Selvy">
-        <div class="name"><span class="first">Edouard</span> <span class="last">SELVY</span></div>
-        <div class="role">CTO</div>
-      </div>
-      <div class="slide-5-member" style="--border-color: #FFD700;">
-        <img src="assets/p05-01.jpeg" alt="Jessica Boaziz">
-        <div class="name"><span class="first">Jessica</span> <span class="last">BOAZIZ</span></div>
-        <div class="role">Event Manager</div>
-      </div>
-      <div class="slide-5-member" style="--border-color: #4FC3F7;">
-        <img src="assets/p05-02.jpeg" alt="Emily Baranov">
-        <div class="name"><span class="first">Emily</span> <span class="last">BARANOV</span></div>
-        <div class="role">CMO</div>
-      </div>
-      <div class="slide-5-member" style="--border-color: #B8B8B8;">
-        <img src="assets/p05-03.jpeg" alt="Benoit Rougier">
-        <div class="name"><span class="first">Benoit</span> <span class="last">ROUGIER</span></div>
-        <div class="role">Media Producer</div>
-      </div>
-      <div class="slide-5-member" style="--border-color: #E91E90;">
-        <img src="assets/p05-04.jpeg" alt="Cristian Mallama">
-        <div class="name"><span class="first">Cristian</span> <span class="last">MALLAMA</span></div>
-        <div class="role">Growth Manager</div>
-      </div>
-      <div class="slide-5-member" style="--border-color: #FFD700;">
-        <img src="assets/p05-05.png" alt="Lucas Serras">
-        <div class="name"><span class="first">Lucas</span> <span class="last">SERRAS</span></div>
-        <div class="role">Movie Producer</div>
-      </div>
-      <div class="slide-5-member" style="--border-color: #4FC3F7;">
-        <img src="assets/p05-06.png" alt="Laurine Anger">
-        <div class="name"><span class="first">Laurine</span> <span class="last">ANGER</span></div>
-        <div class="role">Chief of Brand</div>
-      </div>
-      <div class="slide-5-member" style="--border-color: #B8B8B8;">
-        <img src="assets/p05-07.png" alt="Benjamin De Castro">
-        <div class="name"><span class="first">Benjamin</span> <span class="last">DE CASTRO</span></div>
-        <div class="role">COO</div>
-      </div>
-      <div class="slide-5-member" style="--border-color: #E91E90;">
-        <img src="assets/p05-08.png" alt="Céline Libert">
-        <div class="name"><span class="first">Céline</span> <span class="last">LIBERT</span></div>
-        <div class="role">Head of Sales</div>
-      </div>
-      <div class="slide-5-member" style="--border-color: #FFD700;">
-        <img src="assets/p05-09.png" alt="Yéléna Squires">
-        <div class="name"><span class="first">Yéléna</span> <span class="last">SQUIRES</span></div>
-        <div class="role">Community Success Mgr</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 6: We Are Butterfly -->
-  <section class="slide slide-6" data-slide="6">
-    <div class="slide-6-left">
-      <p>WE WORK WITH <span class="highlight">ALL THE COMPANIES</span></p>
-      <p>WE ARE <span class="highlight">AGNOSTIC</span></p>
-      <p>WE OFFER <span class="highlight">PERSONALIZED CONSULTING</span></p>
-      <p style="font-size: 2rem; margin-top: 1rem;">WE ARE <span style="color: #fff; font-weight: 700;">BUTTERFLY</span></p>
-      <img src="assets/p06-00.png" alt="Butterfly Logo" class="slide-6-logo">
-    </div>
-    <div class="slide-6-right">
-      <img src="assets/p06-01.png" alt="Team photo">
-    </div>
-  </section>
-
-  <!-- SLIDE 7: What We Do -->
-  <section class="slide slide-7" data-slide="7">
-    <h2>WHAT WE DO</h2>
-    <div class="slide-7-grid">
-      <div class="slide-7-item">
-        <img src="assets/p07-00.png" alt="Media">
-        <h3>MEDIA</h3>
-        <p>Reach audiences through podcasts, newsletters, and content</p>
-      </div>
-      <div class="slide-7-item">
-        <img src="assets/p07-01.png" alt="Events">
-        <h3>EVENTS</h3>
-        <p>Connect with industry leaders and decision makers</p>
-      </div>
-      <div class="slide-7-item">
-        <img src="assets/p07-02.png" alt="Consulting">
-        <h3>CONSULTING</h3>
-        <p>Strategic GTM guidance and market expertise</p>
-      </div>
-      <div class="slide-7-item">
-        <img src="assets/p07-03.png" alt="Communities">
-        <h3>COMMUNITIES</h3>
-        <p>Access to 1500+ vetted e-commerce experts</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 8: Media (Podcast) -->
-  <section class="slide slide-8" data-slide="8">
-    <div class="slide-8-left">
-      <img src="assets/p08-00.jpeg" alt="Le Café de l'E-Commerce">
-    </div>
-    <div class="slide-8-right">
-      <h2>MEDIA</h2>
-      <div class="slide-8-description">
-        Our flagship podcast <span class="highlight">Le Café de l'E-Commerce</span> is the go-to resource for French e-commerce and retail tech professionals.
-      </div>
-      <div class="slide-8-stats">
-        <div class="slide-8-stat">
-          <div class="slide-8-stat-value">1M+</div>
-          <div class="slide-8-stat-label">Listens</div>
+        <!-- SLIDE 1 -->
+        <div class="slide" data-slide="1">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 661.0px; top: 220.3px; font-family: 'CocomatPro'; font-size: 90.75px; font-weight: 700; color: #ffffff; width: 550.0px; height: 90.8px;">BUTTERFLY</div>
+                <div class="text-element" style="left: 808.2px; top: 321.5px; font-family: 'GlacialIndifference'; font-size: 65.58px; font-weight: 400; color: #ffffff; width: 255.6px; height: 78.7px;">AGENCY</div>
+                <div class="text-element" style="left: 463.8px; top: 652.9px; font-family: 'GlacialIndifference'; font-size: 37.6px; font-weight: 400; color: #ffffff; width: 512.4px; height: 45.1px;"> Laëtitia Lamari - Adrien Naeem</div>
+                <div class="text-element" style="left: 228.1px; top: 494.1px; font-family: 'CocomatPro'; font-size: 56.19px; font-weight: 700; color: #ffffff; width: 983.8px; height: 56.2px;"> YOUR GTM PARTNER IN FRANCE</div>
+                <div class="image-element" style="left: 228.0px; top: 111.7px; width: 396.8px; height: 303.7px; background-image: url('assets/p01-00.png');"></div>
+            </div>
         </div>
-        <div class="slide-8-stat">
-          <div class="slide-8-stat-value">150+</div>
-          <div class="slide-8-stat-label">5★ on iTunes</div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" data-slide="2">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 128.2px; top: 183.9px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 548.3px; height: 64.0px;">EXEC SUMMARY</div>
+                <div class="text-element" style="left: 128.2px; top: 297.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 465.9px; height: 33.6px;">Butterfly Agency helps you grow in the </div>
+                <div class="text-element" style="left: 594.2px; top: 297.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 355.9px; height: 33.6px;">French e-commerce market</div>
+                <div class="text-element" style="left: 950.1px; top: 297.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 7.5px; height: 33.6px;">.</div>
+                <div class="text-element" style="left: 128.2px; top: 336.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 135.8px; height: 33.6px;">We run the </div>
+                <div class="text-element" style="left: 264.0px; top: 336.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ffde4c; width: 408.6px; height: 33.6px;">#1 e-commerce media in France</div>
+                <div class="text-element" style="left: 672.6px; top: 336.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 280.5px; height: 33.6px;">, a community of 1,500+</div>
+                <div class="text-element" style="left: 128.2px; top: 375.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 798.3px; height: 33.6px;">people, and we have 20 years of SaaS and retail experience. With</div>
+                <div class="text-element" style="left: 128.2px; top: 414.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 167.9px; height: 33.6px;">our 4 pillars —</div>
+                <div class="text-element" style="left: 303.1px; top: 414.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #2680f5; width: 578.0px; height: 33.6px;">media, events, community, and GTM support</div>
+                <div class="text-element" style="left: 881.1px; top: 414.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 69.9px; height: 33.6px;"> — we</div>
+                <div class="text-element" style="left: 128.2px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 106.4px; height: 33.6px;">give you </div>
+                <div class="text-element" style="left: 234.6px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 107.6px; height: 33.6px;">visibility</div>
+                <div class="text-element" style="left: 342.2px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 60.3px; height: 33.6px;">, the </div>
+                <div class="text-element" style="left: 402.6px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 225.5px; height: 33.6px;">right connections</div>
+                <div class="text-element" style="left: 628.1px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 67.8px; height: 33.6px;">, and </div>
+                <div class="text-element" style="left: 695.9px; top: 453.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 173.2px; height: 33.6px;">real business</div>
+                <div class="text-element" style="left: 128.2px; top: 492.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 88.0px; height: 33.6px;">results</div>
+                <div class="text-element" style="left: 216.2px; top: 492.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 7.5px; height: 33.6px;">.</div>
+                <div class="text-element" style="left: 128.2px; top: 570.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 672.3px; height: 33.6px;">Our goal : be your partner for the long term, so you can </div>
+                <div class="text-element" style="left: 800.5px; top: 570.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 68.0px; height: 33.6px;">enter</div>
+                <div class="text-element" style="left: 868.5px; top: 570.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 6.5px; height: 33.6px;">,</div>
+                <div class="text-element" style="left: 875.0px; top: 570.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 72.9px; height: 33.6px;"> grow</div>
+                <div class="text-element" style="left: 947.9px; top: 570.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 6.5px; height: 33.6px;">,</div>
+                <div class="text-element" style="left: 128.2px; top: 609.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 53.7px; height: 33.6px;">and </div>
+                <div class="text-element" style="left: 181.9px; top: 609.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 248.9px; height: 33.6px;">stand out in France</div>
+                <div class="text-element" style="left: 430.8px; top: 609.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 7.5px; height: 33.6px;">.</div>
+                <div class="image-element" style="left: 1057.5px; top: 81.0px; width: 301.5px; height: 230.2px; background-image: url('assets/p02-00.png');"></div>
+            </div>
         </div>
-        <div class="slide-8-stat">
-          <div class="slide-8-stat-value">300+</div>
-          <div class="slide-8-stat-label">Episodes</div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" data-slide="3">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 927.3px; top: 204.7px; font-family: 'GlacialIndifference'; font-size: 33.75px; font-weight: 400; color: #ffffff; width: 171.3px; height: 40.5px;">Who we are</div>
+                <div class="text-element" style="left: 835.9px; top: 203.0px; font-family: 'OpenSans'; font-size: 36.0px; font-weight: 700; color: #000000; width: 20.6px; height: 49.0px;">1</div>
+                <div class="text-element" style="left: 927.3px; top: 305.7px; font-family: 'GlacialIndifference'; font-size: 33.75px; font-weight: 400; color: #ffffff; width: 172.8px; height: 40.5px;">What we do</div>
+                <div class="text-element" style="left: 835.9px; top: 303.7px; font-family: 'OpenSans'; font-size: 36.0px; font-weight: 700; color: #000000; width: 20.6px; height: 49.0px;">2</div>
+                <div class="text-element" style="left: 927.3px; top: 507.6px; font-family: 'GlacialIndifference'; font-size: 33.75px; font-weight: 400; color: #ffffff; width: 252.0px; height: 40.5px;">Our methodology</div>
+                <div class="text-element" style="left: 835.9px; top: 505.3px; font-family: 'OpenSans'; font-size: 36.0px; font-weight: 700; color: #000000; width: 20.6px; height: 49.0px;">4</div>
+                <div class="text-element" style="left: 927.3px; top: 406.6px; font-family: 'GlacialIndifference'; font-size: 33.75px; font-weight: 400; color: #ffffff; width: 243.9px; height: 40.5px;">Our communities</div>
+                <div class="text-element" style="left: 835.9px; top: 404.5px; font-family: 'OpenSans'; font-size: 36.0px; font-weight: 700; color: #000000; width: 20.6px; height: 49.0px;">3</div>
+                <div class="text-element" style="left: 310.2px; top: 173.6px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 293.4px; height: 64.0px;">AGENDA</div>
+                <div class="text-element" style="left: 927.3px; top: 608.1px; font-family: 'GlacialIndifference'; font-size: 33.75px; font-weight: 400; color: #ffffff; width: 178.2px; height: 40.5px;">Our offering</div>
+                <div class="text-element" style="left: 835.9px; top: 605.8px; font-family: 'OpenSans'; font-size: 36.0px; font-weight: 700; color: #000000; width: 20.6px; height: 49.0px;">5</div>
+                <div class="image-element" style="left: 151.1px; top: 148.4px; width: 129.7px; height: 99.0px; background-image: url('assets/p03-00.png');"></div>
+            </div>
         </div>
-        <div class="slide-8-stat">
-          <div class="slide-8-stat-value">100+</div>
-          <div class="slide-8-stat-label">VIP Guests</div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" data-slide="4">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 308.0px; top: 555.3px; font-family: 'GlacialIndifference'; font-size: 31.99px; font-weight: 700; color: #ffde4c; width: 211.2px; height: 38.4px;">Adrien Naeem</div>
+                <div class="text-element" style="left: 482.7px; top: 100.2px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 474.6px; height: 64.0px;">WHO WE ARE</div>
+                <div class="text-element" style="left: 54.6px; top: 189.6px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 580.1px; height: 28.0px;">A DUO OF KEY OPINION LEADERS AND </div>
+                <div class="text-element" style="left: 634.7px; top: 189.7px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 750.6px; height: 28.0px;">E-COMMERCE (B2B/B2C) &amp; RETAIL TECH EXPERTS.</div>
+                <div class="text-element" style="left: 144.2px; top: 615.9px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 507.4px; height: 25.2px;">15+ yrs working in tech (Omniture, Demandware, Narvar).</div>
+                <div class="text-element" style="left: 144.2px; top: 645.2px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 430.2px; height: 25.2px;">Pioneered Salesforce Commerce Cloud, France</div>
+                <div class="text-element" style="left: 144.2px; top: 674.4px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 277.4px; height: 25.2px;">Diversity &amp; inclusion champion.</div>
+                <div class="text-element" style="left: 144.2px; top: 703.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 268.4px; height: 25.2px;">LinkedIn influencer &amp; speaker.</div>
+                <div class="text-element" style="left: 807.2px; top: 615.9px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 415.5px; height: 25.2px;">15+ yrs in global marketing (agency, software).</div>
+                <div class="text-element" style="left: 807.2px; top: 645.2px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 466.4px; height: 25.2px;">Expert in integrators , payment solutions. &amp; content </div>
+                <div class="text-element" style="left: 807.2px; top: 674.4px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 277.4px; height: 25.2px;">Diversity &amp; inclusion champion.</div>
+                <div class="text-element" style="left: 807.2px; top: 703.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 268.4px; height: 25.2px;">LinkedIn influencer &amp; speaker.</div>
+                <div class="text-element" style="left: 964.3px; top: 555.3px; font-family: 'GlacialIndifference'; font-size: 31.99px; font-weight: 700; color: #ffde4c; width: 224.7px; height: 38.4px;">Laetitia Lamari</div>
+                <div class="text-element" style="left: 662.7px; top: 325.5px; font-family: 'CocomatPro'; font-size: 19.58px; font-weight: 700; color: #ffffff; width: 114.6px; height: 19.6px;">RANKED #1</div>
+                <div class="text-element" style="left: 651.7px; top: 352.5px; font-family: 'CocomatPro'; font-size: 19.58px; font-weight: 700; color: #ffffff; width: 136.6px; height: 19.6px;">ECOMMERCE</div>
+                <div class="text-element" style="left: 646.4px; top: 379.6px; font-family: 'CocomatPro'; font-size: 19.58px; font-weight: 700; color: #ffffff; width: 147.1px; height: 19.6px;">INFLUENCERS</div>
+                <div class="text-element" style="left: 662.5px; top: 406.6px; font-family: 'CocomatPro'; font-size: 19.58px; font-weight: 700; color: #ffffff; width: 114.9px; height: 19.6px;">IN FRANCE</div>
+                <div class="image-element" style="left: 260.1px; top: 276.6px; width: 256.8px; height: 256.9px; background-image: url('assets/p04-00.png');"></div>
+                <div class="image-element" style="left: 923.1px; top: 276.6px; width: 256.8px; height: 256.9px; background-image: url('assets/p04-01.jpeg');"></div>
+                <div class="image-element" style="left: 903.6px; top: 549.7px; width: 50.2px; height: 50.2px; background-image: url('assets/p04-02.png');"></div>
+                <div class="image-element" style="left: 240.6px; top: 549.7px; width: 50.2px; height: 50.2px; background-image: url('assets/p04-03.png');"></div>
+                <div class="image-element" style="left: 598.6px; top: 265.0px; width: 242.7px; height: 307.0px; background-image: url('assets/p04-04.png');"></div>
+                <div class="image-element" style="left: 638.6px; top: 316.8px; width: 163.9px; height: 116.2px; background-image: url('assets/p04-05.png');"></div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- SLIDE 9: Media (Brands) -->
-  <section class="slide slide-9" data-slide="9">
-    <h2>MEDIA</h2>
-    <div class="slide-9-subtitle">
-      Reach <span class="highlight">30,000</span> engaged e-commerce decision makers
-    </div>
-    <div class="slide-9-circles">
-      <div class="slide-9-circle">
-        <img src="assets/p09-00.png" alt="Podcast">
-        <h3>PODCAST</h3>
-      </div>
-      <div class="slide-9-circle">
-        <img src="assets/p09-01.png" alt="Communities">
-        <h3>COMMUNITIES</h3>
-      </div>
-      <div class="slide-9-circle">
-        <img src="assets/p09-02.png" alt="Channel">
-        <h3>CHANNEL</h3>
-      </div>
-    </div>
-    <div class="slide-9-stats">
-      <div class="slide-9-stat-block">
-        <div class="slide-9-stat-number">1M+</div>
-        <div>annual listens</div>
-      </div>
-      <div class="slide-9-stat-block">
-        <div class="slide-9-stat-number">25K+</div>
-        <div>community members</div>
-      </div>
-      <div class="slide-9-stat-block">
-        <div class="slide-9-stat-number">15K+</div>
-        <div>channel followers</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 10: Consulting GTM -->
-  <section class="slide slide-10" data-slide="10">
-    <h2>CONSULTING GTM</h2>
-    <div class="slide-10-logos">
-      <div class="slide-10-logo"><img src="assets/p10-00.png" alt="BigCommerce"></div>
-      <div class="slide-10-logo"><img src="assets/p10-01.png" alt="Deptax"></div>
-      <div class="slide-10-logo"><img src="assets/p10-02.png" alt="DnD"></div>
-      <div class="slide-10-logo"><img src="assets/p10-03.png" alt="elyn"></div>
-      <div class="slide-10-logo"><img src="assets/p10-04.png" alt="neo9"></div>
-      <div class="slide-10-logo"><img src="assets/p10-05.png" alt="NewStore"></div>
-      <div class="slide-10-logo"><img src="assets/p10-06.png" alt="Talon.One"></div>
-      <div class="slide-10-logo"><img src="assets/p10-07.png" alt="tapbuy"></div>
-    </div>
-    <div class="slide-10-sections">
-      <div class="slide-10-section">
-        <h3><span class="slide-10-section-circle">1</span>STRATEGY</h3>
-        <ul>
-          <li>Market analysis & positioning</li>
-          <li>Competitive landscape review</li>
-          <li>Customer acquisition roadmap</li>
-          <li>Partnership opportunities</li>
-        </ul>
-      </div>
-      <div class="slide-10-section">
-        <h3><span class="slide-10-section-circle">2</span>EXECUTION</h3>
-        <ul>
-          <li>Campaign planning & management</li>
-          <li>Content development</li>
-          <li>Media & influencer coordination</li>
-          <li>Results tracking & optimization</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 11: Events -->
-  <section class="slide slide-11" data-slide="11">
-    <h2>EVENTS</h2>
-    <div class="slide-11-subtitle">Building lasting connections with ROI mindset</div>
-    <div class="slide-11-columns">
-      <div class="slide-11-column">
-        <h3><span class="slide-11-circle">1</span>OUR EVENTS</h3>
-        <div class="slide-11-logos">
-          <div class="slide-11-logo"><img src="assets/p11-00.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-01.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-02.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-03.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-04.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-05.png" alt="Event"></div>
+        <!-- SLIDE 5 -->
+        <div class="slide" data-slide="5">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 492.0px; top: 61.7px; font-family: 'CocomatPro'; font-size: 80.0px; font-weight: 700; color: #ffffff; width: 456.0px; height: 80.0px;">ONE TEAM</div>
+                <div class="text-element" style="left: 66.8px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 105.2px; height: 24.9px;">Edouard</div>
+                <div class="text-element" style="left: 172.0px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 91.4px; height: 24.9px;"> SELVY</div>
+                <div class="text-element" style="left: 142.8px; top: 431.9px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 44.5px; height: 27.3px;">CTO</div>
+                <div class="text-element" style="left: 347.2px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 83.2px; height: 24.9px;">Jessica</div>
+                <div class="text-element" style="left: 430.4px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 107.4px; height: 24.9px;"> BOAZIZ</div>
+                <div class="text-element" style="left: 368.7px; top: 431.9px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 147.8px; height: 27.3px;">Event Manager</div>
+                <div class="text-element" style="left: 616.1px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 65.6px; height: 24.9px;">Emily</div>
+                <div class="text-element" style="left: 681.7px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 142.1px; height: 24.9px;"> BARANOV</div>
+                <div class="text-element" style="left: 693.8px; top: 431.9px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 52.3px; height: 27.3px;">CMO</div>
+                <div class="text-element" style="left: 893.8px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 77.6px; height: 24.9px;">Benoit</div>
+                <div class="text-element" style="left: 971.4px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 129.6px; height: 24.9px;"> ROUGIER</div>
+                <div class="text-element" style="left: 920.0px; top: 431.9px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 155.0px; height: 27.3px;">Media Producer</div>
+                <div class="text-element" style="left: 1158.6px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 100.8px; height: 24.9px;">Cristian </div>
+                <div class="text-element" style="left: 1259.5px; top: 404.2px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 131.7px; height: 24.9px;">MALLAMA</div>
+                <div class="text-element" style="left: 1191.3px; top: 431.9px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 167.1px; height: 27.3px;">Growth Manager</div>
+                <div class="text-element" style="left: 345.3px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 92.5px; height: 24.9px;">Laurine</div>
+                <div class="text-element" style="left: 437.8px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 102.0px; height: 24.9px;"> ANGER</div>
+                <div class="text-element" style="left: 371.1px; top: 739.4px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 142.9px; height: 27.3px;">Chief of Brand</div>
+                <div class="text-element" style="left: 592.2px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 112.7px; height: 24.9px;">Benjamin</div>
+                <div class="text-element" style="left: 704.9px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 160.9px; height: 24.9px;"> DE CASTRO</div>
+                <div class="text-element" style="left: 693.8px; top: 739.4px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 52.5px; height: 27.3px;">COO</div>
+                <div class="text-element" style="left: 910.6px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 74.1px; height: 24.9px;">Céline</div>
+                <div class="text-element" style="left: 984.7px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 99.6px; height: 24.9px;"> LIBERT</div>
+                <div class="text-element" style="left: 926.2px; top: 739.4px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 142.5px; height: 27.3px;">Head Of Sales</div>
+                <div class="text-element" style="left: 1171.8px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 81.5px; height: 24.9px;">Yéléna</div>
+                <div class="text-element" style="left: 1253.3px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 124.7px; height: 24.9px;"> SQUIRES</div>
+                <div class="text-element" style="left: 1130.6px; top: 739.4px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 288.5px; height: 27.3px;">Community Success Manager</div>
+                <div class="text-element" style="left: 74.0px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffdd4c; width: 69.0px; height: 24.9px;">Lucas</div>
+                <div class="text-element" style="left: 143.0px; top: 711.7px; font-family: 'CocomatPro'; font-size: 24.93px; font-weight: 700; color: #ffffff; width: 113.2px; height: 24.9px;"> SERRAS</div>
+                <div class="text-element" style="left: 89.5px; top: 739.4px; font-family: 'GlacialIndifference'; font-size: 22.75px; font-weight: 400; color: #ffffff; width: 151.2px; height: 27.3px;">Movie Producer</div>
+                <div class="image-element" style="left: 66.0px; top: 178.2px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-00.jpeg');"></div>
+                <div class="image-element" style="left: 343.5px; top: 178.2px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-01.jpeg');"></div>
+                <div class="image-element" style="left: 620.9px; top: 178.2px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-02.jpeg');"></div>
+                <div class="image-element" style="left: 898.4px; top: 178.2px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-03.jpeg');"></div>
+                <div class="image-element" style="left: 1175.8px; top: 178.2px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-04.jpeg');"></div>
+                <div class="image-element" style="left: 343.3px; top: 485.7px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-05.png');"></div>
+                <div class="image-element" style="left: 620.9px; top: 485.7px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-06.png');"></div>
+                <div class="image-element" style="left: 898.4px; top: 485.7px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-07.png');"></div>
+                <div class="image-element" style="left: 1175.8px; top: 485.7px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-08.png');"></div>
+                <div class="image-element" style="left: 65.9px; top: 485.7px; width: 198.1px; height: 198.1px; background-image: url('assets/p05-09.png');"></div>
+            </div>
         </div>
-      </div>
-      <div class="slide-11-column">
-        <h3><span class="slide-11-circle">2</span>INDUSTRY EVENTS</h3>
-        <div class="slide-11-logos">
-          <div class="slide-11-logo"><img src="assets/p11-06.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-07.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-08.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-09.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-10.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-11.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-12.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-13.png" alt="Event"></div>
-          <div class="slide-11-logo"><img src="assets/p11-14.png" alt="Event"></div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide" data-slide="6">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 81.0px; top: 284.9px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 248.6px; height: 28.0px;">WE WORK WITH </div>
+                <div class="text-element" style="left: 329.6px; top: 285.0px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ffde4c; width: 54.2px; height: 28.0px;">ALL</div>
+                <div class="text-element" style="left: 383.9px; top: 284.9px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 255.7px; height: 28.0px;"> THE COMPANIES</div>
+                <div class="text-element" style="left: 81.0px; top: 363.7px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 126.4px; height: 28.0px;">WE ARE </div>
+                <div class="text-element" style="left: 207.4px; top: 363.8px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 153.4px; height: 28.0px;">AGNOSTIC</div>
+                <div class="text-element" style="left: 81.0px; top: 442.4px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 167.5px; height: 28.0px;">WE OFFER </div>
+                <div class="text-element" style="left: 248.5px; top: 442.5px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #2680f5; width: 233.1px; height: 28.0px;">PERSONALIZED</div>
+                <div class="text-element" style="left: 481.6px; top: 442.4px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 202.7px; height: 28.0px;"> CONSULTING</div>
+                <div class="text-element" style="left: 81.0px; top: 521.2px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 126.5px; height: 28.0px;">WE ARE </div>
+                <div class="text-element" style="left: 222.4px; top: 512.3px; font-family: 'CocomatPro'; font-size: 45.85px; font-weight: 700; color: #ffffff; width: 277.8px; height: 45.8px;">BUTTERFLY</div>
+                <div class="image-element" style="left: 764.8px; top: 116.9px; width: 598.7px; height: 392.5px; background-image: url('assets/p06-00.png');"></div>
+                <div class="image-element" style="left: 753.4px; top: 105.6px; width: 646.5px; height: 440.6px; background-image: url('assets/p06-01.png');"></div>
+                <div class="image-element" style="left: 282.7px; top: 589.5px; width: 157.5px; height: 120.0px; background-image: url('assets/p06-02.png');"></div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- SLIDE 12: Our Events -->
-  <section class="slide slide-12" data-slide="12">
-    <div class="slide-12-header">
-      <h2>OUR EVENTS</h2>
-    </div>
-    <div class="slide-12-subtitle">MEETING OUR COMMUNITY</div>
-    <div class="slide-12-content">
-      <div class="slide-12-event-card">
-        <div class="slide-12-event-title">L'Apéro E-Commerce de Lille</div>
-        <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);">Local networking event bringing together e-commerce professionals for meaningful connections.</p>
-      </div>
-      <div class="slide-12-photos">
-        <div class="slide-12-photo"><img src="assets/p12-00.png" alt="Event 1"></div>
-        <div class="slide-12-photo"><img src="assets/p12-01.png" alt="Event 2"></div>
-        <div class="slide-12-photo"><img src="assets/p12-02.png" alt="Event 3"></div>
-        <div class="slide-12-photo"><img src="assets/p12-03.png" alt="Event 4"></div>
-        <div class="slide-12-photo"><img src="assets/p12-04.png" alt="Event 5"></div>
-        <div class="slide-12-photo"><img src="assets/p12-05.png" alt="Event 6"></div>
-      </div>
-    </div>
-    <div class="slide-12-stats">
-      <span class="highlight">+2K DE EXECS ATTENDEES</span> / <span class="highlight">3 EVENTS / QUARTER</span>
-    </div>
-  </section>
-
-  <!-- SLIDE 13: Store Tour Paris -->
-  <section class="slide slide-13" data-slide="13">
-    <div class="slide-13-left">
-      <img src="assets/p13-00.png" alt="Store Tour Paris">
-    </div>
-    <div class="slide-13-right">
-      <div class="slide-13-logo">STP</div>
-      <div class="slide-13-title">STORE TOUR PARIS</div>
-      <div class="slide-13-title">A UNIQUE CONCEPT IN FRANCE</div>
-      <div class="slide-13-text">
-        <p>Join us for guided tours of the most innovative retail experiences in Paris. Meet founders, explore new concepts, and network with fellow e-commerce professionals.</p>
-        <p>Quarterly events designed to inspire and connect the community around the latest retail innovations.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 14: WIRE -->
-  <section class="slide slide-14" data-slide="14">
-    <div class="slide-14-logo">
-      <img src="assets/p14-00.png" alt="WIRE">
-    </div>
-    <div class="slide-14-title">A VIP COMMUNITY</div>
-    <div class="slide-14-content">
-      <div class="slide-14-text">
-        <p>WIRE (Women In Retail and Ecommerce) is an exclusive community dedicated to empowering women leaders in the retail and e-commerce space.</p>
-        <p>Members gain access to exclusive events, mentorship opportunities, and a network of influential women professionals in the industry.</p>
-      </div>
-      <div class="slide-14-photo">
-        <img src="assets/p14-01.png" alt="WIRE Community">
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 15: Brands2Buyers -->
-  <section class="slide slide-15" data-slide="15">
-    <div class="slide-15-logo">
-      <img src="assets/p15-00.png" alt="Brands2Buyers">
-    </div>
-    <div class="slide-15-title">THE PREMIER B2B COMMERCE EVENT</div>
-    <div class="slide-15-content">
-      <div class="slide-15-text">
-        <p>Brands2Buyers is the leading B2B commerce event in France, bringing together software providers, agencies, and e-commerce leaders.</p>
-        <p>Twice yearly, we host this flagship event connecting decision makers and driving business opportunities across the ecosystem.</p>
-      </div>
-      <div class="slide-15-photo">
-        <img src="assets/p15-01.png" alt="Brands2Buyers">
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 16: 1500 Experts -->
-  <section class="slide slide-16" data-slide="16">
-    <div class="slide-16-left">
-      <img src="assets/p06-00.png" alt="Butterfly Logo" class="slide-16-logo">
-      <h2><span class="slide-16-number">+ 1500 EXPERTS</span><br>IN OUR COMMUNITIES</h2>
-    </div>
-    <div class="slide-16-right">
-      <div class="slide-16-headshot"><img src="assets/p16-00.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-01.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-02.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-03.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-04.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-05.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-06.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-07.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-08.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-09.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-10.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-11.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-12.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-13.jpeg" alt="Expert"></div>
-      <div class="slide-16-headshot"><img src="assets/p16-14.jpeg" alt="Expert"></div>
-    </div>
-  </section>
-
-  <!-- SLIDE 17: Tech in Communities -->
-  <section class="slide slide-17" data-slide="17">
-    <h2>THE TECH IN OUR COMMUNITIES</h2>
-    <div class="slide-17-grid">
-      <div class="slide-17-logo"><img src="assets/p17-00.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-01.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-02.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-03.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-04.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-05.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-06.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-07.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-08.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-09.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-10.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-11.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-12.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-13.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-14.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-15.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-16.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-17.png" alt="Tech logo"></div>
-      <div class="slide-17-logo"><img src="assets/p17-18.png" alt="Tech logo"></div>
-    </div>
-  </section>
-
-  <!-- SLIDE 18: Communities -->
-  <section class="slide slide-18" data-slide="18">
-    <h2>COMMUNITIES</h2>
-    <div class="slide-18-subtitle">PREMIUM CLUBS</div>
-    <div class="slide-18-clubs">
-      <div class="slide-18-club blue">
-        <h3>LCDI</h3>
-        <p>Le Club Du e-Commerce</p>
-        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Premier networking club</p>
-      </div>
-      <div class="slide-18-club pink">
-        <h3>WIRE</h3>
-        <p>Women in Retail & Ecommerce</p>
-        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Female leaders community</p>
-      </div>
-      <div class="slide-18-club white">
-        <h3>B2B</h3>
-        <p>B2B Commerce Summit</p>
-        <p style="font-size: 0.85rem; margin-top: 0.5rem;">B2B specialists forum</p>
-      </div>
-      <div class="slide-18-club yellow">
-        <h3>CORE</h3>
-        <p>Community of Retail Experts</p>
-        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Retail excellence hub</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 19: Brands in Communities -->
-  <section class="slide slide-19" data-slide="19">
-    <h2>THE BRANDS IN OUR COMMUNITIES</h2>
-    <div class="slide-19-grid">
-      <div class="slide-19-logo"><img src="assets/p19-00.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-01.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-02.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-03.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-04.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-05.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-06.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-07.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-08.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-09.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-10.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-11.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-12.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-13.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-14.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-15.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-16.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-17.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-18.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-19.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-20.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-21.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-22.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-23.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-24.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-25.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-26.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-27.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-28.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-29.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-30.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-31.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-32.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-33.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-34.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-35.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-36.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-37.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-38.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-39.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-40.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-41.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-42.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-43.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-44.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-45.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-46.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-47.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-48.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-49.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-50.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-51.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-52.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-53.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-54.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-55.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-56.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-57.png" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-58.jpeg" alt="Brand"></div>
-      <div class="slide-19-logo"><img src="assets/p19-59.png" alt="Brand"></div>
-    </div>
-  </section>
-
-  <!-- SLIDE 20: Our Offering -->
-  <section class="slide slide-20" data-slide="20">
-    <h2>OUR OFFERING</h2>
-    <div class="slide-20-columns">
-      <div class="slide-20-column">
-        <div class="slide-20-header">
-          <div class="slide-20-circle">1</div>
-          <h3>SPONSORSHIP & VISIBILITY</h3>
+        <!-- SLIDE 7 -->
+        <div class="slide" data-slide="7">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 483.8px; top: 139.3px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 472.4px; height: 64.0px;">WHAT WE DO</div>
+                <div class="text-element" style="left: 135.1px; top: 541.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 247.9px; height: 33.6px;">#1 Independent Retail</div>
+                <div class="text-element" style="left: 169.0px; top: 572.5px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 180.0px; height: 33.6px;">&amp; E-Commerce</div>
+                <div class="text-element" style="left: 162.5px; top: 603.3px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 193.1px; height: 33.6px;">Media in France.</div>
+                <div class="text-element" style="left: 237.0px; top: 301.7px; font-family: 'CocomatPro'; font-size: 120.58px; font-weight: 700; color: #000000; width: 44.0px; height: 120.6px;">1</div>
+                <div class="text-element" style="left: 526.9px; top: 301.7px; font-family: 'CocomatPro'; font-size: 120.58px; font-weight: 700; color: #000000; width: 75.8px; height: 120.6px;">2</div>
+                <div class="text-element" style="left: 833.2px; top: 301.7px; font-family: 'CocomatPro'; font-size: 120.58px; font-weight: 700; color: #000000; width: 74.5px; height: 120.6px;">3</div>
+                <div class="text-element" style="left: 1137.0px; top: 301.7px; font-family: 'CocomatPro'; font-size: 120.58px; font-weight: 700; color: #000000; width: 78.1px; height: 120.6px;">4</div>
+                <div class="text-element" style="left: 201.4px; top: 482.3px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 115.3px; height: 33.0px;">MEDIA</div>
+                <div class="text-element" style="left: 760.9px; top: 541.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 219.1px; height: 33.6px;">Accelerating SAAS</div>
+                <div class="text-element" style="left: 743.9px; top: 572.5px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 253.1px; height: 33.6px;">tech to launch in SEU.</div>
+                <div class="text-element" style="left: 755.9px; top: 482.3px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 229.1px; height: 33.0px;">CONSULTING</div>
+                <div class="text-element" style="left: 456.4px; top: 541.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 216.9px; height: 33.6px;">Hosting &amp; covering</div>
+                <div class="text-element" style="left: 445.2px; top: 572.5px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 239.3px; height: 33.6px;">over 10 global events</div>
+                <div class="text-element" style="left: 513.9px; top: 603.3px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 101.9px; height: 33.6px;">annually.</div>
+                <div class="text-element" style="left: 494.7px; top: 482.3px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 140.3px; height: 33.0px;">EVENTS</div>
+                <div class="text-element" style="left: 1108.6px; top: 541.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 135.1px; height: 33.6px;">Connecting</div>
+                <div class="text-element" style="left: 1081.3px; top: 572.5px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 189.7px; height: 33.6px;">professionals via</div>
+                <div class="text-element" style="left: 1073.1px; top: 603.3px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 206.1px; height: 33.6px;">different premium</div>
+                <div class="text-element" style="left: 1076.4px; top: 634.0px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 199.4px; height: 33.6px;">clubs we created</div>
+                <div class="text-element" style="left: 1050.1px; top: 482.3px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 252.0px; height: 33.0px;">COMMUNITIES</div>
+                <div class="image-element" style="left: 183.8px; top: 277.4px; width: 150.4px; height: 150.4px; background-image: url('assets/p07-00.png');"></div>
+                <div class="image-element" style="left: 489.7px; top: 277.4px; width: 150.4px; height: 150.4px; background-image: url('assets/p07-01.png');"></div>
+                <div class="image-element" style="left: 795.3px; top: 277.4px; width: 150.4px; height: 150.4px; background-image: url('assets/p07-02.png');"></div>
+                <div class="image-element" style="left: 1100.9px; top: 277.4px; width: 150.4px; height: 150.4px; background-image: url('assets/p07-03.png');"></div>
+            </div>
         </div>
-        <ul>
-          <li>Podcast sponsorships</li>
-          <li>Event presence & activation</li>
-          <li><span class="slide-20-keyword">Featured brand</span> visibility</li>
-          <li>Community <span class="slide-20-keyword">announcements</span></li>
-          <li>Co-branded content</li>
-        </ul>
-      </div>
-      <div class="slide-20-column">
-        <div class="slide-20-header">
-          <div class="slide-20-circle">2</div>
-          <h3>INFLUENCE & COMMUNITY</h3>
+
+        <!-- SLIDE 8 -->
+        <div class="slide" data-slide="8">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 768.0px; top: 522.6px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #ffffff; width: 91.7px; height: 57.6px;">300 </div>
+                <div class="text-element" style="left: 859.6px; top: 522.6px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #2680f5; width: 22.1px; height: 57.6px;">+</div>
+                <div class="text-element" style="left: 768.0px; top: 582.5px; font-family: 'GlacialIndifference'; font-size: 23.7px; font-weight: 400; color: #ffffff; width: 90.6px; height: 28.4px;">Episodes</div>
+                <div class="text-element" style="left: 638.5px; top: 171.9px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 223.7px; height: 64.0px;">MEDIA</div>
+                <div class="text-element" style="left: 768.0px; top: 361.5px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #ffffff; width: 64.3px; height: 57.6px;">1M </div>
+                <div class="text-element" style="left: 832.3px; top: 361.5px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #2680f5; width: 22.1px; height: 57.6px;">+</div>
+                <div class="text-element" style="left: 768.0px; top: 421.4px; font-family: 'GlacialIndifference'; font-size: 23.7px; font-weight: 400; color: #ffffff; width: 66.9px; height: 28.4px;">Listens</div>
+                <div class="text-element" style="left: 1075.5px; top: 361.5px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #ffffff; width: 80.0px; height: 57.6px;">150 </div>
+                <div class="text-element" style="left: 1155.6px; top: 361.5px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #2680f5; width: 22.1px; height: 57.6px;">+</div>
+                <div class="text-element" style="left: 1075.5px; top: 421.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 127.5px; height: 28.8px;">5* on iTunes</div>
+                <div class="text-element" style="left: 638.5px; top: 238.6px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 300.1px; height: 33.6px;">We started the podcast “</div>
+                <div class="text-element" style="left: 938.6px; top: 238.6px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 700; color: #ffde4c; width: 329.5px; height: 33.6px;">Le Café de l’E-Commerce</div>
+                <div class="text-element" style="left: 1268.1px; top: 238.6px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 108.6px; height: 33.6px;">” in 2019.</div>
+                <div class="text-element" style="left: 638.5px; top: 277.6px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 721.6px; height: 33.6px;">Today, it is the #1 independent ecommerce media in France.</div>
+                <div class="text-element" style="left: 1072.1px; top: 522.4px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #ffffff; width: 80.5px; height: 57.6px;">100 </div>
+                <div class="text-element" style="left: 1152.6px; top: 522.4px; font-family: 'GlacialIndifference'; font-size: 48.0px; font-weight: 400; color: #2680f5; width: 22.1px; height: 57.6px;">+</div>
+                <div class="text-element" style="left: 1072.1px; top: 582.2px; font-family: 'GlacialIndifference'; font-size: 23.7px; font-weight: 400; color: #ffffff; width: 104.7px; height: 28.4px;">VIP guests</div>
+                <div class="image-element" style="left: 81.0px; top: 154.9px; width: 500.2px; height: 500.2px; background-image: url('assets/p08-00.jpeg');"></div>
+            </div>
         </div>
-        <ul>
-          <li><span class="slide-20-keyword">Expert validation</span></li>
-          <li>Community <span class="slide-20-keyword">introductions</span></li>
-          <li>Panel participation</li>
-          <li>Customer testimonials</li>
-          <li>Co-created content</li>
-        </ul>
-      </div>
-      <div class="slide-20-column">
-        <div class="slide-20-header">
-          <div class="slide-20-circle">3</div>
-          <h3>ADVISORY & GTM SUPPORT</h3>
+
+        <!-- SLIDE 9 -->
+        <div class="slide" data-slide="9">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 608.1px; top: 139.3px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 223.7px; height: 64.0px;">MEDIA</div>
+                <div class="text-element" style="left: 206.4px; top: 584.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 271.9px; height: 33.6px;">~15k listeners per month</div>
+                <div class="text-element" style="left: 222.9px; top: 614.9px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 238.9px; height: 33.6px;">+150 5-star on iTunes</div>
+                <div class="text-element" style="left: 259.2px; top: 645.7px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 166.4px; height: 33.6px;">+300 episodes</div>
+                <div class="text-element" style="left: 258.7px; top: 524.7px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 167.3px; height: 33.0px;">PODCAST</div>
+                <div class="text-element" style="left: 591.7px; top: 584.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 256.9px; height: 33.6px;">+1500 members on our</div>
+                <div class="text-element" style="left: 612.3px; top: 614.9px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 215.7px; height: 33.6px;">WhatsApp channel</div>
+                <div class="text-element" style="left: 594.1px; top: 524.7px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 252.0px; height: 33.0px;">COMMUNITIES</div>
+                <div class="text-element" style="left: 990.5px; top: 584.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 214.3px; height: 33.6px;">LinkedIn Top Voice</div>
+                <div class="text-element" style="left: 1031.1px; top: 614.9px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 133.1px; height: 33.6px;">Newsletters</div>
+                <div class="text-element" style="left: 1010.9px; top: 524.7px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 173.6px; height: 33.0px;">CHANNEL</div>
+                <div class="text-element" style="left: 112.6px; top: 231.2px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 1094.2px; height: 28.0px;">WE HAVE DEVELOPED OUR MEDIA BRANDS REACHING A TOTAL OF OVER </div>
+                <div class="text-element" style="left: 1206.8px; top: 231.3px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 120.5px; height: 28.0px;">30,000</div>
+                <div class="text-element" style="left: 92.1px; top: 270.9px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 1255.8px; height: 28.0px;">QUALIFIED AUDIENCE MEMBERS WITHIN THE E-COMMERCE ECOSYSTEM IN FRANCE.</div>
+                <div class="image-element" style="left: 276.9px; top: 358.4px; width: 130.9px; height: 130.9px; background-image: url('assets/p09-00.png');"></div>
+                <div class="image-element" style="left: 654.6px; top: 358.4px; width: 130.9px; height: 130.9px; background-image: url('assets/p09-01.png');"></div>
+                <div class="image-element" style="left: 1032.2px; top: 358.4px; width: 130.9px; height: 130.9px; background-image: url('assets/p09-02.png');"></div>
+            </div>
         </div>
-        <ul>
-          <li><span class="slide-20-keyword yellow">Market entry strategy</span></li>
-          <li><span class="slide-20-keyword">Strategic partnerships</span></li>
-          <li>Growth roadmap</li>
-          <li><span class="slide-20-keyword">Performance tracking</span></li>
-          <li>Ongoing optimization</li>
-        </ul>
-      </div>
+
+        <!-- SLIDE 10 -->
+        <div class="slide" data-slide="10">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 351.6px; top: 477.8px; font-family: 'OpenSans'; font-size: 25.99px; font-weight: 700; color: #ec36a3; width: 129.1px; height: 35.4px;">STRATEGY</div>
+                <div class="text-element" style="left: 372.8px; top: 527.4px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 171.0px; height: 25.2px;">Market Assessment</div>
+                <div class="text-element" style="left: 372.8px; top: 556.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 278.0px; height: 25.2px;">In-depth analysis of the French</div>
+                <div class="text-element" style="left: 372.8px; top: 585.9px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 286.7px; height: 25.2px;">e-commerce &amp; retail landscape</div>
+                <div class="text-element" style="left: 372.8px; top: 615.2px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 240.5px; height: 25.2px;">Benchmark of competitors,</div>
+                <div class="text-element" style="left: 372.8px; top: 644.4px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 206.2px; height: 25.2px;">opportunities, and risks</div>
+                <div class="text-element" style="left: 372.8px; top: 673.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 298.1px; height: 25.2px;">Actionable insights to shape your</div>
+                <div class="text-element" style="left: 372.8px; top: 702.9px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 173.2px; height: 25.2px;">Go-To-Market plan</div>
+                <div class="text-element" style="left: 287.3px; top: 474.2px; font-family: 'CocomatPro'; font-size: 53.02px; font-weight: 700; color: #000000; width: 19.4px; height: 53.0px;">1</div>
+                <div class="text-element" style="left: 867.7px; top: 479.8px; font-family: 'OpenSans'; font-size: 25.99px; font-weight: 700; color: #ec36a3; width: 148.1px; height: 35.4px;">EXECUTION</div>
+                <div class="text-element" style="left: 888.8px; top: 529.5px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 155.1px; height: 25.2px;">GTM Deployment</div>
+                <div class="text-element" style="left: 888.8px; top: 558.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 262.1px; height: 25.2px;">We act as your local team on</div>
+                <div class="text-element" style="left: 888.8px; top: 588.0px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 103.8px; height: 25.2px;">the ground.</div>
+                <div class="text-element" style="left: 888.8px; top: 617.2px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 227.6px; height: 25.2px;">Direct access to the right</div>
+                <div class="text-element" style="left: 888.8px; top: 646.5px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 251.9px; height: 25.2px;">decision-makers &amp; networks</div>
+                <div class="text-element" style="left: 888.8px; top: 675.7px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 254.5px; height: 25.2px;">Hands-on support to launch,</div>
+                <div class="text-element" style="left: 888.8px; top: 705.0px; font-family: 'GlacialIndifference'; font-size: 21.0px; font-weight: 400; color: #ffffff; width: 232.5px; height: 25.2px;">scale, and grow in France</div>
+                <div class="text-element" style="left: 802.6px; top: 474.2px; font-family: 'CocomatPro'; font-size: 53.02px; font-weight: 700; color: #000000; width: 33.4px; height: 53.0px;">2</div>
+                <div class="text-element" style="left: 414.4px; top: 85.6px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 611.1px; height: 64.0px;">CONSULTING GTM</div>
+                <div class="text-element" style="left: 1147.7px; top: 366.5px; font-family: 'CocomatPro'; font-size: 34.45px; font-weight: 700; color: #ffffff; width: 27.9px; height: 34.5px;">...</div>
+                <div class="image-element" style="left: 264.8px; top: 463.5px; width: 64.4px; height: 66.1px; background-image: url('assets/p10-00.png');"></div>
+                <div class="image-element" style="left: 788.4px; top: 463.5px; width: 61.8px; height: 66.1px; background-image: url('assets/p10-01.png');"></div>
+                <div class="image-element" style="left: 328.3px; top: 227.1px; width: 159.0px; height: 37.5px; background-image: url('assets/p10-02.png');"></div>
+                <div class="image-element" style="left: 537.4px; top: 344.9px; width: 155.2px; height: 28.5px; background-image: url('assets/p10-03.png');"></div>
+                <div class="image-element" style="left: 742.3px; top: 316.3px; width: 163.5px; height: 85.5px; background-image: url('assets/p10-04.png');"></div>
+                <div class="image-element" style="left: 955.5px; top: 336.3px; width: 151.5px; height: 45.8px; background-image: url('assets/p10-05.png');"></div>
+                <div class="image-element" style="left: 533.6px; top: 232.8px; width: 164.2px; height: 27.0px; background-image: url('assets/p10-06.png');"></div>
+                <div class="image-element" style="left: 342.5px; top: 341.8px; width: 130.5px; height: 35.2px; background-image: url('assets/p10-07.png');"></div>
+                <div class="image-element" style="left: 980.5px; top: 216.4px; width: 101.2px; height: 59.2px; background-image: url('assets/p10-08.png');"></div>
+                <div class="image-element" style="left: 757.8px; top: 223.3px; width: 132.8px; height: 45.0px; background-image: url('assets/p10-09.png');"></div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11 -->
+        <div class="slide" data-slide="11">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 930.1px; top: 305.8px; font-family: 'CocomatPro'; font-size: 73.47px; font-weight: 700; color: #000000; width: 46.2px; height: 73.5px;">2</div>
+                <div class="text-element" style="left: 789.1px; top: 400.9px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 328.1px; height: 33.0px;">INDUSTRY EVENTS</div>
+                <div class="text-element" style="left: 583.9px; top: 98.4px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 272.1px; height: 64.0px;">EVENTS</div>
+                <div class="text-element" style="left: 378.5px; top: 305.8px; font-family: 'CocomatPro'; font-size: 73.47px; font-weight: 700; color: #000000; width: 26.8px; height: 73.5px;">1</div>
+                <div class="text-element" style="left: 277.5px; top: 400.9px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 229.0px; height: 33.0px;">OUR EVENTS</div>
+                <div class="text-element" style="left: 181.1px; top: 187.6px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 555.9px; height: 28.0px;">WITH A CONSTANT ROI MINDSET, WE </div>
+                <div class="text-element" style="left: 737.0px; top: 187.7px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 521.8px; height: 28.0px;">REDEFINE THE EVENT LANDSCAPE</div>
+                <div class="text-element" style="left: 154.7px; top: 227.4px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 1130.5px; height: 28.0px;">WITH SMART STRATEGIES, STRONG NETWORK AND UNMATCHED EXPERTISE.</div>
+                <div class="text-element" style="left: 1216.0px; top: 691.5px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 26.7px; height: 33.0px;">...</div>
+                <div class="image-element" style="left: 346.1px; top: 290.9px; width: 91.6px; height: 91.6px; background-image: url('assets/p11-00.png');"></div>
+                <div class="image-element" style="left: 398.1px; top: 452.5px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-01.png');"></div>
+                <div class="image-element" style="left: 231.9px; top: 452.5px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-02.png');"></div>
+                <div class="image-element" style="left: 398.1px; top: 547.8px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-03.png');"></div>
+                <div class="image-element" style="left: 231.9px; top: 547.8px; width: 154.5px; height: 85.5px; background-image: url('assets/p11-04.png');"></div>
+                <div class="image-element" style="left: 231.8px; top: 643.4px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-05.png');"></div>
+                <div class="image-element" style="left: 398.1px; top: 643.4px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-06.png');"></div>
+                <div class="image-element" style="left: 907.4px; top: 290.9px; width: 91.6px; height: 91.6px; background-image: url('assets/p11-07.png');"></div>
+                <div class="image-element" style="left: 709.5px; top: 451.7px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-08.png');"></div>
+                <div class="image-element" style="left: 875.5px; top: 451.7px; width: 153.7px; height: 85.5px; background-image: url('assets/p11-09.png');"></div>
+                <div class="image-element" style="left: 1041.5px; top: 451.7px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-10.png');"></div>
+                <div class="image-element" style="left: 709.5px; top: 547.1px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-11.png');"></div>
+                <div class="image-element" style="left: 875.5px; top: 546.3px; width: 153.7px; height: 85.5px; background-image: url('assets/p11-12.png');"></div>
+                <div class="image-element" style="left: 1041.5px; top: 547.1px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-13.png');"></div>
+                <div class="image-element" style="left: 709.5px; top: 642.7px; width: 153.8px; height: 85.5px; background-image: url('assets/p11-14.png');"></div>
+                <div class="image-element" style="left: 875.5px; top: 642.7px; width: 153.7px; height: 85.5px; background-image: url('assets/p11-15.png');"></div>
+                <div class="image-element" style="left: 1041.5px; top: 642.7px; width: 155.2px; height: 86.2px; background-image: url('assets/p11-16.png');"></div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12 -->
+        <div class="slide" data-slide="12">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 82.4px; top: 119.3px; font-family: 'CocomatPro'; font-size: 80.0px; font-weight: 700; color: #ffffff; width: 555.2px; height: 80.0px;">OUR EVENTS</div>
+                <div class="text-element" style="left: 119.5px; top: 208.1px; font-family: 'GlacialIndifference'; font-size: 40.0px; font-weight: 400; color: #ec36a3; width: 480.8px; height: 48.0px;">MEETING OUR COMMUNITY</div>
+                <div class="text-element" style="left: 268.5px; top: 403.2px; font-family: 'OpenSans'; font-size: 13.99px; font-weight: 700; color: #ffffff; width: 31.9px; height: 19.0px;">2025</div>
+                <div class="text-element" style="left: 261.3px; top: 411.5px; font-family: 'OpenSans'; font-size: 13.99px; font-weight: 700; color: #ffffff; width: 31.9px; height: 19.0px;">2025</div>
+                <div class="text-element" style="left: 159.3px; top: 620.1px; font-family: 'CocomatPro'; font-size: 28.57px; font-weight: 700; color: #ffffff; width: 401.3px; height: 28.6px;">+2K DE EXECS ATTENDEES</div>
+                <div class="text-element" style="left: 201.7px; top: 654.6px; font-family: 'CocomatPro'; font-size: 28.57px; font-weight: 700; color: #ffffff; width: 316.5px; height: 28.6px;">3 EVENTS /QUARTER</div>
+                <div class="image-element" style="left: 694.9px; top: 50.5px; width: 442.0px; height: 336.9px; background-image: url('assets/p12-00.png');"></div>
+                <div class="image-element" style="left: 676.5px; top: 39.0px; width: 476.5px; height: 363.8px; background-image: url('assets/p12-01.png');"></div>
+                <div class="image-element" style="left: 1162.4px; top: 147.2px; width: 247.0px; height: 239.5px; background-image: url('assets/p12-02.png');"></div>
+                <div class="image-element" style="left: 1109.1px; top: 479.6px; width: 237.4px; height: 229.4px; background-image: url('assets/p12-03.png');"></div>
+                <div class="image-element" style="left: 965.4px; top: 305.9px; width: 244.1px; height: 236.4px; background-image: url('assets/p12-04.png');"></div>
+                <div class="image-element" style="left: 792.8px; top: 448.1px; width: 247.0px; height: 239.5px; background-image: url('assets/p12-05.png');"></div>
+                <div class="image-element" style="left: 95.6px; top: 272.0px; width: 495.0px; height: 322.5px; background-image: url('assets/p12-06.png');"></div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13 -->
+        <div class="slide" data-slide="13">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 925.5px; top: 205.3px; font-family: 'AmbiguityNormate'; font-size: 115.98px; font-weight: 400; color: #ffffff; width: 314.1px; height: 196.2px;">S T P</div>
+                <div class="text-element" style="left: 930.6px; top: 373.4px; font-family: 'Brice'; font-size: 18.66px; font-weight: 400; color: #ffffff; width: 303.8px; height: 18.7px;">S T O R E  T O U R  P A R I S</div>
+                <div class="text-element" style="left: 780.0px; top: 509.4px; font-family: 'GlacialIndifference'; font-size: 23.99px; font-weight: 400; color: #ffffff; width: 605.2px; height: 28.8px;">Store Tour Paris (STP) is a quarterly half-day event where</div>
+                <div class="text-element" style="left: 780.0px; top: 544.6px; font-family: 'GlacialIndifference'; font-size: 23.99px; font-weight: 400; color: #ffffff; width: 605.2px; height: 28.8px;">retail professionals discover the latest omnichannel</div>
+                <div class="text-element" style="left: 780.0px; top: 579.9px; font-family: 'GlacialIndifference'; font-size: 23.99px; font-weight: 400; color: #ffffff; width: 306.7px; height: 28.8px;">innovations in Parisian stores. </div>
+                <div class="text-element" style="left: 780.0px; top: 650.4px; font-family: 'GlacialIndifference'; font-size: 23.99px; font-weight: 400; color: #ffffff; width: 605.2px; height: 28.8px;">It offers a clear view of customer experience trends, new</div>
+                <div class="text-element" style="left: 780.0px; top: 685.6px; font-family: 'GlacialIndifference'; font-size: 23.99px; font-weight: 400; color: #ffffff; width: 444.2px; height: 28.8px;">technologies, and online/offline strategies.</div>
+                <div class="text-element" style="left: 805.7px; top: 428.3px; font-family: 'GlacialIndifference'; font-size: 39.99px; font-weight: 400; color: #ec36a3; width: 553.8px; height: 48.0px;">A UNIQUE CONCEPT IN FRANCE</div>
+                <div class="image-element" style="left: 54.8px; top: 95.4px; width: 667.8px; height: 489.0px; background-image: url('assets/p13-00.png');"></div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14 -->
+        <div class="slide" data-slide="14">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 283.1px; top: 322.9px; font-family: 'GlacialIndifference'; font-size: 25.0px; font-weight: 400; color: #ffffff; width: 882.7px; height: 30.0px;">WIRE is the largest and #1 french community for women in retail and e-commerce. </div>
+                <div class="text-element" style="left: 307.4px; top: 359.7px; font-family: 'GlacialIndifference'; font-size: 25.0px; font-weight: 400; color: #ffffff; width: 834.0px; height: 30.0px;">Every quarter, we host a VIP dinner where leaders and experts meet in a small</div>
+                <div class="text-element" style="left: 275.6px; top: 396.4px; font-family: 'GlacialIndifference'; font-size: 25.0px; font-weight: 400; color: #ffffff; width: 897.6px; height: 30.0px;">group to exchange ideas and experiences. These dinners create strong connections</div>
+                <div class="text-element" style="left: 425.7px; top: 433.2px; font-family: 'GlacialIndifference'; font-size: 25.0px; font-weight: 400; color: #ffffff; width: 597.5px; height: 30.0px;">and real conversations that you don’t find at big events.</div>
+                <div class="text-element" style="left: 557.6px; top: 254.3px; font-family: 'GlacialIndifference'; font-size: 39.99px; font-weight: 400; color: #ec36a3; width: 324.7px; height: 48.0px;">A VIP COMMUNITY</div>
+                <div class="image-element" style="left: 368.1px; top: 507.3px; width: 703.8px; height: 242.6px; background-image: url('assets/p14-00.png');"></div>
+                <div class="image-element" style="left: 316.7px; top: 65.9px; width: 806.2px; height: 173.2px; background-image: url('assets/p14-01.png');"></div>
+            </div>
+        </div>
+
+        <!-- SLIDE 15 -->
+        <div class="slide" data-slide="15">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 126.6px; top: 404.2px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 513.6px; height: 31.2px;">Brands2Buyers is an exclusive event gathering</div>
+                <div class="text-element" style="left: 126.6px; top: 442.4px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 513.6px; height: 31.2px;">50 top decision-makers to explore strategies,</div>
+                <div class="text-element" style="left: 126.6px; top: 480.7px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 513.6px; height: 31.2px;">tools, and solutions for business growth. It</div>
+                <div class="text-element" style="left: 126.6px; top: 518.9px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 81.9px; height: 31.2px;">fosters </div>
+                <div class="text-element" style="left: 233.6px; top: 518.9px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 131.0px; height: 31.2px;">meaningful </div>
+                <div class="text-element" style="left: 389.8px; top: 518.9px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 127.2px; height: 31.2px;">exchanges </div>
+                <div class="text-element" style="left: 542.2px; top: 518.9px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 97.9px; height: 31.2px;">between</div>
+                <div class="text-element" style="left: 126.6px; top: 557.2px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 513.6px; height: 31.2px;">brands and buyers through conferences,</div>
+                <div class="text-element" style="left: 126.6px; top: 595.4px; font-family: 'GlacialIndifference'; font-size: 25.99px; font-weight: 400; color: #ffffff; width: 406.6px; height: 31.2px;">interactive sessions, and networking.</div>
+                <div class="text-element" style="left: 232.3px; top: 280.2px; font-family: 'GlacialIndifference'; font-size: 39.99px; font-weight: 400; color: #ec36a3; width: 302.0px; height: 48.0px;">THE PREMIER B2B</div>
+                <div class="text-element" style="left: 213.0px; top: 335.7px; font-family: 'GlacialIndifference'; font-size: 39.99px; font-weight: 400; color: #ec36a3; width: 340.7px; height: 48.0px;">COMMERCE EVENT</div>
+                <div class="image-element" style="left: 283.9px; top: 81.0px; width: 198.8px; height: 168.0px; background-image: url('assets/p15-00.png');"></div>
+                <div class="image-element" style="left: 736.8px; top: 372.2px; width: 621.9px; height: 357.0px; background-image: url('assets/p15-01.png');"></div>
+            </div>
+        </div>
+
+        <!-- SLIDE 16 -->
+        <div class="slide" data-slide="16">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 155.9px; top: 444.5px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 643.6px; height: 64.0px;">+ 1500 EXPERTS IN</div>
+                <div class="text-element" style="left: 147.3px; top: 521.7px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 660.9px; height: 64.0px;">OUR COMMUNITIES</div>
+                <div class="image-element" style="left: 962.7px; top: 11.7px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-00.jpeg');"></div>
+                <div class="image-element" style="left: 962.7px; top: 493.1px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-01.jpeg');"></div>
+                <div class="image-element" style="left: 1122.5px; top: 332.7px; width: 144.8px; height: 144.8px; background-image: url('assets/p16-02.jpeg');"></div>
+                <div class="image-element" style="left: 1122.5px; top: 493.1px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-03.jpeg');"></div>
+                <div class="image-element" style="left: 1282.3px; top: 332.7px; width: 144.7px; height: 144.8px; background-image: url('assets/p16-04.jpeg');"></div>
+                <div class="image-element" style="left: 1282.3px; top: 493.1px; width: 144.7px; height: 144.7px; background-image: url('assets/p16-05.jpeg');"></div>
+                <div class="image-element" style="left: 1122.5px; top: 172.2px; width: 144.8px; height: 144.8px; background-image: url('assets/p16-06.jpeg');"></div>
+                <div class="image-element" style="left: 962.7px; top: 172.1px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-07.jpeg');"></div>
+                <div class="image-element" style="left: 962.7px; top: 653.7px; width: 144.8px; height: 144.8px; background-image: url('assets/p16-08.jpeg');"></div>
+                <div class="image-element" style="left: 1122.5px; top: 653.7px; width: 144.8px; height: 144.8px; background-image: url('assets/p16-09.jpeg');"></div>
+                <div class="image-element" style="left: 1282.3px; top: 653.7px; width: 144.7px; height: 144.8px; background-image: url('assets/p16-10.jpeg');"></div>
+                <div class="image-element" style="left: 963.0px; top: 332.6px; width: 144.8px; height: 144.8px; background-image: url('assets/p16-11.jpeg');"></div>
+                <div class="image-element" style="left: 1282.1px; top: 172.1px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-12.jpeg');"></div>
+                <div class="image-element" style="left: 1122.5px; top: 11.7px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-13.jpeg');"></div>
+                <div class="image-element" style="left: 1282.0px; top: 11.6px; width: 144.8px; height: 144.7px; background-image: url('assets/p16-14.jpeg');"></div>
+                <div class="image-element" style="left: 351.6px; top: 217.1px; width: 252.0px; height: 192.7px; background-image: url('assets/p16-15.png');"></div>
+            </div>
+        </div>
+
+        <!-- SLIDE 17 -->
+        <div class="slide" data-slide="17">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 164.0px; top: 111.4px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 1114.3px; height: 64.0px;">THE TECH IN OUR COMMUNITIES</div>
+                <div class="image-element" style="left: 225.6px; top: 275.3px; width: 155.2px; height: 48.0px; background-image: url('assets/p17-00.png');"></div>
+                <div class="image-element" style="left: 642.5px; top: 275.5px; width: 157.5px; height: 48.0px; background-image: url('assets/p17-01.png');"></div>
+                <div class="image-element" style="left: 853.8px; top: 265.0px; width: 149.2px; height: 68.2px; background-image: url('assets/p17-02.png');"></div>
+                <div class="image-element" style="left: 1060.0px; top: 282.1px; width: 153.0px; height: 34.5px; background-image: url('assets/p17-03.png');"></div>
+                <div class="image-element" style="left: 215.7px; top: 388.4px; width: 175.5px; height: 58.5px; background-image: url('assets/p17-04.png');"></div>
+                <div class="image-element" style="left: 427.2px; top: 391.6px; width: 168.7px; height: 55.5px; background-image: url('assets/p17-05.png');"></div>
+                <div class="image-element" style="left: 640.4px; top: 398.0px; width: 159.0px; height: 37.5px; background-image: url('assets/p17-06.png');"></div>
+                <div class="image-element" style="left: 861.0px; top: 393.8px; width: 134.2px; height: 54.8px; background-image: url('assets/p17-07.png');"></div>
+                <div class="image-element" style="left: 1060.0px; top: 401.8px; width: 153.8px; height: 35.2px; background-image: url('assets/p17-08.png');"></div>
+                <div class="image-element" style="left: 214.3px; top: 515.9px; width: 179.2px; height: 40.5px; background-image: url('assets/p17-09.png');"></div>
+                <div class="image-element" style="left: 439.8px; top: 495.7px; width: 144.0px; height: 81.0px; background-image: url('assets/p17-10.png');"></div>
+                <div class="image-element" style="left: 640.4px; top: 513.6px; width: 156.8px; height: 45.0px; background-image: url('assets/p17-11.png');"></div>
+                <div class="image-element" style="left: 854.6px; top: 513.6px; width: 147.0px; height: 50.2px; background-image: url('assets/p17-12.png');"></div>
+                <div class="image-element" style="left: 1054.9px; top: 523.7px; width: 163.5px; height: 30.0px; background-image: url('assets/p17-13.png');"></div>
+                <div class="image-element" style="left: 222.6px; top: 636.3px; width: 162.8px; height: 35.2px; background-image: url('assets/p17-14.png');"></div>
+                <div class="image-element" style="left: 424.9px; top: 629.4px; width: 174.0px; height: 48.0px; background-image: url('assets/p17-15.png');"></div>
+                <div class="image-element" style="left: 638.4px; top: 638.4px; width: 162.8px; height: 33.0px; background-image: url('assets/p17-16.png');"></div>
+                <div class="image-element" style="left: 849.0px; top: 629.4px; width: 159.7px; height: 47.2px; background-image: url('assets/p17-17.png');"></div>
+                <div class="image-element" style="left: 1073.6px; top: 621.5px; width: 126.0px; height: 66.8px; background-image: url('assets/p17-18.png');"></div>
+            </div>
+        </div>
+
+        <!-- SLIDE 18 -->
+        <div class="slide" data-slide="18">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 475.6px; top: 171.8px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 488.8px; height: 64.0px;">COMMUNITIES</div>
+                <div class="text-element" style="left: 376.7px; top: 275.8px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 438.5px; height: 28.0px;">WE HAVE CREATED VARIOUS </div>
+                <div class="text-element" style="left: 815.3px; top: 275.9px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 700; color: #ec36a3; width: 248.0px; height: 28.0px;">PREMIUM CLUBS</div>
+                <div class="text-element" style="left: 493.7px; top: 309.6px; font-family: 'CocomatPro'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 452.5px; height: 28.0px;">WITH KEY OPINIONS LEADERS.</div>
+                <div class="text-element" style="left: 844.1px; top: 420.6px; font-family: 'CocomatPro'; font-size: 48.0px; font-weight: 700; color: #2680f5; width: 98.8px; height: 48.0px;">B2B</div>
+                <div class="text-element" style="left: 765.9px; top: 572.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 255.3px; height: 33.6px;">Key Opinion leaders in</div>
+                <div class="text-element" style="left: 781.2px; top: 611.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 224.7px; height: 33.6px;">B2B large accounts</div>
+                <div class="text-element" style="left: 819.7px; top: 485.2px; font-family: 'CocomatPro'; font-size: 16.99px; font-weight: 700; color: #ffde4c; width: 147.7px; height: 17.0px;">LE CLUB DU B2B</div>
+                <div class="text-element" style="left: 477.3px; top: 420.6px; font-family: 'CocomatPro'; font-size: 48.0px; font-weight: 700; color: #2680f5; width: 137.6px; height: 48.0px;">WIRE</div>
+                <div class="text-element" style="left: 441.1px; top: 572.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 210.1px; height: 33.6px;">Women in Retail &amp;</div>
+                <div class="text-element" style="left: 477.4px; top: 611.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 137.5px; height: 33.6px;">Ecommerce</div>
+                <div class="text-element" style="left: 446.0px; top: 475.1px; font-family: 'CocomatPro'; font-size: 16.99px; font-weight: 700; color: #ffde4c; width: 200.2px; height: 17.0px;">LE CLUB DES FEMMES</div>
+                <div class="text-element" style="left: 460.1px; top: 498.4px; font-family: 'CocomatPro'; font-size: 16.99px; font-weight: 700; color: #ffde4c; width: 172.1px; height: 17.0px;">DE L’E-COMMERCE</div>
+                <div class="text-element" style="left: 140.6px; top: 420.6px; font-family: 'CocomatPro'; font-size: 48.0px; font-weight: 700; color: #2680f5; width: 116.8px; height: 48.0px;">LCDI</div>
+                <div class="text-element" style="left: 92.6px; top: 572.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 212.8px; height: 33.6px;">Innovation club for</div>
+                <div class="text-element" style="left: 165.7px; top: 611.2px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 66.7px; height: 33.6px;">execs</div>
+                <div class="text-element" style="left: 76.9px; top: 485.2px; font-family: 'CocomatPro'; font-size: 16.99px; font-weight: 700; color: #ffde4c; width: 244.2px; height: 17.0px;">LE CLUB DE L’INNOVATION</div>
+                <div class="text-element" style="left: 1168.4px; top: 420.6px; font-family: 'CocomatPro'; font-size: 48.0px; font-weight: 700; color: #2680f5; width: 145.1px; height: 48.0px;">CORE</div>
+                <div class="text-element" style="left: 1135.4px; top: 571.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 211.2px; height: 33.6px;">True tech minds of</div>
+                <div class="text-element" style="left: 1166.8px; top: 610.8px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 148.2px; height: 33.6px;">e-commerce</div>
+                <div class="text-element" style="left: 1123.9px; top: 484.9px; font-family: 'CocomatPro'; font-size: 16.99px; font-weight: 700; color: #ffde4c; width: 234.1px; height: 17.0px;">CLUB OF RETAIL EXPERTS</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 19 -->
+        <div class="slide" data-slide="19">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 110.6px; top: 113.9px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 1218.9px; height: 64.0px;">THE BRANDS IN OUR COMMUNITIES</div>
+                <div class="image-element" style="left: 112.1px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-00.png');"></div>
+                <div class="image-element" style="left: 235.4px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-01.jpeg');"></div>
+                <div class="image-element" style="left: 358.7px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-02.jpeg');"></div>
+                <div class="image-element" style="left: 482.1px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-03.png');"></div>
+                <div class="image-element" style="left: 605.4px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-04.jpeg');"></div>
+                <div class="image-element" style="left: 728.7px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-05.jpeg');"></div>
+                <div class="image-element" style="left: 852.0px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-06.jpeg');"></div>
+                <div class="image-element" style="left: 975.4px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-07.png');"></div>
+                <div class="image-element" style="left: 112.1px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-08.jpeg');"></div>
+                <div class="image-element" style="left: 235.4px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-09.png');"></div>
+                <div class="image-element" style="left: 358.7px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-10.png');"></div>
+                <div class="image-element" style="left: 482.1px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-11.png');"></div>
+                <div class="image-element" style="left: 605.4px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-12.png');"></div>
+                <div class="image-element" style="left: 728.7px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-13.jpeg');"></div>
+                <div class="image-element" style="left: 852.0px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-14.png');"></div>
+                <div class="image-element" style="left: 975.4px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-15.jpeg');"></div>
+                <div class="image-element" style="left: 112.1px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-16.png');"></div>
+                <div class="image-element" style="left: 235.4px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-17.png');"></div>
+                <div class="image-element" style="left: 358.7px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-18.png');"></div>
+                <div class="image-element" style="left: 482.1px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-19.png');"></div>
+                <div class="image-element" style="left: 605.4px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-20.jpeg');"></div>
+                <div class="image-element" style="left: 728.7px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-21.png');"></div>
+                <div class="image-element" style="left: 852.0px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-22.png');"></div>
+                <div class="image-element" style="left: 975.4px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-23.png');"></div>
+                <div class="image-element" style="left: 112.1px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-24.png');"></div>
+                <div class="image-element" style="left: 235.4px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-25.png');"></div>
+                <div class="image-element" style="left: 358.7px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-26.png');"></div>
+                <div class="image-element" style="left: 482.1px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-27.png');"></div>
+                <div class="image-element" style="left: 605.4px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-28.png');"></div>
+                <div class="image-element" style="left: 728.7px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-29.png');"></div>
+                <div class="image-element" style="left: 852.0px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-30.png');"></div>
+                <div class="image-element" style="left: 975.4px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-31.png');"></div>
+                <div class="image-element" style="left: 112.1px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-32.jpeg');"></div>
+                <div class="image-element" style="left: 235.4px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-33.png');"></div>
+                <div class="image-element" style="left: 358.7px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-34.png');"></div>
+                <div class="image-element" style="left: 482.1px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-35.jpeg');"></div>
+                <div class="image-element" style="left: 605.4px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-36.jpeg');"></div>
+                <div class="image-element" style="left: 728.7px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-37.png');"></div>
+                <div class="image-element" style="left: 852.0px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-38.png');"></div>
+                <div class="image-element" style="left: 975.4px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-39.png');"></div>
+                <div class="image-element" style="left: 1098.6px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-40.png');"></div>
+                <div class="image-element" style="left: 1222.0px; top: 227.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-41.png');"></div>
+                <div class="image-element" style="left: 1098.6px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-42.png');"></div>
+                <div class="image-element" style="left: 1222.0px; top: 309.5px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-43.png');"></div>
+                <div class="image-element" style="left: 1098.6px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-44.png');"></div>
+                <div class="image-element" style="left: 1222.0px; top: 391.4px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-45.png');"></div>
+                <div class="image-element" style="left: 1098.6px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-46.png');"></div>
+                <div class="image-element" style="left: 1222.0px; top: 473.3px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-47.png');"></div>
+                <div class="image-element" style="left: 1098.6px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-48.jpeg');"></div>
+                <div class="image-element" style="left: 1222.0px; top: 555.2px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-49.jpeg');"></div>
+                <div class="image-element" style="left: 112.1px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-50.jpeg');"></div>
+                <div class="image-element" style="left: 235.4px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-51.png');"></div>
+                <div class="image-element" style="left: 358.7px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-52.png');"></div>
+                <div class="image-element" style="left: 482.1px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-53.png');"></div>
+                <div class="image-element" style="left: 605.4px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-54.png');"></div>
+                <div class="image-element" style="left: 728.7px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-55.jpeg');"></div>
+                <div class="image-element" style="left: 852.0px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-56.png');"></div>
+                <div class="image-element" style="left: 975.4px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-57.png');"></div>
+                <div class="image-element" style="left: 1098.6px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-58.jpeg');"></div>
+                <div class="image-element" style="left: 1222.0px; top: 637.1px; width: 105.9px; height: 63.5px; background-image: url('assets/p19-59.png');"></div>
+            </div>
+        </div>
+
+        <!-- SLIDE 20 -->
+        <div class="slide" data-slide="20">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 455.9px; top: 107.2px; font-family: 'CocomatPro'; font-size: 64.0px; font-weight: 700; color: #ffffff; width: 525.3px; height: 64.0px;">OUR OFFERING</div>
+                <div class="text-element" style="left: 94.9px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 70.0px; height: 28.8px;">Media</div>
+                <div class="text-element" style="left: 164.4px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 270.8px; height: 28.8px;"> : Le Café de l’E-commerce</div>
+                <div class="text-element" style="left: 94.9px; top: 494.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 280.7px; height: 28.8px;">podcast, sponsored content,</div>
+                <div class="text-element" style="left: 94.9px; top: 520.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 62.9px; height: 28.8px;">videos</div>
+                <div class="text-element" style="left: 94.9px; top: 547.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 69.3px; height: 28.8px;">Events</div>
+                <div class="text-element" style="left: 163.8px; top: 547.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 236.2px; height: 28.8px;"> : Store Tour Paris, WIRE,</div>
+                <div class="text-element" style="left: 94.9px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 257.6px; height: 28.8px;">Back From, Brands2Buyers</div>
+                <div class="text-element" style="left: 94.9px; top: 599.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 102.5px; height: 28.8px;">Speaking</div>
+                <div class="text-element" style="left: 196.9px; top: 599.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 227.7px; height: 28.8px;"> : Thought leadership &amp;</div>
+                <div class="text-element" style="left: 94.9px; top: 625.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 153.1px; height: 28.8px;">stage presence</div>
+                <div class="text-element" style="left: 94.9px; top: 652.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 66.4px; height: 28.8px;">Reach</div>
+                <div class="text-element" style="left: 160.8px; top: 652.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 253.2px; height: 28.8px;"> : Online &amp; offline visibility</div>
+                <div class="text-element" style="left: 230.9px; top: 245.3px; font-family: 'CocomatPro'; font-size: 82.65px; font-weight: 700; color: #000000; width: 30.2px; height: 82.6px;">1</div>
+                <div class="text-element" style="left: 118.0px; top: 366.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 256.0px; height: 33.0px;">SPONSORSHIP</div>
+                <div class="text-element" style="left: 141.0px; top: 405.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 209.9px; height: 33.0px;">&amp; VISIBILITY</div>
+                <div class="text-element" style="left: 597.6px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 257.1px; height: 28.8px;">Access to France’s largest</div>
+                <div class="text-element" style="left: 597.6px; top: 494.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 133.1px; height: 28.8px;">e-commerce </div>
+                <div class="text-element" style="left: 730.2px; top: 494.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 117.5px; height: 28.8px;">community</div>
+                <div class="text-element" style="left: 597.6px; top: 520.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 171.2px; height: 28.8px;">(1,500+ members)</div>
+                <div class="text-element" style="left: 597.6px; top: 547.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 279.4px; height: 28.8px;">Evangelization &amp; positioning</div>
+                <div class="text-element" style="left: 597.6px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 47.5px; height: 28.8px;">with </div>
+                <div class="text-element" style="left: 644.7px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 201.5px; height: 28.8px;">top retail decision-</div>
+                <div class="text-element" style="left: 597.6px; top: 599.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 80.3px; height: 28.8px;">makers</div>
+                <div class="text-element" style="left: 597.6px; top: 625.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 176.6px; height: 28.8px;">Building trust and </div>
+                <div class="text-element" style="left: 773.8px; top: 625.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 64.8px; height: 28.8px;">brand</div>
+                <div class="text-element" style="left: 597.6px; top: 652.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 95.9px; height: 28.8px;">authority</div>
+                <div class="text-element" style="left: 693.2px; top: 245.3px; font-family: 'CocomatPro'; font-size: 82.65px; font-weight: 700; color: #000000; width: 52.0px; height: 82.6px;">2</div>
+                <div class="text-element" style="left: 617.8px; top: 366.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 202.8px; height: 33.0px;">INFLUENCE</div>
+                <div class="text-element" style="left: 591.2px; top: 405.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 256.0px; height: 33.0px;">&amp; COMMUNITY</div>
+                <div class="text-element" style="left: 1066.3px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 141.4px; height: 28.8px;">Go-To-Market</div>
+                <div class="text-element" style="left: 1207.2px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 89.0px; height: 28.8px;"> support</div>
+                <div class="text-element" style="left: 1295.7px; top: 468.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 33.9px; height: 28.8px;"> for</div>
+                <div class="text-element" style="left: 1066.3px; top: 494.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 171.2px; height: 28.8px;">SaaS &amp; agencies</div>
+                <div class="text-element" style="left: 1066.3px; top: 520.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 263.2px; height: 28.8px;">Market assessment &amp; entry</div>
+                <div class="text-element" style="left: 1066.3px; top: 547.1px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 89.7px; height: 28.8px;">strategy</div>
+                <div class="text-element" style="left: 1066.3px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 101.5px; height: 28.8px;">Hands-on </div>
+                <div class="text-element" style="left: 1167.3px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 104.8px; height: 28.8px;">execution</div>
+                <div class="text-element" style="left: 1271.6px; top: 573.3px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 75.6px; height: 28.8px;"> to land</div>
+                <div class="text-element" style="left: 1066.3px; top: 599.6px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 193.2px; height: 28.8px;">and scale in France</div>
+                <div class="text-element" style="left: 1066.3px; top: 625.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 400; color: #ffffff; width: 120.6px; height: 28.8px;">TikTok Shop </div>
+                <div class="text-element" style="left: 1186.4px; top: 625.8px; font-family: 'GlacialIndifference'; font-size: 24.0px; font-weight: 700; color: #ec36a3; width: 107.6px; height: 28.8px;">activation</div>
+                <div class="text-element" style="left: 1166.7px; top: 245.3px; font-family: 'CocomatPro'; font-size: 82.65px; font-weight: 700; color: #000000; width: 51.1px; height: 82.6px;">3</div>
+                <div class="text-element" style="left: 1101.4px; top: 366.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 181.7px; height: 33.0px;">ADVISORY</div>
+                <div class="text-element" style="left: 1047.8px; top: 405.0px; font-family: 'CocomatPro'; font-size: 32.99px; font-weight: 700; color: #ffffff; width: 288.8px; height: 33.0px;">&amp; GTM SUPPORT</div>
+                <div class="image-element" style="left: 194.4px; top: 228.6px; width: 103.1px; height: 103.1px; background-image: url('assets/p20-00.png');"></div>
+                <div class="image-element" style="left: 667.7px; top: 228.6px; width: 103.1px; height: 103.1px; background-image: url('assets/p20-01.png');"></div>
+                <div class="image-element" style="left: 1140.7px; top: 228.6px; width: 103.1px; height: 103.1px; background-image: url('assets/p20-02.png');"></div>
+            </div>
+        </div>
+
+        <!-- SLIDE 21 -->
+        <div class="slide" data-slide="21">
+            <div class="slide-inner">
+                <div class="text-element" style="left: 744.6px; top: 442.7px; font-family: 'CocomatPro'; font-size: 36.84px; font-weight: 700; color: #ec36a3; width: 320.3px; height: 36.8px;">EMAIL ADDRESS</div>
+                <div class="text-element" style="left: 744.6px; top: 489.9px; font-family: 'GlacialIndifference'; font-size: 27.46px; font-weight: 400; color: #ffffff; width: 303.5px; height: 32.9px;">adrien@butterflyagency.io</div>
+                <div class="text-element" style="left: 744.6px; top: 530.1px; font-family: 'GlacialIndifference'; font-size: 27.46px; font-weight: 400; color: #ffffff; width: 311.4px; height: 32.9px;">laetitia@butterflyagency.io</div>
+                <div class="text-element" style="left: 744.6px; top: 620.0px; font-family: 'CocomatPro'; font-size: 36.84px; font-weight: 700; color: #ec36a3; width: 176.9px; height: 36.8px;">WEBSITE</div>
+                <div class="text-element" style="left: 744.6px; top: 666.8px; font-family: 'GlacialIndifference'; font-size: 27.46px; font-weight: 400; color: #ffffff; width: 280.3px; height: 32.9px;">www.butterflyagency.io</div>
+                <div class="text-element" style="left: 744.6px; top: 270.4px; font-family: 'CocomatPro'; font-size: 72.0px; font-weight: 700; color: #ffffff; width: 391.0px; height: 72.0px;">Thank You!</div>
+                <div class="text-element" style="left: 744.6px; top: 349.9px; font-family: 'GlacialIndifference'; font-size: 28.0px; font-weight: 400; color: #ffffff; width: 369.9px; height: 33.6px;">Contact us for more questions.</div>
+                <div class="image-element" style="left: 41.7px; top: 0.0px; width: 622.5px; height: 563.2px; background-image: url('assets/p21-00.jpeg');"></div>
+                <div class="image-element" style="left: 1169.5px; top: 81.0px; width: 189.8px; height: 144.8px; background-image: url('assets/p21-01.png');"></div>
+            </div>
+        </div>
+
     </div>
-  </section>
 
-  <!-- SLIDE 21: Final Slide -->
-  <section class="slide slide-21" data-slide="21">
-    <div class="slide-21-content">
-      <div class="slide-21-logo">
-        <img src="assets/p21-01.png" alt="Butterfly Logo">
-      </div>
-    </div>
-  </section>
+    <!-- Navigation dots -->
+    <div class="nav-dots" id="navDots"></div>
+    <div class="slide-counter"><span id="slideNum">1</span> / 21</div>
 
-  <script>
-    (function() {
-      const TOTAL = 21;
-      const navDots = document.getElementById('navDots');
-      const counter = document.getElementById('slideCounter');
-      const progress = document.getElementById('progressBar');
-      const hint = document.getElementById('scrollHint');
-      const slides = document.querySelectorAll('.slide');
-      let current = 0;
+    <script>
+        const presentation = document.getElementById('presentation');
+        const navDotsContainer = document.getElementById('navDots');
+        const slideNumDisplay = document.getElementById('slideNum');
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 1;
 
-      // Build dots
-      for (let i = 0; i < TOTAL; i++) {
-        const d = document.createElement('button');
-        d.className = 'nav-dot' + (i === 0 ? ' active' : '');
-        d.setAttribute('aria-label', 'Slide ' + (i + 1));
-        d.onclick = () => slides[i].scrollIntoView({ behavior: 'smooth' });
-        navDots.appendChild(d);
-      }
-
-      const dots = document.querySelectorAll('.nav-dot');
-
-      // Intersection Observer
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            const n = parseInt(e.target.dataset.slide);
-            current = n - 1;
-            dots.forEach((d, i) => d.classList.toggle('active', i === current));
-            counter.textContent = String(n).padStart(2, '0') + ' / ' + TOTAL;
-            progress.style.width = ((n / TOTAL) * 100) + '%';
-            hint.style.opacity = n > 1 ? '0' : '1';
-          }
-        });
-      }, { threshold: 0.5 });
-
-      slides.forEach(s => obs.observe(s));
-
-      // Keyboard nav
-      document.addEventListener('keydown', e => {
-        if (['ArrowDown', 'PageDown', ' '].includes(e.key)) {
-          e.preventDefault();
-          slides[Math.min(current + 1, TOTAL - 1)].scrollIntoView({ behavior: 'smooth' });
-        } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
-          e.preventDefault();
-          slides[Math.max(current - 1, 0)].scrollIntoView({ behavior: 'smooth' });
-        } else if (e.key === 'Home') {
-          e.preventDefault(); slides[0].scrollIntoView({ behavior: 'smooth' });
-        } else if (e.key === 'End') {
-          e.preventDefault(); slides[TOTAL - 1].scrollIntoView({ behavior: 'smooth' });
+        // Initialize navigation dots
+        for (let i = 1; i <= 21; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot' + (i === 1 ? ' active' : '');
+            dot.addEventListener('click', () => goToSlide(i));
+            navDotsContainer.appendChild(dot);
         }
-      });
-    })();
-  </script>
+
+        // Scale slides to fit viewport
+        function scaleSlides() {
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            const scale = Math.min(vw / 1440, vh / 810);
+            slides.forEach(slide => {
+                const inner = slide.querySelector('.slide-inner');
+                inner.style.transform = `scale(${scale})`;
+            });
+        }
+
+        // Update current slide
+        function updateCurrentSlide() {
+            const scrollTop = presentation.scrollTop;
+            const slideHeight = window.innerHeight;
+            const newSlide = Math.round(scrollTop / slideHeight) + 1;
+            
+            if (newSlide !== currentSlide && newSlide >= 1 && newSlide <= 21) {
+                currentSlide = newSlide;
+                updateNavDots();
+                slideNumDisplay.textContent = currentSlide;
+            }
+        }
+
+        // Update nav dots
+        function updateNavDots() {
+            document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i + 1 === currentSlide);
+            });
+        }
+
+        // Navigate to slide
+        function goToSlide(slideNum) {
+            if (slideNum < 1 || slideNum > 21) return;
+            currentSlide = slideNum;
+            const scrollTop = (slideNum - 1) * window.innerHeight;
+            presentation.scrollTop = scrollTop;
+            updateNavDots();
+            slideNumDisplay.textContent = currentSlide;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowDown':
+                case ' ':
+                case 'PageDown':
+                    e.preventDefault();
+                    if (currentSlide < 21) goToSlide(currentSlide + 1);
+                    break;
+                case 'ArrowUp':
+                case 'PageUp':
+                    e.preventDefault();
+                    if (currentSlide > 1) goToSlide(currentSlide - 1);
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    goToSlide(21);
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    goToSlide(1);
+                    break;
+            }
+        });
+
+        // Scroll event
+        presentation.addEventListener('scroll', updateCurrentSlide);
+
+        // Initial setup
+        window.addEventListener('resize', scaleSlides);
+        scaleSlides();
+    </script>
 </body>
 </html>
