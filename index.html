@@ -6,12 +6,14 @@
   <title>Butterfly Agency - KIT</title>
   <meta name="description" content="Butterfly Agency - Your GTM Partner in France. E-commerce media, events, community & consulting.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦋</text></svg>">
-  <!-- Preload first 5 slides for instant display -->
-  <link rel="preload" as="image" href="images/slide-01.jpg">
-  <link rel="preload" as="image" href="images/slide-02.jpg">
-  <link rel="preload" as="image" href="images/slide-03.jpg">
-  <link rel="preload" as="image" href="images/slide-04.jpg">
-  <link rel="preload" as="image" href="images/slide-05.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Preload critical images -->
+  <link rel="preload" as="image" href="assets/p01-00.png">
+  <link rel="preload" as="image" href="assets/p02-00.png">
+  <link rel="preload" as="image" href="assets/p04-01.jpeg">
+  <link rel="preload" as="image" href="assets/p04-02.png">
+
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -30,8 +32,10 @@
       margin: 0;
       padding: 0;
       background: #000;
-      height: 100%;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     .slide {
@@ -45,14 +49,39 @@
       background: #000;
       position: relative;
       overflow: hidden;
+      aspect-ratio: 16/9;
     }
 
-    .slide img {
-      display: block;
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
+    /* Typography */
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
+
+    h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Colors */
+    .pink { color: #E91E90; }
+    .yellow { color: #FFD700; }
+    .blue { color: #4FC3F7; }
+    .gray { color: #B8B8B8; }
 
     /* Nav dots */
     .nav-dots {
@@ -86,7 +115,7 @@
       transform: translateX(-50%);
       z-index: 100;
       color: rgba(255,255,255,0.4);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 12px;
       letter-spacing: 2px;
       pointer-events: none;
@@ -111,7 +140,7 @@
       transform: translateX(-50%);
       z-index: 100;
       color: rgba(255,255,255,0.35);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 11px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
@@ -130,9 +159,1051 @@
       50% { transform: translateY(5px); }
     }
 
+    /* ===== SLIDE 1 ===== */
+    .slide-1 {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+    .slide-1-logo {
+      width: 12vw;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    .slide-1 h1 {
+      font-size: 5.5rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .slide-1 .subtitle {
+      font-size: 1.2rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      margin-bottom: 2rem;
+    }
+    .slide-1 .divider {
+      width: 20vw;
+      height: 1px;
+      background: #fff;
+      margin: 1.5rem 0;
+    }
+    .slide-1 .tagline {
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-style: italic;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .slide-1 .authors {
+      font-size: 1rem;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* ===== SLIDE 2 ===== */
+    .slide-2 {
+      padding: 4vw;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .slide-2-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 90vw;
+    }
+    .slide-2-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    .slide-2-header h2 {
+      font-size: 3.5rem;
+    }
+    .slide-2-logo {
+      width: 8vw;
+      height: auto;
+    }
+    .slide-2-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 80vw;
+    }
+    .slide-2-content p {
+      margin-bottom: 1.2rem;
+    }
+
+    /* ===== SLIDE 3 ===== */
+    .slide-3 {
+      padding: 4vw;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .slide-3-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .slide-3-logo {
+      width: 4vw;
+      height: auto;
+    }
+    .slide-3-header h2 {
+      font-size: 3rem;
+    }
+    .slide-3-list {
+      list-style: none;
+      font-size: 1.5rem;
+      line-height: 2.5;
+    }
+    .slide-3-list li {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .slide-3-list li::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: #E91E90;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ===== SLIDE 4 ===== */
+    .slide-4 {
+      flex-direction: column;
+      justify-content: center;
+      padding: 3vw;
+      gap: 2rem;
+    }
+    .slide-4 h2 {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .slide-4-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 85vw;
+      margin: 0 auto 2rem;
+    }
+    .slide-4-subtitle .pink {
+      font-weight: 700;
+    }
+    .slide-4-content {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 3vw;
+      margin-bottom: 2rem;
+    }
+    .slide-4-person {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .slide-4-person img {
+      width: 15vw;
+      height: 20vw;
+      object-fit: cover;
+      border: 8px solid #00BFFF;
+      border-radius: 0.5vw;
+    }
+    .slide-4-person .name {
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .slide-4-person .name .first {
+      color: #FFD700;
+      font-weight: 600;
+    }
+    .slide-4-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20vw;
+      height: auto;
+      z-index: 10;
+    }
+    .slide-4-bullets {
+      display: flex;
+      justify-content: center;
+      gap: 10vw;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      max-width: 80vw;
+      margin: 0 auto;
+    }
+    .slide-4-bullets ul {
+      list-style: none;
+      flex: 1;
+    }
+    .slide-4-bullets li {
+      margin-bottom: 0.5rem;
+    }
+    .slide-4-bullets li::before {
+      content: '▪ ';
+      color: #E91E90;
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+
+    /* ===== SLIDE 5 ===== */
+    .slide-5 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 3rem;
+    }
+    .slide-5 h2 {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+    .slide-5-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+      max-width: 90vw;
+      margin: 0 auto;
+    }
+    .slide-5-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .slide-5-member img {
+      width: 10vw;
+      height: 10vw;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid;
+      border-color: var(--border-color, #E91E90);
+    }
+    .slide-5-member .name {
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+    .slide-5-member .first {
+      color: #FFD700;
+      font-weight: 600;
+    }
+    .slide-5-member .last {
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .slide-5-member .role {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* ===== SLIDE 6 ===== */
+    .slide-6 {
+      justify-content: space-between;
+      align-items: center;
+      padding: 4vw;
+      gap: 4rem;
+    }
+    .slide-6-left {
+      flex: 1;
+      font-size: 1.4rem;
+      line-height: 2.2;
+      font-style: italic;
+      text-transform: uppercase;
+    }
+    .slide-6-left p {
+      margin-bottom: 1rem;
+    }
+    .slide-6-left .highlight {
+      color: #FFD700;
+      font-weight: 700;
+    }
+    .slide-6-logo {
+      width: 6vw;
+      height: auto;
+      margin: 2rem 0;
+    }
+    .slide-6-butterfly-text {
+      font-size: 2rem;
+      color: #fff;
+      font-weight: 700;
+    }
+    .slide-6-right img {
+      width: 35vw;
+      height: auto;
+      border: 8px solid #fff;
+      border-radius: 0.5vw;
+      object-fit: cover;
+    }
+
+    /* ===== SLIDE 7 ===== */
+    .slide-7 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 3rem;
+    }
+    .slide-7 h2 {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+    .slide-7-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 90vw;
+      margin: 0 auto;
+    }
+    .slide-7-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .slide-7-item img {
+      width: 15vw;
+      height: 15vw;
+      object-fit: contain;
+    }
+    .slide-7-item h3 {
+      font-size: 1.3rem;
+      text-align: center;
+    }
+    .slide-7-item p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* ===== SLIDE 8 ===== */
+    .slide-8 {
+      justify-content: space-between;
+      align-items: center;
+      padding: 4vw;
+      gap: 3rem;
+    }
+    .slide-8-left {
+      flex: 1;
+    }
+    .slide-8-left img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 0.5vw;
+    }
+    .slide-8-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .slide-8-right h2 {
+      font-size: 2.5rem;
+    }
+    .slide-8-description {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .slide-8-description .highlight {
+      color: #FFD700;
+      font-weight: 700;
+    }
+    .slide-8-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .slide-8-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .slide-8-stat-value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #FFD700;
+    }
+    .slide-8-stat-label {
+      font-size: 0.9rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ===== SLIDE 9 ===== */
+    .slide-9 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 2rem;
+    }
+    .slide-9 h2 {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .slide-9-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .slide-9-subtitle .highlight {
+      color: #E91E90;
+      font-weight: 700;
+    }
+    .slide-9-circles {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .slide-9-circle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .slide-9-circle img {
+      width: 12vw;
+      height: 12vw;
+      object-fit: contain;
+      border-radius: 50%;
+      padding: 1rem;
+    }
+    .slide-9-circle h3 {
+      font-size: 1.1rem;
+    }
+    .slide-9-stats {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .slide-9-stat-block {
+      text-align: center;
+    }
+    .slide-9-stat-number {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #FFD700;
+    }
+
+    /* ===== SLIDE 10 ===== */
+    .slide-10 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 2rem;
+    }
+    .slide-10 h2 {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+    }
+    .slide-10-logos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      max-width: 80vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .slide-10-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-height: 5vw;
+    }
+    .slide-10-logo img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+    .slide-10-sections {
+      display: flex;
+      gap: 4rem;
+      justify-content: center;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .slide-10-section {
+      flex: 1;
+      max-width: 35vw;
+    }
+    .slide-10-section h3 {
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .slide-10-section-circle {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: #E91E90;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .slide-10-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .slide-10-section li {
+      margin-bottom: 0.7rem;
+    }
+    .slide-10-section li::before {
+      content: '•';
+      color: #FFD700;
+      margin-right: 0.7rem;
+      font-weight: bold;
+    }
+
+    /* ===== SLIDE 11 ===== */
+    .slide-11 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 2rem;
+    }
+    .slide-11 h2 {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .slide-11-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #E91E90;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    .slide-11-columns {
+      display: flex;
+      gap: 4rem;
+      justify-content: center;
+      max-width: 90vw;
+      margin: 0 auto;
+    }
+    .slide-11-column {
+      flex: 1;
+    }
+    .slide-11-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .slide-11-circle {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: #E91E90;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .slide-11-logos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .slide-11-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-height: 4rem;
+    }
+    .slide-11-logo img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    /* ===== SLIDE 12 ===== */
+    .slide-12 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 2rem;
+    }
+    .slide-12-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .slide-12 h2 {
+      font-size: 3.5rem;
+    }
+    .slide-12-subtitle {
+      font-size: 1.2rem;
+      color: #E91E90;
+      font-weight: 600;
+    }
+    .slide-12-content {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    .slide-12-event-card {
+      flex: 0.5;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .slide-12-event-title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .slide-12-photos {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .slide-12-photo {
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0.3rem;
+      overflow: hidden;
+    }
+    .slide-12-photo img {
+      width: 100%;
+      height: 12vw;
+      object-fit: cover;
+      border-radius: 0.3rem;
+    }
+    .slide-12-stats {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+    }
+    .slide-12-stats .highlight {
+      color: #E91E90;
+      font-weight: 700;
+    }
+
+    /* ===== SLIDE 13 ===== */
+    .slide-13 {
+      justify-content: space-between;
+      align-items: center;
+      padding: 4vw;
+      gap: 3rem;
+    }
+    .slide-13-left img {
+      width: 40vw;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0.5vw;
+    }
+    .slide-13-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .slide-13-logo {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .slide-13-logo img {
+      width: 15vw;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    .slide-13-title {
+      font-size: 1.4rem;
+      color: #E91E90;
+      font-weight: 700;
+    }
+    .slide-13-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* ===== SLIDE 14 ===== */
+    .slide-14 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 2rem;
+    }
+    .slide-14-logo {
+      width: 25vw;
+      height: auto;
+      margin: 0 auto 1rem;
+    }
+    .slide-14-logo img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    .slide-14-title {
+      text-align: center;
+      font-size: 1.4rem;
+      color: #E91E90;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .slide-14-content {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      max-width: 80vw;
+      margin: 0 auto;
+    }
+    .slide-14-text {
+      flex: 1;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .slide-14-photo {
+      flex: 1;
+    }
+    .slide-14-photo img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0.5vw;
+    }
+
+    /* ===== SLIDE 15 ===== */
+    .slide-15 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 2rem;
+    }
+    .slide-15-logo {
+      width: 25vw;
+      height: auto;
+      margin: 0 auto 1rem;
+    }
+    .slide-15-logo img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    .slide-15-title {
+      text-align: center;
+      font-size: 1.4rem;
+      color: #E91E90;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .slide-15-content {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      max-width: 80vw;
+      margin: 0 auto;
+    }
+    .slide-15-text {
+      flex: 1;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .slide-15-photo {
+      flex: 1;
+    }
+    .slide-15-photo img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0.5vw;
+    }
+
+    /* ===== SLIDE 16 ===== */
+    .slide-16 {
+      justify-content: space-between;
+      align-items: center;
+      padding: 4vw;
+      gap: 3rem;
+    }
+    .slide-16-left {
+      flex: 0.4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .slide-16-logo {
+      width: 8vw;
+      height: auto;
+    }
+    .slide-16-left h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      line-height: 1.5;
+    }
+    .slide-16-left .number {
+      color: #E91E90;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    .slide-16-right {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+    .slide-16-headshot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0.3rem;
+      overflow: hidden;
+      aspect-ratio: 1;
+    }
+    .slide-16-headshot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ===== SLIDE 17 ===== */
+    .slide-17 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 2rem;
+    }
+    .slide-17 h2 {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+    }
+    .slide-17-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+      max-width: 90vw;
+      margin: 0 auto;
+    }
+    .slide-17-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-height: 6rem;
+    }
+    .slide-17-logo img {
+      max-width: 85%;
+      max-height: 85%;
+      object-fit: contain;
+    }
+
+    /* ===== SLIDE 18 ===== */
+    .slide-18 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 2rem;
+    }
+    .slide-18 h2 {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+    .slide-18-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #E91E90;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    .slide-18-clubs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 85vw;
+      margin: 0 auto;
+    }
+    .slide-18-club {
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.4rem;
+      text-align: center;
+    }
+    .slide-18-club.blue { border-color: #4FC3F7; }
+    .slide-18-club.pink { border-color: #E91E90; }
+    .slide-18-club.white { border-color: #fff; }
+    .slide-18-club.yellow { border-color: #FFD700; }
+    .slide-18-club h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+    .slide-18-club p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ===== SLIDE 19 ===== */
+    .slide-19 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 2rem;
+    }
+    .slide-19 h2 {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+    }
+    .slide-19-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 1rem;
+      max-width: 95vw;
+      margin: 0 auto;
+    }
+    .slide-19-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-height: 4.5rem;
+    }
+    .slide-19-logo img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+
+    /* ===== SLIDE 20 ===== */
+    .slide-20 {
+      flex-direction: column;
+      padding: 4vw;
+      gap: 2rem;
+    }
+    .slide-20 h2 {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+    }
+    .slide-20-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 85vw;
+      margin: 0 auto;
+    }
+    .slide-20-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .slide-20-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .slide-20-circle {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: #E91E90;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .slide-20-column h3 {
+      font-size: 1.2rem;
+    }
+    .slide-20-column ul {
+      list-style: none;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .slide-20-column li {
+      margin-bottom: 0.5rem;
+    }
+    .slide-20-column li::before {
+      content: '▪ ';
+      margin-right: 0.5rem;
+    }
+    .slide-20-keyword {
+      font-weight: 700;
+      color: #E91E90;
+    }
+    .slide-20-keyword.yellow {
+      color: #FFD700;
+    }
+
+    /* ===== SLIDE 21 ===== */
+    .slide-21 {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/p21-00.jpeg');
+      background-size: cover;
+      background-position: center;
+    }
+    .slide-21-content {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide-21-logo {
+      width: 15vw;
+      height: auto;
+    }
+    .slide-21-logo img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
     @media (max-width: 768px) {
       .nav-dots { right: 8px; gap: 4px; }
       .nav-dot { width: 6px; height: 6px; }
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.8rem; }
+      .slide-5-grid { grid-template-columns: repeat(3, 1fr); }
+      .slide-17-grid { grid-template-columns: repeat(3, 1fr); }
+      .slide-19-grid { grid-template-columns: repeat(5, 1fr); }
     }
   </style>
 </head>
@@ -143,27 +1214,589 @@
   <div class="slide-counter" id="slideCounter">01 / 21</div>
   <div class="scroll-hint" id="scrollHint">Scroll<span class="arrow">&#8595;</span></div>
 
-  <section class="slide" data-slide="1"><img src="images/slide-01.jpg" alt="Butterfly Agency - Your GTM Partner in France"></section>
-  <section class="slide" data-slide="2"><img src="images/slide-02.jpg" alt="Exec Summary"></section>
-  <section class="slide" data-slide="3"><img src="images/slide-03.jpg" alt="Agenda"></section>
-  <section class="slide" data-slide="4"><img src="images/slide-04.jpg" alt="Who We Are"></section>
-  <section class="slide" data-slide="5"><img src="images/slide-05.jpg" alt="One Team"></section>
-  <section class="slide" data-slide="6"><img src="images/slide-06.jpg" alt="We Are Butterfly"></section>
-  <section class="slide" data-slide="7"><img src="images/slide-07.jpg" alt="What We Do"></section>
-  <section class="slide" data-slide="8"><img src="images/slide-08.jpg" alt="Media - Le Caf&eacute; de l'E-Commerce"></section>
-  <section class="slide" data-slide="9"><img src="images/slide-09.jpg" alt="Media - 30,000 Audience"></section>
-  <section class="slide" data-slide="10"><img src="images/slide-10.jpg" alt="Consulting GTM"></section>
-  <section class="slide" data-slide="11"><img src="images/slide-11.jpg" alt="Events"></section>
-  <section class="slide" data-slide="12"><img src="images/slide-12.jpg" alt="Our Events"></section>
-  <section class="slide" data-slide="13"><img src="images/slide-13.jpg" alt="Store Tour Paris"></section>
-  <section class="slide" data-slide="14"><img src="images/slide-14.jpg" alt="WIRE Community"></section>
-  <section class="slide" data-slide="15"><img src="images/slide-15.jpg" alt="Brands2Buyers"></section>
-  <section class="slide" data-slide="16"><img src="images/slide-16.jpg" alt="1500 Experts"></section>
-  <section class="slide" data-slide="17"><img src="images/slide-17.jpg" alt="Tech in Communities"></section>
-  <section class="slide" data-slide="18"><img src="images/slide-18.jpg" alt="Communities"></section>
-  <section class="slide" data-slide="19"><img src="images/slide-19.jpg" alt="Brands in Communities"></section>
-  <section class="slide" data-slide="20"><img src="images/slide-20.jpg" alt="Our Offering"></section>
-  <section class="slide" data-slide="21"><img src="images/slide-21.jpg" alt="Butterfly Agency"></section>
+  <!-- SLIDE 1: Title -->
+  <section class="slide slide-1" data-slide="1">
+    <img src="assets/p01-00.png" alt="Butterfly Logo" class="slide-1-logo">
+    <h1>BUTTERFLY</h1>
+    <div class="subtitle">AGENCY</div>
+    <div class="divider"></div>
+    <div class="tagline">YOUR GTM PARTNER IN FRANCE</div>
+    <div class="authors">Laëtitia Lamari – Adrien Naeem</div>
+  </section>
+
+  <!-- SLIDE 2: Exec Summary -->
+  <section class="slide slide-2" data-slide="2">
+    <div class="slide-2-container">
+      <div class="slide-2-header">
+        <h2>EXEC SUMMARY</h2>
+        <img src="assets/p02-00.png" alt="Butterfly Logo" class="slide-2-logo">
+      </div>
+      <div class="slide-2-content">
+        <p>Butterfly is the expert platform powering the <span class="yellow">French e-commerce market</span>, positioning ourselves as the <span class="pink">#1 e-commerce media in France</span>.</p>
+        <p>We combine <span class="pink">media, events, community, and GTM support</span> to deliver comprehensive solutions for brands entering or expanding in France.</p>
+        <p>Through our integrated approach, we provide brands with the <span class="pink">visibility</span>, <span class="pink">right connections</span>, and <span class="pink">real business results</span> they need.</p>
+        <p>Whether you need to <span class="pink">enter</span>, <span class="yellow">grow</span>, or <span class="pink">stand out in France</span>, Butterfly is your partner.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: Agenda -->
+  <section class="slide slide-3" data-slide="3">
+    <div class="slide-3-header">
+      <img src="assets/p03-00.png" alt="Butterfly Logo" class="slide-3-logo">
+      <h2>AGENDA</h2>
+    </div>
+    <ul class="slide-3-list">
+      <li>Who we are</li>
+      <li>What we do</li>
+      <li>Our communities</li>
+      <li>Our methodology</li>
+      <li>Our offering</li>
+    </ul>
+  </section>
+
+  <!-- SLIDE 4: Who We Are -->
+  <section class="slide slide-4" data-slide="4">
+    <h2>WHO WE ARE</h2>
+    <div class="slide-4-subtitle">
+      <span>A DUO OF KEY OPINION LEADERS AND E-COMMERCE (B2B/B2C) & RETAIL TECH EXPERTS.</span>
+    </div>
+    <div class="slide-4-content">
+      <div class="slide-4-person">
+        <img src="assets/p04-01.jpeg" alt="Adrien Naeem">
+        <div class="name"><span class="first">Adrien</span> <span>NAEEM</span></div>
+        <div style="font-size: 0.9rem; color: #FFD700;">LinkedIn</div>
+      </div>
+      <img src="assets/p04-03.png" alt="Ranked #1 Badge" class="slide-4-badge">
+      <div class="slide-4-person">
+        <img src="assets/p04-02.png" alt="Laetitia Lamari">
+        <div class="name"><span class="first">Laëtitia</span> <span>LAMARI</span></div>
+        <div style="font-size: 0.9rem; color: #FFD700;">LinkedIn</div>
+      </div>
+    </div>
+    <div class="slide-4-bullets">
+      <ul>
+        <li>15+ years in e-commerce</li>
+        <li>Founded 3 startups</li>
+        <li>International experience</li>
+      </ul>
+      <ul>
+        <li>Expert in GTM</li>
+        <li>Community builder</li>
+        <li>Industry influencer</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: One Team -->
+  <section class="slide slide-5" data-slide="5">
+    <h2>ONE TEAM</h2>
+    <div class="slide-5-grid">
+      <div class="slide-5-member" style="--border-color: #E91E90;">
+        <img src="assets/p05-00.jpeg" alt="Edouard Selvy">
+        <div class="name"><span class="first">Edouard</span> <span class="last">SELVY</span></div>
+        <div class="role">CTO</div>
+      </div>
+      <div class="slide-5-member" style="--border-color: #FFD700;">
+        <img src="assets/p05-01.jpeg" alt="Jessica Boaziz">
+        <div class="name"><span class="first">Jessica</span> <span class="last">BOAZIZ</span></div>
+        <div class="role">Event Manager</div>
+      </div>
+      <div class="slide-5-member" style="--border-color: #4FC3F7;">
+        <img src="assets/p05-02.jpeg" alt="Emily Baranov">
+        <div class="name"><span class="first">Emily</span> <span class="last">BARANOV</span></div>
+        <div class="role">CMO</div>
+      </div>
+      <div class="slide-5-member" style="--border-color: #B8B8B8;">
+        <img src="assets/p05-03.jpeg" alt="Benoit Rougier">
+        <div class="name"><span class="first">Benoit</span> <span class="last">ROUGIER</span></div>
+        <div class="role">Media Producer</div>
+      </div>
+      <div class="slide-5-member" style="--border-color: #E91E90;">
+        <img src="assets/p05-04.jpeg" alt="Cristian Mallama">
+        <div class="name"><span class="first">Cristian</span> <span class="last">MALLAMA</span></div>
+        <div class="role">Growth Manager</div>
+      </div>
+      <div class="slide-5-member" style="--border-color: #FFD700;">
+        <img src="assets/p05-05.png" alt="Lucas Serras">
+        <div class="name"><span class="first">Lucas</span> <span class="last">SERRAS</span></div>
+        <div class="role">Movie Producer</div>
+      </div>
+      <div class="slide-5-member" style="--border-color: #4FC3F7;">
+        <img src="assets/p05-06.png" alt="Laurine Anger">
+        <div class="name"><span class="first">Laurine</span> <span class="last">ANGER</span></div>
+        <div class="role">Chief of Brand</div>
+      </div>
+      <div class="slide-5-member" style="--border-color: #B8B8B8;">
+        <img src="assets/p05-07.png" alt="Benjamin De Castro">
+        <div class="name"><span class="first">Benjamin</span> <span class="last">DE CASTRO</span></div>
+        <div class="role">COO</div>
+      </div>
+      <div class="slide-5-member" style="--border-color: #E91E90;">
+        <img src="assets/p05-08.png" alt="Céline Libert">
+        <div class="name"><span class="first">Céline</span> <span class="last">LIBERT</span></div>
+        <div class="role">Head of Sales</div>
+      </div>
+      <div class="slide-5-member" style="--border-color: #FFD700;">
+        <img src="assets/p05-09.png" alt="Yéléna Squires">
+        <div class="name"><span class="first">Yéléna</span> <span class="last">SQUIRES</span></div>
+        <div class="role">Community Success Mgr</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: We Are Butterfly -->
+  <section class="slide slide-6" data-slide="6">
+    <div class="slide-6-left">
+      <p>WE WORK WITH <span class="highlight">ALL THE COMPANIES</span></p>
+      <p>WE ARE <span class="highlight">AGNOSTIC</span></p>
+      <p>WE OFFER <span class="highlight">PERSONALIZED CONSULTING</span></p>
+      <p style="font-size: 2rem; margin-top: 1rem;">WE ARE <span style="color: #fff; font-weight: 700;">BUTTERFLY</span></p>
+      <img src="assets/p06-00.png" alt="Butterfly Logo" class="slide-6-logo">
+    </div>
+    <div class="slide-6-right">
+      <img src="assets/p06-01.png" alt="Team photo">
+    </div>
+  </section>
+
+  <!-- SLIDE 7: What We Do -->
+  <section class="slide slide-7" data-slide="7">
+    <h2>WHAT WE DO</h2>
+    <div class="slide-7-grid">
+      <div class="slide-7-item">
+        <img src="assets/p07-00.png" alt="Media">
+        <h3>MEDIA</h3>
+        <p>Reach audiences through podcasts, newsletters, and content</p>
+      </div>
+      <div class="slide-7-item">
+        <img src="assets/p07-01.png" alt="Events">
+        <h3>EVENTS</h3>
+        <p>Connect with industry leaders and decision makers</p>
+      </div>
+      <div class="slide-7-item">
+        <img src="assets/p07-02.png" alt="Consulting">
+        <h3>CONSULTING</h3>
+        <p>Strategic GTM guidance and market expertise</p>
+      </div>
+      <div class="slide-7-item">
+        <img src="assets/p07-03.png" alt="Communities">
+        <h3>COMMUNITIES</h3>
+        <p>Access to 1500+ vetted e-commerce experts</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: Media (Podcast) -->
+  <section class="slide slide-8" data-slide="8">
+    <div class="slide-8-left">
+      <img src="assets/p08-00.jpeg" alt="Le Café de l'E-Commerce">
+    </div>
+    <div class="slide-8-right">
+      <h2>MEDIA</h2>
+      <div class="slide-8-description">
+        Our flagship podcast <span class="highlight">Le Café de l'E-Commerce</span> is the go-to resource for French e-commerce and retail tech professionals.
+      </div>
+      <div class="slide-8-stats">
+        <div class="slide-8-stat">
+          <div class="slide-8-stat-value">1M+</div>
+          <div class="slide-8-stat-label">Listens</div>
+        </div>
+        <div class="slide-8-stat">
+          <div class="slide-8-stat-value">150+</div>
+          <div class="slide-8-stat-label">5★ on iTunes</div>
+        </div>
+        <div class="slide-8-stat">
+          <div class="slide-8-stat-value">300+</div>
+          <div class="slide-8-stat-label">Episodes</div>
+        </div>
+        <div class="slide-8-stat">
+          <div class="slide-8-stat-value">100+</div>
+          <div class="slide-8-stat-label">VIP Guests</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: Media (Brands) -->
+  <section class="slide slide-9" data-slide="9">
+    <h2>MEDIA</h2>
+    <div class="slide-9-subtitle">
+      Reach <span class="highlight">30,000</span> engaged e-commerce decision makers
+    </div>
+    <div class="slide-9-circles">
+      <div class="slide-9-circle">
+        <img src="assets/p09-00.png" alt="Podcast">
+        <h3>PODCAST</h3>
+      </div>
+      <div class="slide-9-circle">
+        <img src="assets/p09-01.png" alt="Communities">
+        <h3>COMMUNITIES</h3>
+      </div>
+      <div class="slide-9-circle">
+        <img src="assets/p09-02.png" alt="Channel">
+        <h3>CHANNEL</h3>
+      </div>
+    </div>
+    <div class="slide-9-stats">
+      <div class="slide-9-stat-block">
+        <div class="slide-9-stat-number">1M+</div>
+        <div>annual listens</div>
+      </div>
+      <div class="slide-9-stat-block">
+        <div class="slide-9-stat-number">25K+</div>
+        <div>community members</div>
+      </div>
+      <div class="slide-9-stat-block">
+        <div class="slide-9-stat-number">15K+</div>
+        <div>channel followers</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 10: Consulting GTM -->
+  <section class="slide slide-10" data-slide="10">
+    <h2>CONSULTING GTM</h2>
+    <div class="slide-10-logos">
+      <div class="slide-10-logo"><img src="assets/p10-00.png" alt="BigCommerce"></div>
+      <div class="slide-10-logo"><img src="assets/p10-01.png" alt="Deptax"></div>
+      <div class="slide-10-logo"><img src="assets/p10-02.png" alt="DnD"></div>
+      <div class="slide-10-logo"><img src="assets/p10-03.png" alt="elyn"></div>
+      <div class="slide-10-logo"><img src="assets/p10-04.png" alt="neo9"></div>
+      <div class="slide-10-logo"><img src="assets/p10-05.png" alt="NewStore"></div>
+      <div class="slide-10-logo"><img src="assets/p10-06.png" alt="Talon.One"></div>
+      <div class="slide-10-logo"><img src="assets/p10-07.png" alt="tapbuy"></div>
+    </div>
+    <div class="slide-10-sections">
+      <div class="slide-10-section">
+        <h3><span class="slide-10-section-circle">1</span>STRATEGY</h3>
+        <ul>
+          <li>Market analysis & positioning</li>
+          <li>Competitive landscape review</li>
+          <li>Customer acquisition roadmap</li>
+          <li>Partnership opportunities</li>
+        </ul>
+      </div>
+      <div class="slide-10-section">
+        <h3><span class="slide-10-section-circle">2</span>EXECUTION</h3>
+        <ul>
+          <li>Campaign planning & management</li>
+          <li>Content development</li>
+          <li>Media & influencer coordination</li>
+          <li>Results tracking & optimization</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 11: Events -->
+  <section class="slide slide-11" data-slide="11">
+    <h2>EVENTS</h2>
+    <div class="slide-11-subtitle">Building lasting connections with ROI mindset</div>
+    <div class="slide-11-columns">
+      <div class="slide-11-column">
+        <h3><span class="slide-11-circle">1</span>OUR EVENTS</h3>
+        <div class="slide-11-logos">
+          <div class="slide-11-logo"><img src="assets/p11-00.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-01.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-02.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-03.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-04.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-05.png" alt="Event"></div>
+        </div>
+      </div>
+      <div class="slide-11-column">
+        <h3><span class="slide-11-circle">2</span>INDUSTRY EVENTS</h3>
+        <div class="slide-11-logos">
+          <div class="slide-11-logo"><img src="assets/p11-06.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-07.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-08.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-09.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-10.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-11.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-12.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-13.png" alt="Event"></div>
+          <div class="slide-11-logo"><img src="assets/p11-14.png" alt="Event"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 12: Our Events -->
+  <section class="slide slide-12" data-slide="12">
+    <div class="slide-12-header">
+      <h2>OUR EVENTS</h2>
+    </div>
+    <div class="slide-12-subtitle">MEETING OUR COMMUNITY</div>
+    <div class="slide-12-content">
+      <div class="slide-12-event-card">
+        <div class="slide-12-event-title">L'Apéro E-Commerce de Lille</div>
+        <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);">Local networking event bringing together e-commerce professionals for meaningful connections.</p>
+      </div>
+      <div class="slide-12-photos">
+        <div class="slide-12-photo"><img src="assets/p12-00.jpeg" alt="Event 1"></div>
+        <div class="slide-12-photo"><img src="assets/p12-01.jpeg" alt="Event 2"></div>
+        <div class="slide-12-photo"><img src="assets/p12-02.jpeg" alt="Event 3"></div>
+        <div class="slide-12-photo"><img src="assets/p12-03.jpeg" alt="Event 4"></div>
+        <div class="slide-12-photo"><img src="assets/p12-04.jpeg" alt="Event 5"></div>
+        <div class="slide-12-photo"><img src="assets/p12-05.jpeg" alt="Event 6"></div>
+      </div>
+    </div>
+    <div class="slide-12-stats">
+      <span class="highlight">+2K DE EXECS ATTENDEES</span> / <span class="highlight">3 EVENTS / QUARTER</span>
+    </div>
+  </section>
+
+  <!-- SLIDE 13: Store Tour Paris -->
+  <section class="slide slide-13" data-slide="13">
+    <div class="slide-13-left">
+      <img src="assets/p13-00.png" alt="Store Tour Paris">
+    </div>
+    <div class="slide-13-right">
+      <div class="slide-13-logo">STP</div>
+      <div class="slide-13-title">STORE TOUR PARIS</div>
+      <div class="slide-13-title">A UNIQUE CONCEPT IN FRANCE</div>
+      <div class="slide-13-text">
+        <p>Join us for guided tours of the most innovative retail experiences in Paris. Meet founders, explore new concepts, and network with fellow e-commerce professionals.</p>
+        <p>Quarterly events designed to inspire and connect the community around the latest retail innovations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 14: WIRE -->
+  <section class="slide slide-14" data-slide="14">
+    <div class="slide-14-logo">
+      <img src="assets/p14-00.png" alt="WIRE">
+    </div>
+    <div class="slide-14-title">A VIP COMMUNITY</div>
+    <div class="slide-14-content">
+      <div class="slide-14-text">
+        <p>WIRE (Women In Retail and Ecommerce) is an exclusive community dedicated to empowering women leaders in the retail and e-commerce space.</p>
+        <p>Members gain access to exclusive events, mentorship opportunities, and a network of influential women professionals in the industry.</p>
+      </div>
+      <div class="slide-14-photo">
+        <img src="assets/p14-01.png" alt="WIRE Community">
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 15: Brands2Buyers -->
+  <section class="slide slide-15" data-slide="15">
+    <div class="slide-15-logo">
+      <img src="assets/p15-00.png" alt="Brands2Buyers">
+    </div>
+    <div class="slide-15-title">THE PREMIER B2B COMMERCE EVENT</div>
+    <div class="slide-15-content">
+      <div class="slide-15-text">
+        <p>Brands2Buyers is the leading B2B commerce event in France, bringing together software providers, agencies, and e-commerce leaders.</p>
+        <p>Twice yearly, we host this flagship event connecting decision makers and driving business opportunities across the ecosystem.</p>
+      </div>
+      <div class="slide-15-photo">
+        <img src="assets/p15-01.png" alt="Brands2Buyers">
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 16: 1500 Experts -->
+  <section class="slide slide-16" data-slide="16">
+    <div class="slide-16-left">
+      <img src="assets/p06-00.png" alt="Butterfly Logo" class="slide-16-logo">
+      <h2><span class="slide-16-number">+ 1500 EXPERTS</span><br>IN OUR COMMUNITIES</h2>
+    </div>
+    <div class="slide-16-right">
+      <div class="slide-16-headshot"><img src="assets/p16-00.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-01.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-02.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-03.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-04.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-05.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-06.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-07.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-08.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-09.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-10.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-11.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-12.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-13.jpeg" alt="Expert"></div>
+      <div class="slide-16-headshot"><img src="assets/p16-14.jpeg" alt="Expert"></div>
+    </div>
+  </section>
+
+  <!-- SLIDE 17: Tech in Communities -->
+  <section class="slide slide-17" data-slide="17">
+    <h2>THE TECH IN OUR COMMUNITIES</h2>
+    <div class="slide-17-grid">
+      <div class="slide-17-logo"><img src="assets/p17-00.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-01.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-02.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-03.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-04.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-05.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-06.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-07.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-08.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-09.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-10.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-11.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-12.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-13.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-14.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-15.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-16.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-17.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-18.png" alt="Tech logo"></div>
+      <div class="slide-17-logo"><img src="assets/p17-19.png" alt="Tech logo"></div>
+    </div>
+  </section>
+
+  <!-- SLIDE 18: Communities -->
+  <section class="slide slide-18" data-slide="18">
+    <h2>COMMUNITIES</h2>
+    <div class="slide-18-subtitle">PREMIUM CLUBS</div>
+    <div class="slide-18-clubs">
+      <div class="slide-18-club blue">
+        <h3>LCDI</h3>
+        <p>Le Club Du e-Commerce</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Premier networking club</p>
+      </div>
+      <div class="slide-18-club pink">
+        <h3>WIRE</h3>
+        <p>Women in Retail & Ecommerce</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Female leaders community</p>
+      </div>
+      <div class="slide-18-club white">
+        <h3>B2B</h3>
+        <p>B2B Commerce Summit</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">B2B specialists forum</p>
+      </div>
+      <div class="slide-18-club yellow">
+        <h3>CORE</h3>
+        <p>Community of Retail Experts</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Retail excellence hub</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 19: Brands in Communities -->
+  <section class="slide slide-19" data-slide="19">
+    <h2>THE BRANDS IN OUR COMMUNITIES</h2>
+    <div class="slide-19-grid">
+      <div class="slide-19-logo"><img src="assets/p19-00.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-01.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-02.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-03.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-04.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-05.jpeg" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-06.jpeg" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-07.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-08.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-09.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-10.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-11.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-12.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-13.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-14.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-15.jpeg" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-16.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-17.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-18.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-19.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-20.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-21.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-22.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-23.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-24.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-25.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-26.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-27.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-28.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-29.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-30.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-31.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-32.jpeg" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-33.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-34.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-35.jpeg" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-36.jpeg" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-37.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-38.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-39.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-40.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-41.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-42.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-43.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-44.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-45.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-46.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-47.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-48.jpeg" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-49.jpeg" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-50.jpeg" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-51.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-52.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-53.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-54.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-55.jpeg" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-56.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-57.png" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-58.jpeg" alt="Brand"></div>
+      <div class="slide-19-logo"><img src="assets/p19-59.png" alt="Brand"></div>
+    </div>
+  </section>
+
+  <!-- SLIDE 20: Our Offering -->
+  <section class="slide slide-20" data-slide="20">
+    <h2>OUR OFFERING</h2>
+    <div class="slide-20-columns">
+      <div class="slide-20-column">
+        <div class="slide-20-header">
+          <div class="slide-20-circle">1</div>
+          <h3>SPONSORSHIP & VISIBILITY</h3>
+        </div>
+        <ul>
+          <li>Podcast sponsorships</li>
+          <li>Event presence & activation</li>
+          <li><span class="slide-20-keyword">Featured brand</span> visibility</li>
+          <li>Community <span class="slide-20-keyword">announcements</span></li>
+          <li>Co-branded content</li>
+        </ul>
+      </div>
+      <div class="slide-20-column">
+        <div class="slide-20-header">
+          <div class="slide-20-circle">2</div>
+          <h3>INFLUENCE & COMMUNITY</h3>
+        </div>
+        <ul>
+          <li><span class="slide-20-keyword">Expert validation</span></li>
+          <li>Community <span class="slide-20-keyword">introductions</span></li>
+          <li>Panel participation</li>
+          <li>Customer testimonials</li>
+          <li>Co-created content</li>
+        </ul>
+      </div>
+      <div class="slide-20-column">
+        <div class="slide-20-header">
+          <div class="slide-20-circle">3</div>
+          <h3>ADVISORY & GTM SUPPORT</h3>
+        </div>
+        <ul>
+          <li><span class="slide-20-keyword yellow">Market entry strategy</span></li>
+          <li><span class="slide-20-keyword">Strategic partnerships</span></li>
+          <li>Growth roadmap</li>
+          <li><span class="slide-20-keyword">Performance tracking</span></li>
+          <li>Ongoing optimization</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 21: Final Slide -->
+  <section class="slide slide-21" data-slide="21">
+    <div class="slide-21-content">
+      <div class="slide-21-logo">
+        <img src="assets/p21-01.png" alt="Butterfly Logo">
+      </div>
+    </div>
+  </section>
 
   <script>
     (function() {
