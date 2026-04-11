@@ -49,11 +49,6 @@
             background:rgba(66,133,244,0.3);
             color:transparent;
         }
-        .nav-dots { position:fixed;right:30px;top:50%;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;gap:12px; }
-        .nav-dot { width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:all 0.3s ease;border:1px solid rgba(255,255,255,0.4); }
-        .nav-dot.active { background:#ec36a3;box-shadow:0 0 12px rgba(236,54,163,0.6);width:10px;height:10px; }
-        .nav-dot:hover { background:rgba(255,255,255,0.5); }
-        .slide-counter { position:fixed;bottom:30px;left:30px;color:rgba(255,255,255,0.6);font-size:14px;font-family:'GlacialIndifference',sans-serif;z-index:1000; }
         ::-webkit-scrollbar { width:0;height:0; }
     </style>
 </head>
@@ -430,60 +425,22 @@
             <span class="t" style="position:absolute;left:51.7083%;top:43.1975%;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:calc(var(--sw) * 0.019444);color:#ffffff;white-space:nowrap;line-height:1;width:25.6875%">Contact us for more questions.</span>
         </div>
     </div>
-    <div class="nav-dots">
-        <div class="nav-dot active" data-slide="1"></div>
-        <div class="nav-dot" data-slide="2"></div>
-        <div class="nav-dot" data-slide="3"></div>
-        <div class="nav-dot" data-slide="4"></div>
-        <div class="nav-dot" data-slide="5"></div>
-        <div class="nav-dot" data-slide="6"></div>
-        <div class="nav-dot" data-slide="7"></div>
-        <div class="nav-dot" data-slide="8"></div>
-        <div class="nav-dot" data-slide="9"></div>
-        <div class="nav-dot" data-slide="10"></div>
-        <div class="nav-dot" data-slide="11"></div>
-        <div class="nav-dot" data-slide="12"></div>
-        <div class="nav-dot" data-slide="13"></div>
-        <div class="nav-dot" data-slide="14"></div>
-        <div class="nav-dot" data-slide="15"></div>
-        <div class="nav-dot" data-slide="16"></div>
-        <div class="nav-dot" data-slide="17"></div>
-        <div class="nav-dot" data-slide="18"></div>
-        <div class="nav-dot" data-slide="19"></div>
-        <div class="nav-dot" data-slide="20"></div>
-        <div class="nav-dot" data-slide="21"></div>
-    </div>
-    <div class="slide-counter">
-        <span id="current-slide">1</span> / <span id="total-slides">21</span>
-    </div>
     <script>
         const slides=document.querySelectorAll('.slide-container');
-        const dots=document.querySelectorAll('.nav-dot');
-        const currentSlideSpan=document.getElementById('current-slide');
         let currentSlide=1;
         const totalSlides=slides.length;
 
-        // Track which slide is visible via IntersectionObserver
+        // Track current slide
         const observer=new IntersectionObserver((entries)=>{
             entries.forEach(entry=>{
                 if(entry.isIntersecting){
-                    const idx=Array.from(slides).indexOf(entry.target)+1;
-                    currentSlide=idx;
-                    currentSlideSpan.textContent=idx;
-                    dots.forEach((d,i)=>d.classList.toggle('active',i===idx-1));
+                    currentSlide=Array.from(slides).indexOf(entry.target)+1;
                 }
             });
         },{threshold:0.5});
         slides.forEach(s=>observer.observe(s));
 
-        // Dot navigation
-        dots.forEach((dot,i)=>{
-            dot.addEventListener('click',()=>{
-                slides[i].scrollIntoView({behavior:'smooth'});
-            });
-        });
-
-        // Keyboard navigation — just nudge the scroll, CSS snap does the rest
+        // Keyboard navigation
         document.addEventListener('keydown',(e)=>{
             if(e.key==='ArrowDown'||e.key===' '){
                 e.preventDefault();
@@ -493,10 +450,6 @@
                 if(currentSlide>1) slides[currentSlide-2].scrollIntoView({behavior:'smooth'});
             }
         });
-
-        // No custom wheel handler — CSS scroll-snap-type:y mandatory
-        // + scroll-snap-stop:always handles magnetic snapping natively
-        // without the double-jump bug
     </script>
 </body>
 </html>
