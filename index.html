@@ -5,119 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Butterfly Agency Kit</title>
     <style>
-        @font-face {
-            font-family: 'CocomatPro';
-            src: url('assets/fonts/CocomatPro-Bold.ttf') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'CocomatPro';
-            src: url('assets/fonts/CocomatPro-Regular.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'GlacialIndifference';
-            src: url('assets/fonts/GlacialIndifference-Regular.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'GlacialIndifference';
-            src: url('assets/fonts/GlacialIndifference-Bold.ttf') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'OpenSans';
-            src: url('assets/fonts/OpenSans-Bold.ttf') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'AmbiguityNormate';
-            src: url('assets/fonts/AmbiguityNormate-Inline.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Brice';
-            src: url('assets/fonts/Brice-RegularSemiExpanded.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html {
-            scroll-snap-type: y mandatory;
-            overflow-y: scroll;
-            width: 100%; height: 100%;
-            background: #000;
-        }
-        body {
-            background: #000;
-            margin: 0; padding: 0;
-            font-family: 'GlacialIndifference', sans-serif;
-        }
-        .slide-container {
-            position: relative;
-            width: 100vw; height: 100vh;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-            overflow: hidden;
-        }
-        .slide-inner {
-            position: relative;
-            width: 1440px; height: 810px;
-            background: #000;
-            overflow: hidden;
-            transform-origin: center center;
-        }
-        .t { pointer-events: none; }
-        .d { pointer-events: none; }
-        .i { pointer-events: none; display: block; }
-
-        /* Navigation */
-        .nav-dots {
-            position: fixed; right: 30px; top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000;
-            display: flex; flex-direction: column; gap: 12px;
-        }
-        .nav-dot {
-            width: 8px; height: 8px; border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.4);
-        }
-        .nav-dot.active {
-            background: #ec36a3;
-            box-shadow: 0 0 12px rgba(236,54,163,0.6);
-            width: 10px; height: 10px;
-        }
-        .nav-dot:hover { background: rgba(255,255,255,0.5); }
-        .slide-counter {
-            position: fixed; bottom: 30px; left: 30px;
-            color: rgba(255,255,255,0.6);
-            font-size: 14px;
-            font-family: 'GlacialIndifference', sans-serif;
-            z-index: 1000;
-        }
-        ::-webkit-scrollbar { width: 0; height: 0; }
+        @font-face { font-family:'CocomatPro'; src:url('assets/fonts/CocomatPro-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; }
+        @font-face { font-family:'CocomatPro'; src:url('assets/fonts/CocomatPro-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; }
+        @font-face { font-family:'GlacialIndifference'; src:url('assets/fonts/GlacialIndifference-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; }
+        @font-face { font-family:'GlacialIndifference'; src:url('assets/fonts/GlacialIndifference-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; }
+        @font-face { font-family:'OpenSans'; src:url('assets/fonts/OpenSans-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; }
+        @font-face { font-family:'AmbiguityNormate'; src:url('assets/fonts/AmbiguityNormate-Inline.ttf') format('truetype'); font-weight:400; font-style:normal; }
+        @font-face { font-family:'Brice'; src:url('assets/fonts/Brice-RegularSemiExpanded.ttf') format('truetype'); font-weight:400; font-style:normal; }
+        * { margin:0;padding:0;box-sizing:border-box; }
+        html { scroll-snap-type:y mandatory;overflow-y:scroll;width:100%;height:100%;background:#000; }
+        body { background:#000;margin:0;padding:0;font-family:'GlacialIndifference',sans-serif; }
+        .slide-container { position:relative;width:100vw;height:100vh;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden; }
+        .slide-inner { position:relative;width:1440px;height:810px;background:#000;overflow:hidden;transform-origin:center center; }
+        .t { pointer-events:none; }
+        .d { pointer-events:none; }
+        .i { pointer-events:none;display:block; }
+        .nav-dots { position:fixed;right:30px;top:50%;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;gap:12px; }
+        .nav-dot { width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:all 0.3s ease;border:1px solid rgba(255,255,255,0.4); }
+        .nav-dot.active { background:#ec36a3;box-shadow:0 0 12px rgba(236,54,163,0.6);width:10px;height:10px; }
+        .nav-dot:hover { background:rgba(255,255,255,0.5); }
+        .slide-counter { position:fixed;bottom:30px;left:30px;color:rgba(255,255,255,0.6);font-size:14px;font-family:'GlacialIndifference',sans-serif;z-index:1000; }
+        ::-webkit-scrollbar { width:0;height:0; }
     </style>
 </head>
 <body>
     <div class="slide-container" id="slide-1">
         <div class="slide-inner">
-            <div class="d" style="position:absolute;left:228.0px;top:457.3px;width:984.0px;height:4.9px;background:#000000" data-d="3"></div>
-            <div class="d" style="position:absolute;left:228.0px;top:457.5px;width:984.0px;height:4.5px;background:#ffffff" data-d="2"></div>
-            <img src="assets/images/p01-img1.png" alt="" class="i" style="position:absolute;left:228.0px;top:63.1px;width:396.8px;height:396.8px" loading="lazy">
+            <div class="d" style="position:absolute;left:228.0px;top:457.3px;width:984.0px;height:4.9px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:228.0px;top:457.5px;width:984.0px;height:4.5px;background:#ffffff"></div>
+            <img src="assets/images/p01-img1.png" alt="" class="i" style="position:absolute;left:228.0px;top:63.1px;width:396.8px;height:396.8px;" loading="lazy">
             <span class="t" style="position:absolute;left:661.0px;top:220.3px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:90.8px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">BUTTERFLY</span>
             <span class="t" style="position:absolute;left:808.2px;top:321.5px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:65.6px;color:#ffffff;white-space:nowrap;line-height:1">AGENCY</span>
             <span class="t" style="position:absolute;left:463.8px;top:652.9px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:37.6px;color:#ffffff;white-space:nowrap;line-height:1"> Laëtitia Lamari - Adrien Naeem</span>
@@ -126,7 +42,7 @@
     </div>
     <div class="slide-container" id="slide-2">
         <div class="slide-inner">
-            <img src="assets/images/p02-img1.png" alt="" class="i" style="position:absolute;left:1057.5px;top:44.1px;width:301.5px;height:301.5px" loading="lazy">
+            <img src="assets/images/p02-img1.png" alt="" class="i" style="position:absolute;left:1057.5px;top:44.1px;width:301.5px;height:301.5px;" loading="lazy">
             <span class="t" style="position:absolute;left:128.2px;top:183.9px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:64.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">EXEC SUMMARY</span>
             <span class="t" style="position:absolute;left:128.2px;top:297.2px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:28.0px;color:#ffffff;white-space:nowrap;line-height:1">Butterfly Agency helps you grow in the </span>
             <span class="t" style="position:absolute;left:594.2px;top:297.2px;font-family:'GlacialIndifference',sans-serif;font-weight:700;font-size:28.0px;color:#ec36a3;white-space:nowrap;line-height:1">French e-commerce market</span>
@@ -158,12 +74,12 @@
     </div>
     <div class="slide-container" id="slide-3">
         <div class="slide-inner">
-            <div class="d" style="position:absolute;left:815.8px;top:600.8px;width:60.8px;height:60.8px;background:#ec36a2" data-d="6"></div>
-            <div class="d" style="position:absolute;left:815.8px;top:298.7px;width:60.8px;height:60.8px;background:#ec36a2" data-d="3"></div>
-            <div class="d" style="position:absolute;left:815.8px;top:399.5px;width:60.8px;height:60.8px;background:#ec36a2" data-d="5"></div>
-            <div class="d" style="position:absolute;left:815.8px;top:197.9px;width:60.8px;height:60.8px;background:#ec36a2" data-d="2"></div>
-            <div class="d" style="position:absolute;left:815.8px;top:500.3px;width:60.8px;height:60.7px;background:#ec36a2" data-d="4"></div>
-            <img src="assets/images/p03-img1.png" alt="" class="i" style="position:absolute;left:151.1px;top:132.6px;width:129.7px;height:129.7px" loading="lazy">
+            <div class="d" style="position:absolute;left:815.8px;top:600.8px;width:60.8px;height:60.8px;background:#ec36a2;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:815.8px;top:298.7px;width:60.8px;height:60.8px;background:#ec36a2;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:815.8px;top:399.5px;width:60.8px;height:60.8px;background:#ec36a2;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:815.8px;top:197.9px;width:60.8px;height:60.8px;background:#ec36a2;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:815.8px;top:500.3px;width:60.8px;height:60.7px;background:#ec36a2;border-radius:50%"></div>
+            <img src="assets/images/p03-img1.png" alt="" class="i" style="position:absolute;left:151.1px;top:132.6px;width:129.7px;height:129.7px;" loading="lazy">
             <span class="t" style="position:absolute;left:927.3px;top:204.7px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:33.8px;color:#ffffff;white-space:nowrap;line-height:1">Who we are</span>
             <span class="t" style="position:absolute;left:835.9px;top:203.0px;font-family:'OpenSans',sans-serif;font-weight:700;font-size:36.0px;color:#000000;white-space:nowrap;line-height:1">1</span>
             <span class="t" style="position:absolute;left:927.3px;top:305.7px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:33.8px;color:#ffffff;white-space:nowrap;line-height:1">What we do</span>
@@ -179,20 +95,20 @@
     </div>
     <div class="slide-container" id="slide-4">
         <div class="slide-inner">
-            <div class="d" style="position:absolute;left:125.7px;top:654.6px;width:6.8px;height:6.8px;background:#ffffff;border-radius:50%" data-d="3"></div>
-            <div class="d" style="position:absolute;left:125.7px;top:713.1px;width:6.8px;height:6.8px;background:#ffffff;border-radius:50%" data-d="5"></div>
-            <div class="d" style="position:absolute;left:788.7px;top:654.6px;width:6.8px;height:6.8px;background:#ffffff;border-radius:50%" data-d="7"></div>
-            <div class="d" style="position:absolute;left:788.7px;top:713.1px;width:6.8px;height:6.8px;background:#ffffff;border-radius:50%" data-d="9"></div>
-            <div class="d" style="position:absolute;left:125.7px;top:625.4px;width:6.8px;height:6.7px;background:#ffffff;border-radius:50%" data-d="2"></div>
-            <div class="d" style="position:absolute;left:125.7px;top:683.9px;width:6.8px;height:6.7px;background:#ffffff;border-radius:50%" data-d="4"></div>
-            <div class="d" style="position:absolute;left:788.7px;top:625.4px;width:6.8px;height:6.7px;background:#ffffff;border-radius:50%" data-d="6"></div>
-            <div class="d" style="position:absolute;left:788.7px;top:683.9px;width:6.8px;height:6.7px;background:#ffffff;border-radius:50%" data-d="8"></div>
-            <img src="assets/images/p04-img1.png" alt="" class="i" style="position:absolute;left:260.0px;top:276.6px;width:256.9px;height:256.9px" loading="lazy">
-            <img src="assets/images/p04-img2.png" alt="" class="i" style="position:absolute;left:923.0px;top:276.6px;width:256.9px;height:256.9px" loading="lazy">
-            <img src="assets/images/p04-img3.png" alt="" class="i" style="position:absolute;left:903.6px;top:549.7px;width:50.2px;height:50.2px" loading="lazy">
-            <img src="assets/images/p04-img4.png" alt="" class="i" style="position:absolute;left:240.6px;top:549.7px;width:50.2px;height:50.2px" loading="lazy">
-            <img src="assets/images/p04-img5.png" alt="" class="i" style="position:absolute;left:598.6px;top:265.0px;width:242.7px;height:307.0px" loading="lazy">
-            <img src="assets/images/p04-img6.png" alt="" class="i" style="position:absolute;left:638.4px;top:316.8px;width:164.4px;height:116.2px" loading="lazy">
+            <div class="d" style="position:absolute;left:125.7px;top:654.6px;width:6.8px;height:6.8px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:125.7px;top:713.1px;width:6.8px;height:6.8px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:788.7px;top:654.6px;width:6.8px;height:6.8px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:788.7px;top:713.1px;width:6.8px;height:6.8px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:125.7px;top:625.4px;width:6.8px;height:6.7px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:125.7px;top:683.9px;width:6.8px;height:6.7px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:788.7px;top:625.4px;width:6.8px;height:6.7px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:788.7px;top:683.9px;width:6.8px;height:6.7px;background:#ffffff;border-radius:50%"></div>
+            <img src="assets/images/p04-img1.png" alt="" class="i" style="position:absolute;left:260.0px;top:276.6px;width:256.9px;height:256.9px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p04-img2.png" alt="" class="i" style="position:absolute;left:923.0px;top:276.6px;width:256.9px;height:256.9px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p04-img3.png" alt="" class="i" style="position:absolute;left:903.6px;top:549.7px;width:50.2px;height:50.2px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p04-img4.png" alt="" class="i" style="position:absolute;left:240.6px;top:549.7px;width:50.2px;height:50.2px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p04-img5.png" alt="" class="i" style="position:absolute;left:598.6px;top:265.0px;width:242.7px;height:307.0px;" loading="lazy">
+            <img src="assets/images/p04-img6.png" alt="" class="i" style="position:absolute;left:638.4px;top:316.8px;width:164.4px;height:116.2px;" loading="lazy">
             <span class="t" style="position:absolute;left:308.0px;top:555.3px;font-family:'GlacialIndifference',sans-serif;font-weight:700;font-size:32.0px;color:#ffde4c;white-space:nowrap;line-height:1">Adrien Naeem</span>
             <span class="t" style="position:absolute;left:482.7px;top:100.2px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:64.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">WHO WE ARE</span>
             <span class="t" style="position:absolute;left:54.6px;top:189.6px;font-family:'CocomatPro',sans-serif;font-weight:400;font-size:28.0px;color:#ffffff;white-space:nowrap;line-height:1">A DUO OF KEY OPINION LEADERS AND </span>
@@ -214,16 +130,16 @@
     </div>
     <div class="slide-container" id="slide-5">
         <div class="slide-inner">
-            <img src="assets/images/p05-img1.png" alt="" class="i" style="position:absolute;left:66.0px;top:178.2px;width:198.1px;height:198.1px" loading="lazy">
-            <img src="assets/images/p05-img2.png" alt="" class="i" style="position:absolute;left:343.5px;top:178.2px;width:198.1px;height:198.1px" loading="lazy">
-            <img src="assets/images/p05-img3.png" alt="" class="i" style="position:absolute;left:620.9px;top:178.2px;width:198.1px;height:198.1px" loading="lazy">
-            <img src="assets/images/p05-img4.png" alt="" class="i" style="position:absolute;left:898.4px;top:178.2px;width:198.1px;height:198.1px" loading="lazy">
-            <img src="assets/images/p05-img5.png" alt="" class="i" style="position:absolute;left:1175.8px;top:178.2px;width:198.1px;height:198.1px" loading="lazy">
-            <img src="assets/images/p05-img6.png" alt="" class="i" style="position:absolute;left:343.3px;top:485.7px;width:198.1px;height:198.1px" loading="lazy">
-            <img src="assets/images/p05-img7.png" alt="" class="i" style="position:absolute;left:620.9px;top:485.7px;width:198.1px;height:198.1px" loading="lazy">
-            <img src="assets/images/p05-img8.png" alt="" class="i" style="position:absolute;left:898.4px;top:485.7px;width:198.1px;height:198.1px" loading="lazy">
-            <img src="assets/images/p05-img9.png" alt="" class="i" style="position:absolute;left:1175.8px;top:485.7px;width:198.1px;height:198.1px" loading="lazy">
-            <img src="assets/images/p05-img10.png" alt="" class="i" style="position:absolute;left:65.9px;top:485.7px;width:198.1px;height:198.1px" loading="lazy">
+            <img src="assets/images/p05-img1.png" alt="" class="i" style="position:absolute;left:66.0px;top:178.2px;width:198.1px;height:198.1px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p05-img2.png" alt="" class="i" style="position:absolute;left:343.5px;top:178.2px;width:198.1px;height:198.1px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p05-img3.png" alt="" class="i" style="position:absolute;left:620.9px;top:178.2px;width:198.1px;height:198.1px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p05-img4.png" alt="" class="i" style="position:absolute;left:898.4px;top:178.2px;width:198.1px;height:198.1px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p05-img5.png" alt="" class="i" style="position:absolute;left:1175.8px;top:178.2px;width:198.1px;height:198.1px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p05-img6.png" alt="" class="i" style="position:absolute;left:343.3px;top:485.7px;width:198.1px;height:198.1px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p05-img7.png" alt="" class="i" style="position:absolute;left:620.9px;top:485.7px;width:198.1px;height:198.1px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p05-img8.png" alt="" class="i" style="position:absolute;left:898.4px;top:485.7px;width:198.1px;height:198.1px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p05-img9.png" alt="" class="i" style="position:absolute;left:1175.8px;top:485.7px;width:198.1px;height:198.1px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p05-img10.png" alt="" class="i" style="position:absolute;left:65.9px;top:485.7px;width:198.1px;height:198.1px;border-radius:50%;overflow:hidden;" loading="lazy">
             <span class="t" style="position:absolute;left:492.0px;top:61.7px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:80.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">ONE TEAM</span>
             <span class="t" style="position:absolute;left:66.8px;top:404.2px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:24.9px;color:#ffdd4c;white-space:nowrap;line-height:1">Edouard</span>
             <span class="t" style="position:absolute;left:172.0px;top:404.2px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:24.9px;color:#ffffff;white-space:nowrap;line-height:1"> SELVY</span>
@@ -259,9 +175,9 @@
     </div>
     <div class="slide-container" id="slide-6">
         <div class="slide-inner">
-            <img src="assets/images/p06-img1.png" alt="" class="i" style="position:absolute;left:294.8px;top:-42.6px;width:1173.0px;height:780.2px" loading="lazy">
-            <img src="assets/images/p06-img2.png" alt="" class="i" style="position:absolute;left:752.3px;top:105.6px;width:649.2px;height:440.6px" loading="lazy">
-            <img src="assets/images/p06-img3.png" alt="" class="i" style="position:absolute;left:282.7px;top:570.2px;width:157.5px;height:157.5px" loading="lazy">
+            <img src="assets/images/p06-img1.png" alt="" class="i" style="position:absolute;left:294.8px;top:-42.6px;width:1173.0px;height:780.2px;" loading="lazy">
+            <img src="assets/images/p06-img2.png" alt="" class="i" style="position:absolute;left:752.3px;top:105.6px;width:649.2px;height:440.6px;" loading="lazy">
+            <img src="assets/images/p06-img3.png" alt="" class="i" style="position:absolute;left:282.7px;top:570.2px;width:157.5px;height:157.5px;" loading="lazy">
             <span class="t" style="position:absolute;left:81.0px;top:284.9px;font-family:'CocomatPro',sans-serif;font-weight:400;font-size:28.0px;color:#ffffff;white-space:nowrap;line-height:1">WE WORK WITH </span>
             <span class="t" style="position:absolute;left:329.6px;top:285.0px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:28.0px;color:#ffde4c;white-space:nowrap;line-height:1">ALL</span>
             <span class="t" style="position:absolute;left:383.9px;top:284.9px;font-family:'CocomatPro',sans-serif;font-weight:400;font-size:28.0px;color:#ffffff;white-space:nowrap;line-height:1"> THE COMPANIES</span>
@@ -276,10 +192,10 @@
     </div>
     <div class="slide-container" id="slide-7">
         <div class="slide-inner">
-            <img src="assets/images/p07-img1.png" alt="" class="i" style="position:absolute;left:168.7px;top:246.4px;width:233.2px;height:233.2px" loading="lazy">
-            <img src="assets/images/p07-img2.png" alt="" class="i" style="position:absolute;left:474.5px;top:246.4px;width:233.2px;height:233.2px" loading="lazy">
-            <img src="assets/images/p07-img3.png" alt="" class="i" style="position:absolute;left:780.1px;top:246.4px;width:233.2px;height:233.2px" loading="lazy">
-            <img src="assets/images/p07-img4.png" alt="" class="i" style="position:absolute;left:1085.8px;top:246.4px;width:233.2px;height:233.2px" loading="lazy">
+            <img src="assets/images/p07-img1.png" alt="" class="i" style="position:absolute;left:168.7px;top:246.4px;width:233.2px;height:233.2px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p07-img2.png" alt="" class="i" style="position:absolute;left:474.5px;top:246.4px;width:233.2px;height:233.2px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p07-img3.png" alt="" class="i" style="position:absolute;left:780.1px;top:246.4px;width:233.2px;height:233.2px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p07-img4.png" alt="" class="i" style="position:absolute;left:1085.8px;top:246.4px;width:233.2px;height:233.2px;border-radius:50%;overflow:hidden;" loading="lazy">
             <span class="t" style="position:absolute;left:483.8px;top:139.3px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:64.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">WHAT WE DO</span>
             <span class="t" style="position:absolute;left:135.1px;top:541.8px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:28.0px;color:#ffffff;white-space:nowrap;line-height:1">#1 Independent Retail</span>
             <span class="t" style="position:absolute;left:169.0px;top:572.5px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:28.0px;color:#ffffff;white-space:nowrap;line-height:1">&amp; E-Commerce</span>
@@ -305,57 +221,56 @@
     </div>
     <div class="slide-container" id="slide-8">
         <div class="slide-inner">
-            <div class="d" style="position:absolute;left:-194.9px;top:315.1px;width:494.9px;height:494.9px;background:#000000" data-d="44"></div>
-            <div class="d" style="position:absolute;left:1241.6px;top:-66.2px;width:190.3px;height:180.1px;background:#000000" data-d="45"></div>
-            <div class="d" style="position:absolute;left:1241.6px;top:-66.1px;width:190.5px;height:179.7px;background:#ffffff;border-radius:12px" data-d="14"></div>
-            <div class="d" style="position:absolute;left:1234.8px;top:618.6px;width:120.8px;height:107.0px;background:#000000" data-d="51"></div>
-            <div class="d" style="position:absolute;left:921.1px;top:67.2px;width:120.2px;height:106.3px;background:#000000" data-d="46"></div>
-            <div class="d" style="position:absolute;left:1240.7px;top:619.7px;width:113.7px;height:94.0px;background:#ec36a2;border-radius:12px" data-d="36"></div>
-            <div class="d" style="position:absolute;left:922.3px;top:68.3px;width:113.4px;height:93.7px;background:#ec36a2;border-radius:12px" data-d="13"></div>
-            <div class="d" style="position:absolute;left:638.5px;top:354.5px;width:95.1px;height:95.1px;background:#ffffff" data-d="15"></div>
-            <div class="d" style="position:absolute;left:638.5px;top:515.6px;width:95.1px;height:95.0px;background:#ffffff" data-d="16"></div>
-            <div class="d" style="position:absolute;left:942.7px;top:354.5px;width:95.0px;height:95.1px;background:#ffffff" data-d="17"></div>
-            <div class="d" style="position:absolute;left:942.7px;top:515.3px;width:95.0px;height:95.1px;background:#ffffff" data-d="35"></div>
-            <div class="d" style="position:absolute;left:652.7px;top:369.8px;width:66.7px;height:64.5px;background:#000000" data-d="47"></div>
-            <div class="d" style="position:absolute;left:654.1px;top:538.4px;width:63.9px;height:49.4px;background:#000000" data-d="49"></div>
-            <div class="d" style="position:absolute;left:961.5px;top:374.7px;width:57.4px;height:54.7px;background:#000000" data-d="48"></div>
-            <div class="d" style="position:absolute;left:961.6px;top:374.9px;width:57.3px;height:54.5px;background:#000000" data-d="40"></div>
-            <div class="d" style="position:absolute;left:961.5px;top:374.7px;width:57.3px;height:54.5px;background:#000000" data-d="41"></div>
-            <div class="d" style="position:absolute;left:961.5px;top:374.7px;width:57.3px;height:54.5px;background:#000000" data-d="42"></div>
-            <div class="d" style="position:absolute;left:961.5px;top:374.7px;width:57.3px;height:54.5px;background:#000000" data-d="43"></div>
-            <div class="d" style="position:absolute;left:967.4px;top:536.1px;width:45.6px;height:54.0px;background:#000000" data-d="50"></div>
-            <div class="d" style="position:absolute;left:654.1px;top:549.5px;width:63.7px;height:38.4px;background:#000000;border-radius:12px" data-d="21"></div>
-            <div class="d" style="position:absolute;left:967.4px;top:560.4px;width:45.6px;height:29.6px;background:#000000;border-radius:12px" data-d="37"></div>
-            <div class="d" style="position:absolute;left:967.4px;top:560.4px;width:45.6px;height:29.6px;background:#000000;border-radius:12px" data-d="39"></div>
-            <div class="d" style="position:absolute;left:656.5px;top:369.8px;width:59.1px;height:22.5px;background:#000000;border-radius:12px" data-d="33"></div>
-            <div class="d" style="position:absolute;left:-194.9px;top:632.5px;width:494.9px;height:1.7px;background:#ffffff" data-d="8"></div>
-            <div class="d" style="position:absolute;left:263.8px;top:315.1px;width:1.7px;height:494.9px;background:#ffffff" data-d="2"></div>
-            <div class="d" style="position:absolute;left:-194.9px;top:349.6px;width:494.9px;height:1.7px;background:#ffffff" data-d="12"></div>
-            <div class="d" style="position:absolute;left:-194.9px;top:773.7px;width:494.9px;height:1.7px;background:#ffffff" data-d="6"></div>
-            <div class="d" style="position:absolute;left:-194.9px;top:703.1px;width:494.9px;height:1.7px;background:#ffffff" data-d="7"></div>
-            <div class="d" style="position:absolute;left:-194.9px;top:561.7px;width:494.9px;height:1.7px;background:#ffffff" data-d="9"></div>
-            <div class="d" style="position:absolute;left:-194.9px;top:491.0px;width:494.9px;height:1.6px;background:#ffffff" data-d="10"></div>
-            <div class="d" style="position:absolute;left:-194.9px;top:420.4px;width:494.9px;height:1.6px;background:#ffffff" data-d="11"></div>
-            <div class="d" style="position:absolute;left:193.1px;top:315.1px;width:1.6px;height:494.9px;background:#ffffff" data-d="3"></div>
-            <div class="d" style="position:absolute;left:122.5px;top:315.1px;width:1.6px;height:494.9px;background:#ffffff" data-d="4"></div>
-            <div class="d" style="position:absolute;left:51.7px;top:315.1px;width:1.6px;height:494.9px;background:#ffffff" data-d="5"></div>
-            <div class="d" style="position:absolute;left:660.9px;top:403.3px;width:18.7px;height:31.0px;background:#000000;border-radius:12px" data-d="34"></div>
-            <div class="d" style="position:absolute;left:692.4px;top:403.5px;width:18.8px;height:30.8px;background:#000000;border-radius:12px" data-d="32"></div>
-            <div class="d" style="position:absolute;left:979.5px;top:536.1px;width:21.4px;height:21.4px;background:#000000;border-radius:50%" data-d="38"></div>
-            <div class="d" style="position:absolute;left:700.3px;top:407.1px;width:15.1px;height:27.0px;background:#000000;border-radius:12px" data-d="28"></div>
-            <div class="d" style="position:absolute;left:656.6px;top:407.1px;width:15.1px;height:27.0px;background:#000000;border-radius:12px" data-d="29"></div>
-            <div class="d" style="position:absolute;left:676.9px;top:538.4px;width:18.2px;height:18.1px;background:#000000;border-radius:50%" data-d="18"></div>
-            <div class="d" style="position:absolute;left:676.9px;top:560.1px;width:18.2px;height:12.9px;background:#000000;border-radius:12px" data-d="20"></div>
-            <div class="d" style="position:absolute;left:713.9px;top:396.1px;width:5.4px;height:23.0px;background:#000000;border-radius:12px" data-d="26"></div>
-            <div class="d" style="position:absolute;left:652.8px;top:396.1px;width:5.3px;height:23.0px;background:#000000;border-radius:12px" data-d="25"></div>
-            <div class="d" style="position:absolute;left:711.5px;top:418.5px;width:6.1px;height:8.9px;background:#000000;border-radius:50%" data-d="31"></div>
-            <div class="d" style="position:absolute;left:654.5px;top:418.5px;width:6.0px;height:8.9px;background:#000000;border-radius:50%" data-d="24"></div>
-            <div class="d" style="position:absolute;left:676.9px;top:557.6px;width:18.2px;height:1.3px;background:#000000" data-d="19"></div>
-            <div class="d" style="position:absolute;left:712.4px;top:391.8px;width:4.7px;height:4.6px;background:#000000;border-radius:50%" data-d="27"></div>
-            <div class="d" style="position:absolute;left:655.0px;top:391.8px;width:4.6px;height:4.6px;background:#000000;border-radius:50%" data-d="22"></div>
-            <div class="d" style="position:absolute;left:657.3px;top:421.2px;width:2.2px;height:3.4px;background:#000000;border-radius:50%" data-d="23"></div>
-            <div class="d" style="position:absolute;left:712.6px;top:421.2px;width:2.2px;height:3.4px;background:#000000;border-radius:50%" data-d="30"></div>
-            <img src="assets/images/p08-img1.png" alt="" class="i" style="position:absolute;left:81.0px;top:154.9px;width:500.2px;height:500.2px" loading="lazy">
+            <div class="d" style="position:absolute;left:1241.6px;top:-66.2px;width:190.3px;height:180.1px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:1241.6px;top:-66.1px;width:190.5px;height:179.7px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:1234.8px;top:618.6px;width:120.8px;height:107.0px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:921.1px;top:67.2px;width:120.2px;height:106.3px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:1240.7px;top:619.7px;width:113.7px;height:94.0px;background:#ec36a2;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:922.3px;top:68.3px;width:113.4px;height:93.7px;background:#ec36a2;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:638.5px;top:354.5px;width:95.1px;height:95.1px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:638.5px;top:515.6px;width:95.1px;height:95.0px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:942.7px;top:354.5px;width:95.0px;height:95.1px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:942.7px;top:515.3px;width:95.0px;height:95.1px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:652.7px;top:369.8px;width:66.7px;height:64.5px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:654.1px;top:538.4px;width:63.9px;height:49.4px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:961.5px;top:374.7px;width:57.4px;height:54.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:961.6px;top:374.9px;width:57.3px;height:54.5px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:961.5px;top:374.7px;width:57.3px;height:54.5px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:961.5px;top:374.7px;width:57.3px;height:54.5px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:961.5px;top:374.7px;width:57.3px;height:54.5px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:967.4px;top:536.1px;width:45.6px;height:54.0px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:654.1px;top:549.5px;width:63.7px;height:38.4px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:967.4px;top:560.4px;width:45.6px;height:29.6px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:967.4px;top:560.4px;width:45.6px;height:29.6px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:656.5px;top:369.8px;width:59.1px;height:22.5px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:-194.9px;top:632.5px;width:494.9px;height:1.7px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:263.8px;top:315.1px;width:1.7px;height:494.9px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:-194.9px;top:349.6px;width:494.9px;height:1.7px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:-194.9px;top:773.7px;width:494.9px;height:1.7px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:-194.9px;top:703.1px;width:494.9px;height:1.7px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:-194.9px;top:561.7px;width:494.9px;height:1.7px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:-194.9px;top:491.0px;width:494.9px;height:1.6px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:-194.9px;top:420.4px;width:494.9px;height:1.6px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:193.1px;top:315.1px;width:1.6px;height:494.9px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:122.5px;top:315.1px;width:1.6px;height:494.9px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:51.7px;top:315.1px;width:1.6px;height:494.9px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:660.9px;top:403.3px;width:18.7px;height:31.0px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:692.4px;top:403.5px;width:18.8px;height:30.8px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:979.5px;top:536.1px;width:21.4px;height:21.4px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:700.3px;top:407.1px;width:15.1px;height:27.0px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:656.6px;top:407.1px;width:15.1px;height:27.0px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:676.9px;top:538.4px;width:18.2px;height:18.1px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:676.9px;top:560.1px;width:18.2px;height:12.9px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:713.9px;top:396.1px;width:5.4px;height:23.0px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:652.8px;top:396.1px;width:5.3px;height:23.0px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:711.5px;top:418.5px;width:6.1px;height:8.9px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:654.5px;top:418.5px;width:6.0px;height:8.9px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:676.9px;top:557.6px;width:18.2px;height:1.3px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:712.4px;top:391.8px;width:4.7px;height:4.6px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:655.0px;top:391.8px;width:4.6px;height:4.6px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:657.3px;top:421.2px;width:2.2px;height:3.4px;background:#000000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:712.6px;top:421.2px;width:2.2px;height:3.4px;background:#000000;border-radius:12px"></div>
+            <img src="assets/images/p08-img1.png" alt="" class="i" style="position:absolute;left:81.0px;top:154.9px;width:500.2px;height:500.2px;" loading="lazy">
             <span class="t" style="position:absolute;left:768.0px;top:522.6px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:48.0px;color:#ffffff;white-space:nowrap;line-height:1">300 </span>
             <span class="t" style="position:absolute;left:859.6px;top:522.6px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:48.0px;color:#2680f5;white-space:nowrap;line-height:1">+</span>
             <span class="t" style="position:absolute;left:768.0px;top:582.5px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:23.7px;color:#ffffff;white-space:nowrap;line-height:1">Episodes</span>
@@ -377,9 +292,9 @@
     </div>
     <div class="slide-container" id="slide-9">
         <div class="slide-inner">
-            <img src="assets/images/p09-img1.png" alt="" class="i" style="position:absolute;left:276.9px;top:358.4px;width:130.9px;height:130.9px" loading="lazy">
-            <img src="assets/images/p09-img2.png" alt="" class="i" style="position:absolute;left:646.7px;top:347.8px;width:149.3px;height:149.3px" loading="lazy">
-            <img src="assets/images/p09-img3.png" alt="" class="i" style="position:absolute;left:967.1px;top:355.7px;width:263.9px;height:148.3px" loading="lazy">
+            <img src="assets/images/p09-img1.png" alt="" class="i" style="position:absolute;left:276.9px;top:358.4px;width:130.9px;height:130.9px;" loading="lazy">
+            <img src="assets/images/p09-img2.png" alt="" class="i" style="position:absolute;left:646.7px;top:347.8px;width:149.3px;height:149.3px;" loading="lazy">
+            <img src="assets/images/p09-img3.png" alt="" class="i" style="position:absolute;left:967.1px;top:355.7px;width:263.9px;height:148.3px;" loading="lazy">
             <span class="t" style="position:absolute;left:608.1px;top:139.3px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:64.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">MEDIA</span>
             <span class="t" style="position:absolute;left:206.4px;top:584.2px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:28.0px;color:#ffffff;white-space:nowrap;line-height:1">~15k listeners per month</span>
             <span class="t" style="position:absolute;left:222.9px;top:614.9px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:28.0px;color:#ffffff;white-space:nowrap;line-height:1">+150 5-star on iTunes</span>
@@ -398,32 +313,32 @@
     </div>
     <div class="slide-container" id="slide-10">
         <div class="slide-inner">
-            <div class="d" style="position:absolute;left:942.9px;top:200.0px;width:179.0px;height:91.7px;background:#ffffff" data-d="13"></div>
-            <div class="d" style="position:absolute;left:318.2px;top:200.0px;width:178.9px;height:91.7px;background:#ffffff" data-d="10"></div>
-            <div class="d" style="position:absolute;left:526.4px;top:200.0px;width:178.9px;height:91.7px;background:#ffffff" data-d="11"></div>
-            <div class="d" style="position:absolute;left:734.7px;top:200.0px;width:178.9px;height:91.7px;background:#ffffff" data-d="12"></div>
-            <div class="d" style="position:absolute;left:942.8px;top:313.4px;width:178.9px;height:91.6px;background:#ffffff" data-d="17"></div>
-            <div class="d" style="position:absolute;left:318.2px;top:313.4px;width:178.9px;height:91.6px;background:#ffffff" data-d="14"></div>
-            <div class="d" style="position:absolute;left:526.4px;top:313.4px;width:178.9px;height:91.6px;background:#ffffff" data-d="15"></div>
-            <div class="d" style="position:absolute;left:734.7px;top:313.4px;width:178.9px;height:91.6px;background:#ffffff" data-d="16"></div>
-            <div class="d" style="position:absolute;left:870.4px;top:538.9px;width:6.7px;height:6.8px;background:#ffffff;border-radius:50%" data-d="6"></div>
-            <div class="d" style="position:absolute;left:354.4px;top:566.1px;width:6.7px;height:6.8px;background:#ffffff;border-radius:50%" data-d="3"></div>
-            <div class="d" style="position:absolute;left:354.4px;top:624.6px;width:6.7px;height:6.8px;background:#ffffff;border-radius:50%" data-d="4"></div>
-            <div class="d" style="position:absolute;left:354.4px;top:683.1px;width:6.7px;height:6.8px;background:#ffffff;border-radius:50%" data-d="5"></div>
-            <div class="d" style="position:absolute;left:354.4px;top:536.9px;width:6.7px;height:6.7px;background:#ffffff;border-radius:50%" data-d="2"></div>
-            <div class="d" style="position:absolute;left:870.4px;top:568.2px;width:6.7px;height:6.7px;background:#ffffff;border-radius:50%" data-d="7"></div>
-            <div class="d" style="position:absolute;left:870.4px;top:626.7px;width:6.7px;height:6.7px;background:#ffffff;border-radius:50%" data-d="8"></div>
-            <div class="d" style="position:absolute;left:870.4px;top:685.2px;width:6.7px;height:6.7px;background:#ffffff;border-radius:50%" data-d="9"></div>
-            <img src="assets/images/p10-img1.png" alt="" class="i" style="position:absolute;left:258.3px;top:451.1px;width:99.8px;height:99.8px" loading="lazy">
-            <img src="assets/images/p10-img2.png" alt="" class="i" style="position:absolute;left:782.1px;top:453.0px;width:95.8px;height:95.8px" loading="lazy">
-            <img src="assets/images/p10-img3.png" alt="" class="i" style="position:absolute;left:278.3px;top:199.5px;width:258.8px;height:94.5px" loading="lazy">
-            <img src="assets/images/p10-img4.png" alt="" class="i" style="position:absolute;left:537.4px;top:344.9px;width:155.2px;height:28.5px" loading="lazy">
-            <img src="assets/images/p10-img5.png" alt="" class="i" style="position:absolute;left:742.3px;top:316.3px;width:163.5px;height:85.5px" loading="lazy">
-            <img src="assets/images/p10-img6.png" alt="" class="i" style="position:absolute;left:955.5px;top:336.3px;width:151.5px;height:45.8px" loading="lazy">
-            <img src="assets/images/p10-img7.png" alt="" class="i" style="position:absolute;left:533.6px;top:232.8px;width:164.2px;height:27.0px" loading="lazy">
-            <img src="assets/images/p10-img8.png" alt="" class="i" style="position:absolute;left:342.5px;top:341.8px;width:130.5px;height:51.8px" loading="lazy">
-            <img src="assets/images/p10-img9.png" alt="" class="i" style="position:absolute;left:980.5px;top:216.4px;width:101.2px;height:59.2px" loading="lazy">
-            <img src="assets/images/p10-img10.png" alt="" class="i" style="position:absolute;left:757.8px;top:223.3px;width:132.8px;height:45.0px" loading="lazy">
+            <div class="d" style="position:absolute;left:942.9px;top:200.0px;width:179.0px;height:91.7px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:318.2px;top:200.0px;width:178.9px;height:91.7px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:526.4px;top:200.0px;width:178.9px;height:91.7px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:734.7px;top:200.0px;width:178.9px;height:91.7px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:942.8px;top:313.4px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:318.2px;top:313.4px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:526.4px;top:313.4px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:734.7px;top:313.4px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:870.4px;top:538.9px;width:6.7px;height:6.8px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:354.4px;top:566.1px;width:6.7px;height:6.8px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:354.4px;top:624.6px;width:6.7px;height:6.8px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:354.4px;top:683.1px;width:6.7px;height:6.8px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:354.4px;top:536.9px;width:6.7px;height:6.7px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:870.4px;top:568.2px;width:6.7px;height:6.7px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:870.4px;top:626.7px;width:6.7px;height:6.7px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:870.4px;top:685.2px;width:6.7px;height:6.7px;background:#ffffff;border-radius:50%"></div>
+            <img src="assets/images/p10-img1.png" alt="" class="i" style="position:absolute;left:258.3px;top:451.1px;width:99.8px;height:99.8px;" loading="lazy">
+            <img src="assets/images/p10-img2.png" alt="" class="i" style="position:absolute;left:782.1px;top:453.0px;width:95.8px;height:95.8px;" loading="lazy">
+            <img src="assets/images/p10-img3.png" alt="" class="i" style="position:absolute;left:278.3px;top:199.5px;width:258.8px;height:94.5px;" loading="lazy">
+            <img src="assets/images/p10-img4.png" alt="" class="i" style="position:absolute;left:537.4px;top:344.9px;width:155.2px;height:28.5px;" loading="lazy">
+            <img src="assets/images/p10-img5.png" alt="" class="i" style="position:absolute;left:742.3px;top:316.3px;width:163.5px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p10-img6.png" alt="" class="i" style="position:absolute;left:955.5px;top:336.3px;width:151.5px;height:45.8px;" loading="lazy">
+            <img src="assets/images/p10-img7.png" alt="" class="i" style="position:absolute;left:533.6px;top:232.8px;width:164.2px;height:27.0px;" loading="lazy">
+            <img src="assets/images/p10-img8.png" alt="" class="i" style="position:absolute;left:342.5px;top:341.8px;width:130.5px;height:51.8px;" loading="lazy">
+            <img src="assets/images/p10-img9.png" alt="" class="i" style="position:absolute;left:980.5px;top:216.4px;width:101.2px;height:59.2px;" loading="lazy">
+            <img src="assets/images/p10-img10.png" alt="" class="i" style="position:absolute;left:757.8px;top:223.3px;width:132.8px;height:45.0px;" loading="lazy">
             <span class="t" style="position:absolute;left:351.6px;top:477.8px;font-family:'OpenSans',sans-serif;font-weight:700;font-size:26.0px;color:#ec36a3;white-space:nowrap;line-height:1">STRATEGY</span>
             <span class="t" style="position:absolute;left:372.8px;top:527.4px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:21.0px;color:#ffffff;white-space:nowrap;line-height:1">Market Assessment</span>
             <span class="t" style="position:absolute;left:372.8px;top:556.7px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:21.0px;color:#ffffff;white-space:nowrap;line-height:1">In-depth analysis of the French</span>
@@ -448,23 +363,23 @@
     </div>
     <div class="slide-container" id="slide-11">
         <div class="slide-inner">
-            <img src="assets/images/p11-img1.png" alt="" class="i" style="position:absolute;left:336.9px;top:272.1px;width:142.1px;height:142.1px" loading="lazy">
-            <img src="assets/images/p11-img2.png" alt="" class="i" style="position:absolute;left:398.1px;top:452.5px;width:153.8px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img3.png" alt="" class="i" style="position:absolute;left:231.9px;top:452.5px;width:153.8px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img4.png" alt="" class="i" style="position:absolute;left:398.1px;top:547.8px;width:153.8px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img5.png" alt="" class="i" style="position:absolute;left:231.9px;top:547.8px;width:154.5px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img6.png" alt="" class="i" style="position:absolute;left:231.8px;top:643.4px;width:153.8px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img7.png" alt="" class="i" style="position:absolute;left:398.1px;top:643.4px;width:153.8px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img8.png" alt="" class="i" style="position:absolute;left:898.1px;top:272.1px;width:142.1px;height:142.1px" loading="lazy">
-            <img src="assets/images/p11-img9.png" alt="" class="i" style="position:absolute;left:709.5px;top:451.7px;width:153.8px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img10.png" alt="" class="i" style="position:absolute;left:875.5px;top:451.7px;width:153.7px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img11.png" alt="" class="i" style="position:absolute;left:1041.5px;top:451.7px;width:153.8px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img12.png" alt="" class="i" style="position:absolute;left:709.5px;top:547.1px;width:153.8px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img13.png" alt="" class="i" style="position:absolute;left:875.5px;top:546.3px;width:153.7px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img14.png" alt="" class="i" style="position:absolute;left:1041.5px;top:547.1px;width:153.8px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img15.png" alt="" class="i" style="position:absolute;left:709.5px;top:642.7px;width:153.8px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img16.png" alt="" class="i" style="position:absolute;left:875.5px;top:642.7px;width:153.7px;height:85.5px" loading="lazy">
-            <img src="assets/images/p11-img17.png" alt="" class="i" style="position:absolute;left:1041.5px;top:642.7px;width:155.2px;height:86.2px" loading="lazy">
+            <img src="assets/images/p11-img1.png" alt="" class="i" style="position:absolute;left:336.9px;top:272.1px;width:142.1px;height:142.1px;" loading="lazy">
+            <img src="assets/images/p11-img2.png" alt="" class="i" style="position:absolute;left:398.1px;top:452.5px;width:153.8px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img3.png" alt="" class="i" style="position:absolute;left:231.9px;top:452.5px;width:153.8px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img4.png" alt="" class="i" style="position:absolute;left:398.1px;top:547.8px;width:153.8px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img5.png" alt="" class="i" style="position:absolute;left:231.9px;top:547.8px;width:154.5px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img6.png" alt="" class="i" style="position:absolute;left:231.8px;top:643.4px;width:153.8px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img7.png" alt="" class="i" style="position:absolute;left:398.1px;top:643.4px;width:153.8px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img8.png" alt="" class="i" style="position:absolute;left:898.1px;top:272.1px;width:142.1px;height:142.1px;" loading="lazy">
+            <img src="assets/images/p11-img9.png" alt="" class="i" style="position:absolute;left:709.5px;top:451.7px;width:153.8px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img10.png" alt="" class="i" style="position:absolute;left:875.5px;top:451.7px;width:153.7px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img11.png" alt="" class="i" style="position:absolute;left:1041.5px;top:451.7px;width:153.8px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img12.png" alt="" class="i" style="position:absolute;left:709.5px;top:547.1px;width:153.8px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img13.png" alt="" class="i" style="position:absolute;left:875.5px;top:546.3px;width:153.7px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img14.png" alt="" class="i" style="position:absolute;left:1041.5px;top:547.1px;width:153.8px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img15.png" alt="" class="i" style="position:absolute;left:709.5px;top:642.7px;width:153.8px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img16.png" alt="" class="i" style="position:absolute;left:875.5px;top:642.7px;width:153.7px;height:85.5px;" loading="lazy">
+            <img src="assets/images/p11-img17.png" alt="" class="i" style="position:absolute;left:1041.5px;top:642.7px;width:155.2px;height:86.2px;" loading="lazy">
             <span class="t" style="position:absolute;left:930.1px;top:305.8px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:73.5px;color:#000000;white-space:nowrap;letter-spacing:2px;line-height:1">2</span>
             <span class="t" style="position:absolute;left:789.1px;top:400.9px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:33.0px;color:#ffffff;white-space:nowrap;line-height:1">INDUSTRY EVENTS</span>
             <span class="t" style="position:absolute;left:583.9px;top:98.4px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:64.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">EVENTS</span>
@@ -478,27 +393,23 @@
     </div>
     <div class="slide-container" id="slide-12">
         <div class="slide-inner">
-            <div class="d" style="position:absolute;left:773.2px;top:433.4px;width:283.2px;height:317.2px;background:#ffffff" data-d="11"></div>
-            <div class="d" style="position:absolute;left:773.2px;top:433.4px;width:283.2px;height:317.2px;background:#000000" data-d="12"></div>
-            <div class="d" style="position:absolute;left:773.2px;top:433.4px;width:283.2px;height:317.2px;background:#ffffff" data-d="13"></div>
-            <div class="d" style="position:absolute;left:1142.8px;top:132.5px;width:283.1px;height:317.1px;background:#ffffff" data-d="2"></div>
-            <div class="d" style="position:absolute;left:1142.8px;top:132.5px;width:283.1px;height:317.1px;background:#000000" data-d="3"></div>
-            <div class="d" style="position:absolute;left:1142.8px;top:132.5px;width:283.1px;height:317.1px;background:#ffffff" data-d="4"></div>
-            <div class="d" style="position:absolute;left:952.6px;top:290.9px;width:279.1px;height:313.8px;background:#ffffff" data-d="8"></div>
-            <div class="d" style="position:absolute;left:952.6px;top:290.9px;width:279.1px;height:313.8px;background:#000000" data-d="9"></div>
-            <div class="d" style="position:absolute;left:952.6px;top:290.9px;width:279.1px;height:313.8px;background:#ffffff" data-d="10"></div>
-            <div class="d" style="position:absolute;left:1096.8px;top:465.1px;width:269.8px;height:306.1px;background:#ffffff" data-d="5"></div>
-            <div class="d" style="position:absolute;left:1096.8px;top:465.1px;width:269.8px;height:306.1px;background:#000000" data-d="6"></div>
-            <div class="d" style="position:absolute;left:1096.8px;top:465.1px;width:269.8px;height:306.1px;background:#ffffff" data-d="7"></div>
-            <div class="d" style="position:absolute;left:262.9px;top:400.4px;width:43.1px;height:24.6px;background:#ffffff;border-radius:12px" data-d="14"></div>
-            <div class="d" style="position:absolute;left:255.7px;top:408.8px;width:43.1px;height:24.6px;background:#ffffff;border-radius:12px" data-d="15"></div>
-            <img src="assets/images/p12-img1.png" alt="" class="i" style="position:absolute;left:673.2px;top:45.3px;width:580.2px;height:343.1px" loading="lazy">
-            <img src="assets/images/p12-img2.png" alt="" class="i" style="position:absolute;left:676.5px;top:38.9px;width:476.7px;height:363.9px" loading="lazy">
-            <img src="assets/images/p12-img3.png" alt="" class="i" style="position:absolute;left:1112.7px;top:140.2px;width:401.5px;height:261.2px" loading="lazy">
-            <img src="assets/images/p12-img4.png" alt="" class="i" style="position:absolute;left:1060.3px;top:478.6px;width:297.9px;height:234.7px" loading="lazy">
-            <img src="assets/images/p12-img5.png" alt="" class="i" style="position:absolute;left:935.8px;top:217.0px;width:299.6px;height:353.1px" loading="lazy">
-            <img src="assets/images/p12-img6.png" alt="" class="i" style="position:absolute;left:699.5px;top:435.0px;width:401.6px;height:261.2px" loading="lazy">
-            <img src="assets/images/p12-img7.png" alt="" class="i" style="position:absolute;left:92.7px;top:272.0px;width:506.2px;height:322.5px" loading="lazy">
+            <div class="d" style="position:absolute;left:773.2px;top:433.4px;width:283.2px;height:317.2px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:773.2px;top:433.4px;width:283.2px;height:317.2px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:1142.8px;top:132.5px;width:283.1px;height:317.1px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:1142.8px;top:132.5px;width:283.1px;height:317.1px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:952.6px;top:290.9px;width:279.1px;height:313.8px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:952.6px;top:290.9px;width:279.1px;height:313.8px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:1096.8px;top:465.1px;width:269.8px;height:306.1px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:1096.8px;top:465.1px;width:269.8px;height:306.1px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:262.9px;top:400.4px;width:43.1px;height:24.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:255.7px;top:408.8px;width:43.1px;height:24.6px;background:#ffffff;border-radius:12px"></div>
+            <img src="assets/images/p12-img1.png" alt="" class="i" style="position:absolute;left:673.2px;top:45.3px;width:580.2px;height:343.1px;" loading="lazy">
+            <img src="assets/images/p12-img2.png" alt="" class="i" style="position:absolute;left:676.5px;top:38.9px;width:476.7px;height:363.9px;" loading="lazy">
+            <img src="assets/images/p12-img3.png" alt="" class="i" style="position:absolute;left:1112.7px;top:140.2px;width:401.5px;height:261.2px;" loading="lazy">
+            <img src="assets/images/p12-img4.png" alt="" class="i" style="position:absolute;left:1060.3px;top:478.6px;width:297.9px;height:234.7px;" loading="lazy">
+            <img src="assets/images/p12-img5.png" alt="" class="i" style="position:absolute;left:935.8px;top:217.0px;width:299.6px;height:353.1px;" loading="lazy">
+            <img src="assets/images/p12-img6.png" alt="" class="i" style="position:absolute;left:699.5px;top:435.0px;width:401.6px;height:261.2px;" loading="lazy">
+            <img src="assets/images/p12-img7.png" alt="" class="i" style="position:absolute;left:92.7px;top:272.0px;width:506.2px;height:322.5px;" loading="lazy">
             <span class="t" style="position:absolute;left:82.4px;top:119.3px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:80.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">OUR EVENTS</span>
             <span class="t" style="position:absolute;left:119.5px;top:208.1px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:40.0px;color:#ec36a3;white-space:nowrap;line-height:1">MEETING OUR COMMUNITY</span>
             <span class="t" style="position:absolute;left:268.5px;top:403.2px;font-family:'OpenSans',sans-serif;font-weight:700;font-size:14.0px;color:#ffffff;white-space:nowrap;line-height:1">2025</span>
@@ -509,7 +420,7 @@
     </div>
     <div class="slide-container" id="slide-13">
         <div class="slide-inner">
-            <img src="assets/images/p13-img1.png" alt="" class="i" style="position:absolute;left:-65.4px;top:-37.9px;width:892.1px;height:672.4px" loading="lazy">
+            <img src="assets/images/p13-img1.png" alt="" class="i" style="position:absolute;left:-65.4px;top:-37.9px;width:892.1px;height:672.4px;" loading="lazy">
             <span class="t" style="position:absolute;left:925.5px;top:205.3px;font-family:'AmbiguityNormate',sans-serif;font-weight:400;font-size:116.0px;color:#ffffff;white-space:nowrap;line-height:1">S T P</span>
             <span class="t" style="position:absolute;left:930.6px;top:373.4px;font-family:'Brice',sans-serif;font-weight:400;font-size:18.7px;color:#ffffff;white-space:nowrap;line-height:1">S T O R E  T O U R  P A R I S</span>
             <span class="t" style="position:absolute;left:780.0px;top:509.4px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:24.0px;color:#ffffff;white-space:nowrap;line-height:1">Store Tour Paris (STP) is a quarterly half-day event where</span>
@@ -522,8 +433,8 @@
     </div>
     <div class="slide-container" id="slide-14">
         <div class="slide-inner">
-            <img src="assets/images/p14-img1.png" alt="" class="i" style="position:absolute;left:347.3px;top:288.5px;width:759.1px;height:506.1px" loading="lazy">
-            <img src="assets/images/p14-img2.png" alt="" class="i" style="position:absolute;left:316.7px;top:-48.7px;width:808.5px;height:404.2px" loading="lazy">
+            <img src="assets/images/p14-img1.png" alt="" class="i" style="position:absolute;left:347.3px;top:288.5px;width:759.1px;height:506.1px;" loading="lazy">
+            <img src="assets/images/p14-img2.png" alt="" class="i" style="position:absolute;left:316.7px;top:-48.7px;width:808.5px;height:404.2px;" loading="lazy">
             <span class="t" style="position:absolute;left:283.1px;top:322.9px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:25.0px;color:#ffffff;white-space:nowrap;line-height:1">WIRE is the largest and #1 french community for women in retail and e-commerce. </span>
             <span class="t" style="position:absolute;left:307.4px;top:359.7px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:25.0px;color:#ffffff;white-space:nowrap;line-height:1">Every quarter, we host a VIP dinner where leaders and experts meet in a small</span>
             <span class="t" style="position:absolute;left:275.6px;top:396.4px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:25.0px;color:#ffffff;white-space:nowrap;line-height:1">group to exchange ideas and experiences. These dinners create strong connections</span>
@@ -533,8 +444,8 @@
     </div>
     <div class="slide-container" id="slide-15">
         <div class="slide-inner">
-            <img src="assets/images/p15-img1.png" alt="" class="i" style="position:absolute;left:258.6px;top:42.0px;width:249.8px;height:249.8px" loading="lazy">
-            <img src="assets/images/p15-img2.png" alt="" class="i" style="position:absolute;left:703.9px;top:339.3px;width:654.7px;height:436.5px" loading="lazy">
+            <img src="assets/images/p15-img1.png" alt="" class="i" style="position:absolute;left:258.6px;top:42.0px;width:249.8px;height:249.8px;" loading="lazy">
+            <img src="assets/images/p15-img2.png" alt="" class="i" style="position:absolute;left:703.9px;top:339.3px;width:654.7px;height:436.5px;" loading="lazy">
             <span class="t" style="position:absolute;left:126.6px;top:404.2px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:26.0px;color:#ffffff;white-space:nowrap;line-height:1">Brands2Buyers is an exclusive event gathering</span>
             <span class="t" style="position:absolute;left:126.6px;top:442.4px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:26.0px;color:#ffffff;white-space:nowrap;line-height:1">50 top decision-makers to explore strategies,</span>
             <span class="t" style="position:absolute;left:126.6px;top:480.7px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:26.0px;color:#ffffff;white-space:nowrap;line-height:1">tools, and solutions for business growth. It</span>
@@ -550,104 +461,104 @@
     </div>
     <div class="slide-container" id="slide-16">
         <div class="slide-inner">
-            <div class="d" style="position:absolute;left:962.7px;top:11.7px;width:144.7px;height:144.7px;background:#000000" data-d="2"></div>
-            <div class="d" style="position:absolute;left:1122.5px;top:11.7px;width:144.7px;height:144.7px;background:#000000" data-d="3"></div>
-            <div class="d" style="position:absolute;left:1282.0px;top:11.6px;width:144.7px;height:144.7px;background:#000000" data-d="4"></div>
-            <div class="d" style="position:absolute;left:1122.5px;top:172.2px;width:144.7px;height:144.7px;background:#000000" data-d="6"></div>
-            <div class="d" style="position:absolute;left:1122.5px;top:332.7px;width:144.7px;height:144.7px;background:#000000" data-d="9"></div>
-            <div class="d" style="position:absolute;left:1282.3px;top:332.7px;width:144.7px;height:144.7px;background:#000000" data-d="10"></div>
-            <div class="d" style="position:absolute;left:962.7px;top:493.1px;width:144.7px;height:144.7px;background:#000000" data-d="11"></div>
-            <div class="d" style="position:absolute;left:1122.5px;top:493.1px;width:144.7px;height:144.7px;background:#000000" data-d="12"></div>
-            <div class="d" style="position:absolute;left:1282.3px;top:493.1px;width:144.7px;height:144.7px;background:#000000" data-d="13"></div>
-            <div class="d" style="position:absolute;left:962.7px;top:653.7px;width:144.7px;height:144.7px;background:#000000" data-d="14"></div>
-            <div class="d" style="position:absolute;left:1122.5px;top:653.7px;width:144.7px;height:144.7px;background:#000000" data-d="15"></div>
-            <div class="d" style="position:absolute;left:1282.3px;top:653.7px;width:144.7px;height:144.7px;background:#000000" data-d="16"></div>
-            <div class="d" style="position:absolute;left:962.7px;top:172.1px;width:144.7px;height:144.6px;background:#000000" data-d="5"></div>
-            <div class="d" style="position:absolute;left:1282.1px;top:172.1px;width:144.7px;height:144.6px;background:#000000" data-d="7"></div>
-            <div class="d" style="position:absolute;left:963.0px;top:332.6px;width:144.7px;height:144.6px;background:#000000" data-d="8"></div>
-            <img src="assets/images/p16-img1.png" alt="" class="i" style="position:absolute;left:962.7px;top:10.1px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img2.png" alt="" class="i" style="position:absolute;left:962.7px;top:491.5px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img3.png" alt="" class="i" style="position:absolute;left:1122.5px;top:331.1px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img4.png" alt="" class="i" style="position:absolute;left:1122.5px;top:491.5px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img5.png" alt="" class="i" style="position:absolute;left:1282.3px;top:331.1px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img6.png" alt="" class="i" style="position:absolute;left:1282.3px;top:491.5px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img7.png" alt="" class="i" style="position:absolute;left:1122.5px;top:170.6px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img8.png" alt="" class="i" style="position:absolute;left:962.7px;top:170.5px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img9.png" alt="" class="i" style="position:absolute;left:962.7px;top:652.2px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img10.png" alt="" class="i" style="position:absolute;left:1122.5px;top:652.2px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img11.png" alt="" class="i" style="position:absolute;left:1282.3px;top:652.2px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img12.png" alt="" class="i" style="position:absolute;left:963.0px;top:331.0px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img13.png" alt="" class="i" style="position:absolute;left:1282.1px;top:170.5px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img14.png" alt="" class="i" style="position:absolute;left:1122.5px;top:10.1px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img15.png" alt="" class="i" style="position:absolute;left:1282.0px;top:10.0px;width:144.8px;height:147.8px" loading="lazy">
-            <img src="assets/images/p16-img16.png" alt="" class="i" style="position:absolute;left:351.6px;top:186.3px;width:252.0px;height:252.0px" loading="lazy">
+            <div class="d" style="position:absolute;left:962.7px;top:11.7px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1122.5px;top:11.7px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1282.0px;top:11.6px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1122.5px;top:172.2px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1122.5px;top:332.7px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1282.3px;top:332.7px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:962.7px;top:493.1px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1122.5px;top:493.1px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1282.3px;top:493.1px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:962.7px;top:653.7px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1122.5px;top:653.7px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1282.3px;top:653.7px;width:144.7px;height:144.7px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:962.7px;top:172.1px;width:144.7px;height:144.6px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1282.1px;top:172.1px;width:144.7px;height:144.6px;background:#000000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:963.0px;top:332.6px;width:144.7px;height:144.6px;background:#000000;border-radius:50%"></div>
+            <img src="assets/images/p16-img1.png" alt="" class="i" style="position:absolute;left:962.7px;top:10.1px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img2.png" alt="" class="i" style="position:absolute;left:962.7px;top:491.5px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img3.png" alt="" class="i" style="position:absolute;left:1122.5px;top:331.1px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img4.png" alt="" class="i" style="position:absolute;left:1122.5px;top:491.5px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img5.png" alt="" class="i" style="position:absolute;left:1282.3px;top:331.1px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img6.png" alt="" class="i" style="position:absolute;left:1282.3px;top:491.5px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img7.png" alt="" class="i" style="position:absolute;left:1122.5px;top:170.6px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img8.png" alt="" class="i" style="position:absolute;left:962.7px;top:170.5px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img9.png" alt="" class="i" style="position:absolute;left:962.7px;top:652.2px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img10.png" alt="" class="i" style="position:absolute;left:1122.5px;top:652.2px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img11.png" alt="" class="i" style="position:absolute;left:1282.3px;top:652.2px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img12.png" alt="" class="i" style="position:absolute;left:963.0px;top:331.0px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img13.png" alt="" class="i" style="position:absolute;left:1282.1px;top:170.5px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img14.png" alt="" class="i" style="position:absolute;left:1122.5px;top:10.1px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img15.png" alt="" class="i" style="position:absolute;left:1282.0px;top:10.0px;width:144.8px;height:147.8px;" loading="lazy">
+            <img src="assets/images/p16-img16.png" alt="" class="i" style="position:absolute;left:351.6px;top:186.3px;width:252.0px;height:252.0px;" loading="lazy">
             <span class="t" style="position:absolute;left:155.9px;top:444.5px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:64.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">+ 1500 EXPERTS IN</span>
             <span class="t" style="position:absolute;left:147.3px;top:521.7px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:64.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">OUR COMMUNITIES</span>
         </div>
     </div>
     <div class="slide-container" id="slide-17">
         <div class="slide-inner">
-            <div class="d" style="position:absolute;left:630.6px;top:253.5px;width:179.0px;height:91.6px;background:#ffffff" data-d="4"></div>
-            <div class="d" style="position:absolute;left:838.8px;top:490.0px;width:179.0px;height:91.6px;background:#ffffff" data-d="13"></div>
-            <div class="d" style="position:absolute;left:838.8px;top:608.0px;width:179.0px;height:91.6px;background:#ffffff" data-d="17"></div>
-            <div class="d" style="position:absolute;left:213.9px;top:490.4px;width:179.0px;height:91.6px;background:#ffffff" data-d="10"></div>
-            <div class="d" style="position:absolute;left:422.3px;top:253.5px;width:179.0px;height:91.6px;background:#ffffff" data-d="3"></div>
-            <div class="d" style="position:absolute;left:838.8px;top:371.3px;width:179.0px;height:91.6px;background:#ffffff" data-d="20"></div>
-            <div class="d" style="position:absolute;left:1047.0px;top:607.7px;width:179.0px;height:91.6px;background:#ffffff" data-d="18"></div>
-            <div class="d" style="position:absolute;left:214.2px;top:253.5px;width:178.9px;height:91.6px;background:#ffffff" data-d="2"></div>
-            <div class="d" style="position:absolute;left:838.9px;top:253.5px;width:178.9px;height:91.6px;background:#ffffff" data-d="5"></div>
-            <div class="d" style="position:absolute;left:630.4px;top:489.5px;width:178.9px;height:91.6px;background:#ffffff" data-d="12"></div>
-            <div class="d" style="position:absolute;left:630.4px;top:370.9px;width:178.9px;height:91.6px;background:#ffffff" data-d="19"></div>
-            <div class="d" style="position:absolute;left:630.4px;top:608.0px;width:178.9px;height:91.6px;background:#ffffff" data-d="21"></div>
-            <div class="d" style="position:absolute;left:214.2px;top:371.6px;width:178.9px;height:91.6px;background:#ffffff" data-d="7"></div>
-            <div class="d" style="position:absolute;left:422.3px;top:371.8px;width:178.9px;height:91.6px;background:#ffffff" data-d="9"></div>
-            <div class="d" style="position:absolute;left:1047.2px;top:253.5px;width:178.9px;height:91.6px;background:#ffffff" data-d="6"></div>
-            <div class="d" style="position:absolute;left:422.4px;top:489.7px;width:178.9px;height:91.6px;background:#ffffff" data-d="11"></div>
-            <div class="d" style="position:absolute;left:214.4px;top:608.2px;width:178.9px;height:91.6px;background:#ffffff" data-d="15"></div>
-            <div class="d" style="position:absolute;left:422.4px;top:608.2px;width:178.9px;height:91.6px;background:#ffffff" data-d="16"></div>
-            <div class="d" style="position:absolute;left:1047.2px;top:371.3px;width:178.9px;height:91.6px;background:#ffffff" data-d="8"></div>
-            <div class="d" style="position:absolute;left:1047.2px;top:489.8px;width:178.9px;height:91.6px;background:#ffffff" data-d="14"></div>
-            <div class="d" style="position:absolute;left:432.3px;top:279.0px;width:158.8px;height:40.5px;background:#000000" data-d="30"></div>
-            <div class="d" style="position:absolute;left:433.9px;top:279.0px;width:17.0px;height:40.5px;background:#e70000" data-d="28"></div>
-            <div class="d" style="position:absolute;left:462.8px;top:279.0px;width:16.9px;height:40.5px;background:#e70000" data-d="27"></div>
-            <div class="d" style="position:absolute;left:494.7px;top:288.6px;width:21.5px;height:22.9px;background:#e70000;border-radius:50%" data-d="22"></div>
-            <div class="d" style="position:absolute;left:449.4px;top:294.0px;width:18.2px;height:25.5px;background:#e70000" data-d="29"></div>
-            <div class="d" style="position:absolute;left:516.7px;top:286.7px;width:16.3px;height:25.1px;background:#e70000;border-radius:12px" data-d="23"></div>
-            <div class="d" style="position:absolute;left:555.7px;top:286.7px;width:16.2px;height:25.1px;background:#e70000;border-radius:12px" data-d="25"></div>
-            <div class="d" style="position:absolute;left:535.6px;top:293.8px;width:17.3px;height:18.0px;background:#e70000;border-radius:50%" data-d="24"></div>
-            <div class="d" style="position:absolute;left:573.8px;top:293.8px;width:15.9px;height:18.0px;background:#e70000;border-radius:50%" data-d="26"></div>
-            <img src="assets/images/p17-img1.png" alt="" class="i" style="position:absolute;left:225.6px;top:275.3px;width:155.2px;height:48.0px" loading="lazy">
-            <img src="assets/images/p17-img2.png" alt="" class="i" style="position:absolute;left:642.5px;top:275.5px;width:157.5px;height:48.0px" loading="lazy">
-            <img src="assets/images/p17-img3.png" alt="" class="i" style="position:absolute;left:853.8px;top:265.0px;width:149.2px;height:74.2px" loading="lazy">
-            <img src="assets/images/p17-img4.png" alt="" class="i" style="position:absolute;left:1036.1px;top:246.9px;width:200.2px;height:105.0px" loading="lazy">
-            <img src="assets/images/p17-img5.png" alt="" class="i" style="position:absolute;left:215.7px;top:388.4px;width:175.5px;height:58.5px" loading="lazy">
-            <img src="assets/images/p17-img6.png" alt="" class="i" style="position:absolute;left:427.2px;top:334.6px;width:168.8px;height:168.8px" loading="lazy">
-            <img src="assets/images/p17-img7.png" alt="" class="i" style="position:absolute;left:590.5px;top:370.4px;width:258.8px;height:94.5px" loading="lazy">
-            <img src="assets/images/p17-img8.png" alt="" class="i" style="position:absolute;left:861.0px;top:393.8px;width:134.2px;height:54.8px" loading="lazy">
-            <img src="assets/images/p17-img9.png" alt="" class="i" style="position:absolute;left:1060.0px;top:401.8px;width:153.8px;height:35.2px" loading="lazy">
-            <img src="assets/images/p17-img10.png" alt="" class="i" style="position:absolute;left:214.3px;top:477.3px;width:179.3px;height:119.2px" loading="lazy">
-            <img src="assets/images/p17-img11.png" alt="" class="i" style="position:absolute;left:439.8px;top:495.7px;width:144.0px;height:81.0px" loading="lazy">
-            <img src="assets/images/p17-img12.png" alt="" class="i" style="position:absolute;left:640.4px;top:513.6px;width:156.8px;height:45.0px" loading="lazy">
-            <img src="assets/images/p17-img13.png" alt="" class="i" style="position:absolute;left:854.6px;top:513.6px;width:147.0px;height:50.2px" loading="lazy">
-            <img src="assets/images/p17-img14.png" alt="" class="i" style="position:absolute;left:1054.9px;top:523.7px;width:163.5px;height:30.0px" loading="lazy">
-            <img src="assets/images/p17-img15.png" alt="" class="i" style="position:absolute;left:222.6px;top:636.3px;width:162.8px;height:35.2px" loading="lazy">
-            <img src="assets/images/p17-img16.png" alt="" class="i" style="position:absolute;left:424.9px;top:629.4px;width:174.0px;height:48.0px" loading="lazy">
-            <img src="assets/images/p17-img17.png" alt="" class="i" style="position:absolute;left:638.4px;top:610.3px;width:162.8px;height:90.0px" loading="lazy">
-            <img src="assets/images/p17-img18.png" alt="" class="i" style="position:absolute;left:849.0px;top:600.5px;width:159.8px;height:111.8px" loading="lazy">
-            <img src="assets/images/p17-img19.png" alt="" class="i" style="position:absolute;left:1073.6px;top:621.5px;width:126.0px;height:66.8px" loading="lazy">
+            <div class="d" style="position:absolute;left:630.6px;top:253.5px;width:179.0px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:838.8px;top:490.0px;width:179.0px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:838.8px;top:608.0px;width:179.0px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:213.9px;top:490.4px;width:179.0px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:422.3px;top:253.5px;width:179.0px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:838.8px;top:371.3px;width:179.0px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:1047.0px;top:607.7px;width:179.0px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:214.2px;top:253.5px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:838.9px;top:253.5px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:630.4px;top:489.5px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:630.4px;top:370.9px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:630.4px;top:608.0px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:214.2px;top:371.6px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:422.3px;top:371.8px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:1047.2px;top:253.5px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:422.4px;top:489.7px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:214.4px;top:608.2px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:422.4px;top:608.2px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:1047.2px;top:371.3px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:1047.2px;top:489.8px;width:178.9px;height:91.6px;background:#ffffff;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:432.3px;top:279.0px;width:158.8px;height:40.5px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:433.9px;top:279.0px;width:17.0px;height:40.5px;background:#e70000"></div>
+            <div class="d" style="position:absolute;left:462.8px;top:279.0px;width:16.9px;height:40.5px;background:#e70000"></div>
+            <div class="d" style="position:absolute;left:494.7px;top:288.6px;width:21.5px;height:22.9px;background:#e70000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:449.4px;top:294.0px;width:18.2px;height:25.5px;background:#e70000"></div>
+            <div class="d" style="position:absolute;left:516.7px;top:286.7px;width:16.3px;height:25.1px;background:#e70000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:555.7px;top:286.7px;width:16.2px;height:25.1px;background:#e70000;border-radius:12px"></div>
+            <div class="d" style="position:absolute;left:535.6px;top:293.8px;width:17.3px;height:18.0px;background:#e70000;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:573.8px;top:293.8px;width:15.9px;height:18.0px;background:#e70000;border-radius:50%"></div>
+            <img src="assets/images/p17-img1.png" alt="" class="i" style="position:absolute;left:225.6px;top:275.3px;width:155.2px;height:48.0px;" loading="lazy">
+            <img src="assets/images/p17-img2.png" alt="" class="i" style="position:absolute;left:642.5px;top:275.5px;width:157.5px;height:48.0px;" loading="lazy">
+            <img src="assets/images/p17-img3.png" alt="" class="i" style="position:absolute;left:853.8px;top:265.0px;width:149.2px;height:74.2px;" loading="lazy">
+            <img src="assets/images/p17-img4.png" alt="" class="i" style="position:absolute;left:1036.1px;top:246.9px;width:200.2px;height:105.0px;" loading="lazy">
+            <img src="assets/images/p17-img5.png" alt="" class="i" style="position:absolute;left:215.7px;top:388.4px;width:175.5px;height:58.5px;" loading="lazy">
+            <img src="assets/images/p17-img6.png" alt="" class="i" style="position:absolute;left:427.2px;top:334.6px;width:168.8px;height:168.8px;" loading="lazy">
+            <img src="assets/images/p17-img7.png" alt="" class="i" style="position:absolute;left:590.5px;top:370.4px;width:258.8px;height:94.5px;" loading="lazy">
+            <img src="assets/images/p17-img8.png" alt="" class="i" style="position:absolute;left:861.0px;top:393.8px;width:134.2px;height:54.8px;" loading="lazy">
+            <img src="assets/images/p17-img9.png" alt="" class="i" style="position:absolute;left:1060.0px;top:401.8px;width:153.8px;height:35.2px;" loading="lazy">
+            <img src="assets/images/p17-img10.png" alt="" class="i" style="position:absolute;left:214.3px;top:477.3px;width:179.3px;height:119.2px;" loading="lazy">
+            <img src="assets/images/p17-img11.png" alt="" class="i" style="position:absolute;left:439.8px;top:495.7px;width:144.0px;height:81.0px;" loading="lazy">
+            <img src="assets/images/p17-img12.png" alt="" class="i" style="position:absolute;left:640.4px;top:513.6px;width:156.8px;height:45.0px;" loading="lazy">
+            <img src="assets/images/p17-img13.png" alt="" class="i" style="position:absolute;left:854.6px;top:513.6px;width:147.0px;height:50.2px;" loading="lazy">
+            <img src="assets/images/p17-img14.png" alt="" class="i" style="position:absolute;left:1054.9px;top:523.7px;width:163.5px;height:30.0px;" loading="lazy">
+            <img src="assets/images/p17-img15.png" alt="" class="i" style="position:absolute;left:222.6px;top:636.3px;width:162.8px;height:35.2px;" loading="lazy">
+            <img src="assets/images/p17-img16.png" alt="" class="i" style="position:absolute;left:424.9px;top:629.4px;width:174.0px;height:48.0px;" loading="lazy">
+            <img src="assets/images/p17-img17.png" alt="" class="i" style="position:absolute;left:638.4px;top:610.3px;width:162.8px;height:90.0px;" loading="lazy">
+            <img src="assets/images/p17-img18.png" alt="" class="i" style="position:absolute;left:849.0px;top:600.5px;width:159.8px;height:111.8px;" loading="lazy">
+            <img src="assets/images/p17-img19.png" alt="" class="i" style="position:absolute;left:1073.6px;top:621.5px;width:126.0px;height:66.8px;" loading="lazy">
             <span class="t" style="position:absolute;left:164.0px;top:111.4px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:64.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">THE TECH IN OUR COMMUNITIES</span>
         </div>
     </div>
     <div class="slide-container" id="slide-18">
         <div class="slide-inner">
-            <div class="d" style="position:absolute;left:58.0px;top:542.7px;width:282.1px;height:0.8px;background:#000000" data-d="6"></div>
-            <div class="d" style="position:absolute;left:405.1px;top:542.7px;width:282.1px;height:0.8px;background:#000000" data-d="7"></div>
-            <div class="d" style="position:absolute;left:752.5px;top:542.7px;width:282.1px;height:0.8px;background:#000000" data-d="8"></div>
-            <div class="d" style="position:absolute;left:1099.9px;top:542.4px;width:282.1px;height:0.7px;background:#000000" data-d="9"></div>
-            <div class="d" style="position:absolute;left:752.9px;top:543.1px;width:281.4px;height:0.0px;border:0.8px solid #ffffff" data-d="2"></div>
-            <div class="d" style="position:absolute;left:405.4px;top:543.1px;width:281.5px;height:0.0px;border:0.8px solid #ffffff" data-d="3"></div>
-            <div class="d" style="position:absolute;left:58.3px;top:543.1px;width:281.4px;height:0.0px;border:0.8px solid #ffffff" data-d="4"></div>
-            <div class="d" style="position:absolute;left:1100.3px;top:542.7px;width:281.4px;height:0.0px;border:0.8px solid #ffffff" data-d="5"></div>
+            <div class="d" style="position:absolute;left:58.0px;top:542.7px;width:282.1px;height:0.8px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:405.1px;top:542.7px;width:282.1px;height:0.8px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:752.5px;top:542.7px;width:282.1px;height:0.8px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:1099.9px;top:542.4px;width:282.1px;height:0.7px;background:#000000"></div>
+            <div class="d" style="position:absolute;left:752.9px;top:543.1px;width:281.4px;height:0.0px;border:0.8px solid #ffffff"></div>
+            <div class="d" style="position:absolute;left:405.4px;top:543.1px;width:281.5px;height:0.0px;border:0.8px solid #ffffff"></div>
+            <div class="d" style="position:absolute;left:58.3px;top:543.1px;width:281.4px;height:0.0px;border:0.8px solid #ffffff"></div>
+            <div class="d" style="position:absolute;left:1100.3px;top:542.7px;width:281.4px;height:0.0px;border:0.8px solid #ffffff"></div>
             <span class="t" style="position:absolute;left:475.6px;top:171.8px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:64.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">COMMUNITIES</span>
             <span class="t" style="position:absolute;left:376.7px;top:275.8px;font-family:'CocomatPro',sans-serif;font-weight:400;font-size:28.0px;color:#ffffff;white-space:nowrap;line-height:1">WE HAVE CREATED VARIOUS </span>
             <span class="t" style="position:absolute;left:815.3px;top:275.9px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:28.0px;color:#ec36a3;white-space:nowrap;line-height:1">PREMIUM CLUBS</span>
@@ -673,85 +584,85 @@
     </div>
     <div class="slide-container" id="slide-19">
         <div class="slide-inner">
-            <img src="assets/images/p19-img1.png" alt="" class="i" style="position:absolute;left:101.5px;top:227.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img2.png" alt="" class="i" style="position:absolute;left:224.8px;top:227.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img3.png" alt="" class="i" style="position:absolute;left:348.1px;top:227.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img4.png" alt="" class="i" style="position:absolute;left:471.5px;top:227.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img5.png" alt="" class="i" style="position:absolute;left:594.8px;top:227.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img6.png" alt="" class="i" style="position:absolute;left:718.1px;top:227.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img7.png" alt="" class="i" style="position:absolute;left:841.4px;top:227.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img8.png" alt="" class="i" style="position:absolute;left:964.8px;top:227.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img9.png" alt="" class="i" style="position:absolute;left:101.5px;top:309.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img10.png" alt="" class="i" style="position:absolute;left:224.8px;top:309.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img11.png" alt="" class="i" style="position:absolute;left:348.1px;top:309.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img12.png" alt="" class="i" style="position:absolute;left:471.5px;top:309.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img13.png" alt="" class="i" style="position:absolute;left:594.8px;top:309.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img14.png" alt="" class="i" style="position:absolute;left:718.1px;top:309.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img15.png" alt="" class="i" style="position:absolute;left:841.2px;top:309.5px;width:127.5px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img16.png" alt="" class="i" style="position:absolute;left:964.8px;top:309.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img17.png" alt="" class="i" style="position:absolute;left:101.5px;top:391.4px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img18.png" alt="" class="i" style="position:absolute;left:224.8px;top:391.4px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img19.png" alt="" class="i" style="position:absolute;left:348.1px;top:391.4px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img20.png" alt="" class="i" style="position:absolute;left:471.5px;top:391.4px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img21.png" alt="" class="i" style="position:absolute;left:594.8px;top:391.4px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img22.png" alt="" class="i" style="position:absolute;left:718.1px;top:391.4px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img23.png" alt="" class="i" style="position:absolute;left:841.4px;top:391.4px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img24.png" alt="" class="i" style="position:absolute;left:964.8px;top:391.4px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img25.png" alt="" class="i" style="position:absolute;left:101.5px;top:473.3px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img26.png" alt="" class="i" style="position:absolute;left:224.8px;top:473.3px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img27.png" alt="" class="i" style="position:absolute;left:348.1px;top:473.3px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img28.png" alt="" class="i" style="position:absolute;left:471.5px;top:473.3px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img29.png" alt="" class="i" style="position:absolute;left:594.6px;top:473.3px;width:127.5px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img30.png" alt="" class="i" style="position:absolute;left:718.1px;top:473.3px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img31.png" alt="" class="i" style="position:absolute;left:841.4px;top:473.3px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img32.png" alt="" class="i" style="position:absolute;left:964.8px;top:473.3px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img33.png" alt="" class="i" style="position:absolute;left:101.5px;top:555.2px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img34.png" alt="" class="i" style="position:absolute;left:224.8px;top:555.2px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img35.png" alt="" class="i" style="position:absolute;left:348.1px;top:555.2px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img36.png" alt="" class="i" style="position:absolute;left:471.5px;top:555.2px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img37.png" alt="" class="i" style="position:absolute;left:594.8px;top:555.2px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img38.png" alt="" class="i" style="position:absolute;left:718.1px;top:555.2px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img39.png" alt="" class="i" style="position:absolute;left:841.4px;top:555.2px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img40.png" alt="" class="i" style="position:absolute;left:964.8px;top:555.2px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img41.png" alt="" class="i" style="position:absolute;left:1088.0px;top:227.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img42.png" alt="" class="i" style="position:absolute;left:1211.4px;top:227.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img43.png" alt="" class="i" style="position:absolute;left:1088.0px;top:309.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img44.png" alt="" class="i" style="position:absolute;left:1211.4px;top:309.5px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img45.png" alt="" class="i" style="position:absolute;left:1088.0px;top:391.4px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img46.png" alt="" class="i" style="position:absolute;left:1211.4px;top:391.4px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img47.png" alt="" class="i" style="position:absolute;left:1088.0px;top:473.3px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img48.png" alt="" class="i" style="position:absolute;left:1211.4px;top:473.3px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img49.png" alt="" class="i" style="position:absolute;left:1088.0px;top:555.2px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img50.png" alt="" class="i" style="position:absolute;left:1218.4px;top:555.2px;width:112.9px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img51.png" alt="" class="i" style="position:absolute;left:101.5px;top:637.1px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img52.png" alt="" class="i" style="position:absolute;left:224.8px;top:637.1px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img53.png" alt="" class="i" style="position:absolute;left:348.1px;top:637.1px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img54.png" alt="" class="i" style="position:absolute;left:471.5px;top:637.1px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img55.png" alt="" class="i" style="position:absolute;left:594.8px;top:637.1px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img56.png" alt="" class="i" style="position:absolute;left:718.1px;top:637.1px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img57.png" alt="" class="i" style="position:absolute;left:841.4px;top:637.1px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img58.png" alt="" class="i" style="position:absolute;left:964.8px;top:637.1px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img59.png" alt="" class="i" style="position:absolute;left:1088.0px;top:637.1px;width:127.1px;height:63.5px" loading="lazy">
-            <img src="assets/images/p19-img60.png" alt="" class="i" style="position:absolute;left:1211.4px;top:637.1px;width:127.1px;height:63.5px" loading="lazy">
+            <img src="assets/images/p19-img1.png" alt="" class="i" style="position:absolute;left:101.5px;top:227.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img2.png" alt="" class="i" style="position:absolute;left:224.8px;top:227.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img3.png" alt="" class="i" style="position:absolute;left:348.1px;top:227.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img4.png" alt="" class="i" style="position:absolute;left:471.5px;top:227.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img5.png" alt="" class="i" style="position:absolute;left:594.8px;top:227.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img6.png" alt="" class="i" style="position:absolute;left:718.1px;top:227.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img7.png" alt="" class="i" style="position:absolute;left:841.4px;top:227.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img8.png" alt="" class="i" style="position:absolute;left:964.8px;top:227.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img9.png" alt="" class="i" style="position:absolute;left:101.5px;top:309.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img10.png" alt="" class="i" style="position:absolute;left:224.8px;top:309.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img11.png" alt="" class="i" style="position:absolute;left:348.1px;top:309.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img12.png" alt="" class="i" style="position:absolute;left:471.5px;top:309.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img13.png" alt="" class="i" style="position:absolute;left:594.8px;top:309.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img14.png" alt="" class="i" style="position:absolute;left:718.1px;top:309.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img15.png" alt="" class="i" style="position:absolute;left:841.2px;top:309.5px;width:127.5px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img16.png" alt="" class="i" style="position:absolute;left:964.8px;top:309.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img17.png" alt="" class="i" style="position:absolute;left:101.5px;top:391.4px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img18.png" alt="" class="i" style="position:absolute;left:224.8px;top:391.4px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img19.png" alt="" class="i" style="position:absolute;left:348.1px;top:391.4px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img20.png" alt="" class="i" style="position:absolute;left:471.5px;top:391.4px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img21.png" alt="" class="i" style="position:absolute;left:594.8px;top:391.4px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img22.png" alt="" class="i" style="position:absolute;left:718.1px;top:391.4px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img23.png" alt="" class="i" style="position:absolute;left:841.4px;top:391.4px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img24.png" alt="" class="i" style="position:absolute;left:964.8px;top:391.4px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img25.png" alt="" class="i" style="position:absolute;left:101.5px;top:473.3px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img26.png" alt="" class="i" style="position:absolute;left:224.8px;top:473.3px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img27.png" alt="" class="i" style="position:absolute;left:348.1px;top:473.3px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img28.png" alt="" class="i" style="position:absolute;left:471.5px;top:473.3px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img29.png" alt="" class="i" style="position:absolute;left:594.6px;top:473.3px;width:127.5px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img30.png" alt="" class="i" style="position:absolute;left:718.1px;top:473.3px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img31.png" alt="" class="i" style="position:absolute;left:841.4px;top:473.3px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img32.png" alt="" class="i" style="position:absolute;left:964.8px;top:473.3px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img33.png" alt="" class="i" style="position:absolute;left:101.5px;top:555.2px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img34.png" alt="" class="i" style="position:absolute;left:224.8px;top:555.2px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img35.png" alt="" class="i" style="position:absolute;left:348.1px;top:555.2px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img36.png" alt="" class="i" style="position:absolute;left:471.5px;top:555.2px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img37.png" alt="" class="i" style="position:absolute;left:594.8px;top:555.2px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img38.png" alt="" class="i" style="position:absolute;left:718.1px;top:555.2px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img39.png" alt="" class="i" style="position:absolute;left:841.4px;top:555.2px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img40.png" alt="" class="i" style="position:absolute;left:964.8px;top:555.2px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img41.png" alt="" class="i" style="position:absolute;left:1088.0px;top:227.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img42.png" alt="" class="i" style="position:absolute;left:1211.4px;top:227.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img43.png" alt="" class="i" style="position:absolute;left:1088.0px;top:309.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img44.png" alt="" class="i" style="position:absolute;left:1211.4px;top:309.5px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img45.png" alt="" class="i" style="position:absolute;left:1088.0px;top:391.4px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img46.png" alt="" class="i" style="position:absolute;left:1211.4px;top:391.4px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img47.png" alt="" class="i" style="position:absolute;left:1088.0px;top:473.3px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img48.png" alt="" class="i" style="position:absolute;left:1211.4px;top:473.3px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img49.png" alt="" class="i" style="position:absolute;left:1088.0px;top:555.2px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img50.png" alt="" class="i" style="position:absolute;left:1218.4px;top:555.2px;width:112.9px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img51.png" alt="" class="i" style="position:absolute;left:101.5px;top:637.1px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img52.png" alt="" class="i" style="position:absolute;left:224.8px;top:637.1px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img53.png" alt="" class="i" style="position:absolute;left:348.1px;top:637.1px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img54.png" alt="" class="i" style="position:absolute;left:471.5px;top:637.1px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img55.png" alt="" class="i" style="position:absolute;left:594.8px;top:637.1px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img56.png" alt="" class="i" style="position:absolute;left:718.1px;top:637.1px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img57.png" alt="" class="i" style="position:absolute;left:841.4px;top:637.1px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img58.png" alt="" class="i" style="position:absolute;left:964.8px;top:637.1px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img59.png" alt="" class="i" style="position:absolute;left:1088.0px;top:637.1px;width:127.1px;height:63.5px;" loading="lazy">
+            <img src="assets/images/p19-img60.png" alt="" class="i" style="position:absolute;left:1211.4px;top:637.1px;width:127.1px;height:63.5px;" loading="lazy">
             <span class="t" style="position:absolute;left:110.6px;top:113.9px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:64.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">THE BRANDS IN OUR COMMUNITIES</span>
         </div>
     </div>
     <div class="slide-container" id="slide-20">
         <div class="slide-inner">
-            <div class="d" style="position:absolute;left:74.4px;top:479.9px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%" data-d="2"></div>
-            <div class="d" style="position:absolute;left:74.4px;top:558.6px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%" data-d="3"></div>
-            <div class="d" style="position:absolute;left:74.4px;top:611.1px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%" data-d="4"></div>
-            <div class="d" style="position:absolute;left:74.4px;top:663.6px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%" data-d="5"></div>
-            <div class="d" style="position:absolute;left:577.1px;top:479.9px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%" data-d="6"></div>
-            <div class="d" style="position:absolute;left:577.1px;top:558.6px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%" data-d="7"></div>
-            <div class="d" style="position:absolute;left:577.1px;top:637.4px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%" data-d="8"></div>
-            <div class="d" style="position:absolute;left:1045.7px;top:479.9px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%" data-d="9"></div>
-            <div class="d" style="position:absolute;left:1045.7px;top:532.4px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%" data-d="10"></div>
-            <div class="d" style="position:absolute;left:1045.7px;top:584.9px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%" data-d="11"></div>
-            <div class="d" style="position:absolute;left:1045.7px;top:637.4px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%" data-d="12"></div>
-            <img src="assets/images/p20-img1.png" alt="" class="i" style="position:absolute;left:184.0px;top:207.4px;width:159.9px;height:159.9px" loading="lazy">
-            <img src="assets/images/p20-img2.png" alt="" class="i" style="position:absolute;left:657.3px;top:207.4px;width:159.9px;height:159.9px" loading="lazy">
-            <img src="assets/images/p20-img3.png" alt="" class="i" style="position:absolute;left:1130.3px;top:207.4px;width:159.9px;height:159.9px" loading="lazy">
+            <div class="d" style="position:absolute;left:74.4px;top:479.9px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:74.4px;top:558.6px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:74.4px;top:611.1px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:74.4px;top:663.6px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:577.1px;top:479.9px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:577.1px;top:558.6px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:577.1px;top:637.4px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1045.7px;top:479.9px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1045.7px;top:532.4px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1045.7px;top:584.9px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%"></div>
+            <div class="d" style="position:absolute;left:1045.7px;top:637.4px;width:7.5px;height:7.5px;background:#ffffff;border-radius:50%"></div>
+            <img src="assets/images/p20-img1.png" alt="" class="i" style="position:absolute;left:184.0px;top:207.4px;width:159.9px;height:159.9px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p20-img2.png" alt="" class="i" style="position:absolute;left:657.3px;top:207.4px;width:159.9px;height:159.9px;border-radius:50%;overflow:hidden;" loading="lazy">
+            <img src="assets/images/p20-img3.png" alt="" class="i" style="position:absolute;left:1130.3px;top:207.4px;width:159.9px;height:159.9px;border-radius:50%;overflow:hidden;" loading="lazy">
             <span class="t" style="position:absolute;left:455.9px;top:107.2px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:64.0px;color:#ffffff;white-space:nowrap;letter-spacing:2px;line-height:1">OUR OFFERING</span>
             <span class="t" style="position:absolute;left:94.9px;top:468.3px;font-family:'GlacialIndifference',sans-serif;font-weight:700;font-size:24.0px;color:#ec36a3;white-space:nowrap;line-height:1">Media</span>
             <span class="t" style="position:absolute;left:164.4px;top:468.3px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:24.0px;color:#ffffff;white-space:nowrap;line-height:1"> : Le Café de l’E-commerce</span>
@@ -801,11 +712,11 @@
     </div>
     <div class="slide-container" id="slide-21">
         <div class="slide-inner">
-            <div class="d" style="position:absolute;left:744.6px;top:558.2px;width:311.4px;height:2.0px;background:#ffffff" data-d="3"></div>
-            <div class="d" style="position:absolute;left:744.6px;top:518.0px;width:303.6px;height:2.0px;background:#ffffff" data-d="2"></div>
-            <div class="d" style="position:absolute;left:744.6px;top:694.9px;width:280.3px;height:2.0px;background:#ffffff" data-d="4"></div>
-            <img src="assets/images/p21-img1.png" alt="" class="i" style="position:absolute;left:-123.9px;top:-62.3px;width:991.5px;height:660.0px" loading="lazy">
-            <img src="assets/images/p21-img2.png" alt="" class="i" style="position:absolute;left:1169.5px;top:57.8px;width:189.8px;height:189.8px" loading="lazy">
+            <div class="d" style="position:absolute;left:744.6px;top:558.2px;width:311.4px;height:2.0px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:744.6px;top:518.0px;width:303.6px;height:2.0px;background:#ffffff"></div>
+            <div class="d" style="position:absolute;left:744.6px;top:694.9px;width:280.3px;height:2.0px;background:#ffffff"></div>
+            <img src="assets/images/p21-img1.png" alt="" class="i" style="position:absolute;left:-123.9px;top:-62.3px;width:991.5px;height:660.0px;" loading="lazy">
+            <img src="assets/images/p21-img2.png" alt="" class="i" style="position:absolute;left:1169.5px;top:57.8px;width:189.8px;height:189.8px;border-radius:50%;overflow:hidden;" loading="lazy">
             <span class="t" style="position:absolute;left:744.6px;top:442.7px;font-family:'CocomatPro',sans-serif;font-weight:700;font-size:36.8px;color:#ec36a3;white-space:nowrap;line-height:1">EMAIL ADDRESS</span>
             <span class="t" style="position:absolute;left:744.6px;top:489.9px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:27.5px;color:#ffffff;white-space:nowrap;line-height:1">adrien@butterflyagency.io</span>
             <span class="t" style="position:absolute;left:744.6px;top:530.1px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:27.5px;color:#ffffff;white-space:nowrap;line-height:1">laetitia@butterflyagency.io</span>
@@ -815,8 +726,6 @@
             <span class="t" style="position:absolute;left:744.6px;top:349.9px;font-family:'GlacialIndifference',sans-serif;font-weight:400;font-size:28.0px;color:#ffffff;white-space:nowrap;line-height:1">Contact us for more questions.</span>
         </div>
     </div>
-
-    <!-- Navigation Dots -->
     <div class="nav-dots">
         <div class="nav-dot active" data-slide="1"></div>
         <div class="nav-dot" data-slide="2"></div>
@@ -840,72 +749,26 @@
         <div class="nav-dot" data-slide="20"></div>
         <div class="nav-dot" data-slide="21"></div>
     </div>
-
-    <!-- Slide Counter -->
     <div class="slide-counter">
         <span id="current-slide">1</span> / <span id="total-slides">21</span>
     </div>
-
     <script>
-        const slides = document.querySelectorAll('.slide-container');
-        const dots = document.querySelectorAll('.nav-dot');
-        const currentSlideSpan = document.getElementById('current-slide');
-        const totalSlidesSpan = document.getElementById('total-slides');
-        let currentSlide = 1;
-        const totalSlides = slides.length;
-        totalSlidesSpan.textContent = totalSlides;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const idx = Array.from(slides).indexOf(entry.target) + 1;
-                    updateCurrentSlide(idx);
-                }
-            });
-        }, { threshold: 0.5 });
-        slides.forEach(s => observer.observe(s));
-
-        function updateCurrentSlide(n) {
-            currentSlide = n;
-            currentSlideSpan.textContent = n;
-            dots.forEach((d, i) => d.classList.toggle('active', i === n - 1));
-        }
-
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-                slides[i].scrollIntoView({ behavior: 'smooth' });
-                updateCurrentSlide(i + 1);
-            });
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown' || e.key === ' ') {
-                e.preventDefault();
-                if (currentSlide < totalSlides) slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                if (currentSlide > 1) slides[currentSlide - 2].scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-
-        let lastScrollTime = 0;
-        window.addEventListener('wheel', (e) => {
-            const now = Date.now();
-            if (now - lastScrollTime < 500) return;
-            lastScrollTime = now;
-            if (e.deltaY > 0 && currentSlide < totalSlides) slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
-            else if (e.deltaY < 0 && currentSlide > 1) slides[currentSlide - 2].scrollIntoView({ behavior: 'smooth' });
-        }, { passive: false });
-
-        function scaleSlides() {
-            const inners = document.querySelectorAll('.slide-inner');
-            const vw = window.innerWidth;
-            const vh = window.innerHeight;
-            const scale = Math.min(vw / 1440, vh / 810, 1);
-            inners.forEach(s => s.style.transform = `scale(${scale})`);
-        }
-        scaleSlides();
-        window.addEventListener('resize', scaleSlides);
+        const slides=document.querySelectorAll('.slide-container');
+        const dots=document.querySelectorAll('.nav-dot');
+        const currentSlideSpan=document.getElementById('current-slide');
+        const totalSlidesSpan=document.getElementById('total-slides');
+        let currentSlide=1;
+        const totalSlides=slides.length;
+        totalSlidesSpan.textContent=totalSlides;
+        const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){const idx=Array.from(slides).indexOf(entry.target)+1;updateCurrentSlide(idx);}});},{threshold:0.5});
+        slides.forEach(s=>observer.observe(s));
+        function updateCurrentSlide(n){currentSlide=n;currentSlideSpan.textContent=n;dots.forEach((d,i)=>d.classList.toggle('active',i===n-1));}
+        dots.forEach((dot,i)=>{dot.addEventListener('click',()=>{slides[i].scrollIntoView({behavior:'smooth'});updateCurrentSlide(i+1);});});
+        document.addEventListener('keydown',(e)=>{if(e.key==='ArrowDown'||e.key===' '){e.preventDefault();if(currentSlide<totalSlides)slides[currentSlide].scrollIntoView({behavior:'smooth'});}else if(e.key==='ArrowUp'){e.preventDefault();if(currentSlide>1)slides[currentSlide-2].scrollIntoView({behavior:'smooth'});}});
+        let lastScrollTime=0;
+        window.addEventListener('wheel',(e)=>{const now=Date.now();if(now-lastScrollTime<500)return;lastScrollTime=now;if(e.deltaY>0&&currentSlide<totalSlides)slides[currentSlide].scrollIntoView({behavior:'smooth'});else if(e.deltaY<0&&currentSlide>1)slides[currentSlide-2].scrollIntoView({behavior:'smooth'}); },{passive:false});
+        function scaleSlides(){const inners=document.querySelectorAll('.slide-inner');const vw=window.innerWidth;const vh=window.innerHeight;const scale=Math.min(vw/1440,vh/810,1);inners.forEach(s=>s.style.transform=`scale(${scale})`);};
+        scaleSlides();window.addEventListener('resize',scaleSlides);
     </script>
 </body>
-</html><!-- v6 -->
+</html>
